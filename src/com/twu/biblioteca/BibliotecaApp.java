@@ -2,7 +2,22 @@ package com.twu.biblioteca;
 
 public class BibliotecaApp {
 
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
+    private UserInterface ui;
+    private Controller controller;
+
+    public BibliotecaApp() {
+        ui = new UserInterface();
+        controller = new Controller();
     }
+
+    public void run() {
+       ui.show("Welcome!");
+
+       while (true) {
+           ui.readUserInput();
+           String result = this.controller.processInput(ui.getUserInput());
+           ui.show(result);
+       }
+    }
+
 }
