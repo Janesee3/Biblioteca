@@ -3,12 +3,14 @@ package com.twu.biblioteca;
 import java.util.Scanner;
 
 public class UserInterface {
-
+	
+	public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";
+	
     private Scanner scanner;
     private String userInput;
 
     public UserInterface() {
-        scanner = new Scanner(System.in);
+      
     }
 
     public void show(String content) {
@@ -16,10 +18,15 @@ public class UserInterface {
     }
 
     public void readUserInput() {
-       userInput = scanner.nextLine();
+    		scanner = new Scanner(System.in);
+    		userInput = scanner.nextLine();
     }
 
     public String getUserInput() {
         return userInput;
+    }
+    
+    public void showWelcomeSequence() {
+    		show(WELCOME_MESSAGE);
     }
 }
