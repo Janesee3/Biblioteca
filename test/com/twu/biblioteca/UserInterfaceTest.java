@@ -29,7 +29,7 @@ public class UserInterfaceTest {
 	}
 	
 	@After
-	public void teardown() {
+	public void tearDown() {
 		ui = null;
 		restoreStreams();
 	}
@@ -64,9 +64,9 @@ public class UserInterfaceTest {
 		String expected = "test input";
 		injectInput(expected);
 		
-		ui.readUserInput();
+		String result = ui.readUserInput();
 		
-		assertEquals(expected, ui.getUserInput());
+		assertEquals(expected, result);
     }
 	
 	@Test

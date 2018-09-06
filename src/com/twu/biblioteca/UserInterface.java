@@ -7,7 +7,6 @@ public class UserInterface {
 	public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";
 	
     private Scanner scanner;
-    private String userInput;
 
     public UserInterface() {
       
@@ -17,15 +16,12 @@ public class UserInterface {
         System.out.println(content);
     }
 
-    public void readUserInput() {
+    public String readUserInput() {
     		scanner = new Scanner(System.in);
-    		userInput = scanner.nextLine();
+    		return scanner.nextLine();
+
     }
 
-    public String getUserInput() {
-        return userInput;
-    }
-    
     public void showWelcomeSequence() {
     		show(WELCOME_MESSAGE);
     }

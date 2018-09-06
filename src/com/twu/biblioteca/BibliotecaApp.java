@@ -6,18 +6,12 @@ public class BibliotecaApp {
     private Controller controller;
 
     public BibliotecaApp() {
-        ui = new UserInterface();
-        controller = new Controller();
+        this.ui = new UserInterface();
+        this.controller = new Controller();
     }
 
     public void run() {
-        ui.showWelcomeSequence();
-
-        while (true) {
-            ui.readUserInput();
-            String result = this.controller.processInput(ui.getUserInput());
-            ui.show(result);
-        }
+        this.ui.showWelcomeSequence();
     }
 
 }
