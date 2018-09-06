@@ -9,9 +9,13 @@ public class BibliotecaApp {
     private Store store;
 
     boolean hasQuit;
-
+    
+    // Controller
     public BibliotecaApp() {
-        this.ui = new UserInterface();
+        this.ui = new UserInterface(); //View
+        // this.parser = new Parser();
+        
+        
         this.state = AppState.STARTUP;
         this.store = new Store();
         this.hasQuit = false;
@@ -22,7 +26,20 @@ public class BibliotecaApp {
     }
 
     public void run() {
+    		// this.ui show welcome sequence;
+    		// this.ui show main memu
+    	
         while (!this.hasQuit) {
+        		// String input = waitforinput();
+        		// String output = parser.parse(input, state);
+        	/*
+        	 * Paser.parse( input,  state) 
+        	 * => Parse.match(enum: state==MAIN_MENU, input==LISTBOOKS) 
+        	 * => ResponseObj (content In String Form, new State) = logic.execute(ACTION_TYPE) (call Ui Static prettify method)
+        	 * => Set the new State.
+        	 * => if empty string, dont show, else ui.show(content);
+        	 */
+        	
             this.processState();
         }
     }
@@ -56,6 +73,7 @@ public class BibliotecaApp {
 
     void runMenuSequence() {
         this.ui.showMenu();
+        
         String menuChoice = this.ui.readUserInput();
 
         if (menuChoice.equals(UserInterface.MENU_CHOICE_LIST_BOOKS)) {
@@ -74,6 +92,7 @@ public class BibliotecaApp {
     void runListBooksSequence() {
         this.ui.showBookList(store.getBooks());
         this.ui.showBookListMenu();
+        
         String menuChoice = this.ui.readUserInput();
 
         if (menuChoice.equals(UserInterface.BOOK_LIST_CHOICE_BACK)) {
