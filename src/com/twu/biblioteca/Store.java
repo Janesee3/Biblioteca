@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 public class Store {
 
-    private String[] books;
+    private ArrayList<Book> books;
 
     public Store() {
+        books = new ArrayList<Book>();
     }
 
-    public void seedBooks(String[] seed) {
-        this.books = seed;
+    public void addBook(Book book) {
+        this.books.add(book);
     }
 
-    public String[] getBooks() {
+    public ArrayList<Book> getBooks() {
         return this.books;
     }
 }

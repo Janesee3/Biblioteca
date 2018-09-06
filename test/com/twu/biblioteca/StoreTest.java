@@ -9,18 +9,33 @@ import static junit.framework.TestCase.assertEquals;
 
 public class StoreTest {
 
-    private final String[] BOOKS = {"BOOK 1", "BOOK 2"};
+    private final Book TEST_BOOK_1 = new Book("Book1");
+    private final Book TEST_BOOK_2 = new Book("Book2");
+    private final Book TEST_BOOK_3 = new Book("Book3");
+    private ArrayList<Book> booksSeed;
+
     private Store store;
 
     @Before
     public void init() {
         store = new Store();
-        store.seedBooks(BOOKS);
+        setupFixtures();
+    }
+
+    private void setupFixtures() {
+        booksSeed = new ArrayList<Book>();
+        booksSeed.add(TEST_BOOK_1);
+        booksSeed.add(TEST_BOOK_2);
+        booksSeed.add(TEST_BOOK_3);
+
+        store.addBook(TEST_BOOK_1);
+        store.addBook(TEST_BOOK_2);
+        store.addBook(TEST_BOOK_3);
     }
 
     @Test
     public void getBooksShouldReturnListOfAllBooks() {
-        String[] books = store.getBooks();
-        assertEquals(books, BOOKS);
+        ArrayList<Book> books = store.getBooks();
+        assertEquals(this.booksSeed.size(), books.size());
     }
 }
