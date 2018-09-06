@@ -19,7 +19,6 @@ public class UserInterface {
     public String readUserInput() {
     		scanner = new Scanner(System.in);
     		return scanner.nextLine();
-
     }
 
     public void showWelcomeSequence() {

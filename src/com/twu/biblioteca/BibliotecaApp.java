@@ -3,15 +3,16 @@ package com.twu.biblioteca;
 public class BibliotecaApp {
 
     private UserInterface ui;
-    private Controller controller;
+    private Logic logic;
 
     public BibliotecaApp() {
         this.ui = new UserInterface();
-        this.controller = new Controller();
+        this.logic = new Logic();
     }
 
     public void run() {
         this.ui.showWelcomeSequence();
+
     }
 
 }
