@@ -82,6 +82,11 @@ public class BibliotecaApp {
 
         if (menuChoice.contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT)) {
             int bookId = getIdFromCheckoutStatement(menuChoice);
+            if (bookId < 0) {
+                // Handle invalid case
+            } else {
+                store.checkoutBook(bookId);
+            }
         }
 
     }

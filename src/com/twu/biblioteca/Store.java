@@ -25,4 +25,8 @@ public class Store {
 
         return availableBooks;
     }
+
+    public void checkoutBook(int bookId) {
+        this.books.get(bookId).markAsCheckedOut();
+    }
 }
