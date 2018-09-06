@@ -8,7 +8,7 @@ public class BibliotecaApp {
     private AppState state;
     private Store store;
 
-    private boolean hasQuit;
+    boolean hasQuit;
 
     public BibliotecaApp() {
         this.ui = new UserInterface();
@@ -49,34 +49,34 @@ public class BibliotecaApp {
         }
     }
 
-    private void runStartupSequence() {
+    void runStartupSequence() {
         this.ui.showWelcomeSequence();
         this.setState(AppState.MAIN_MENU);
     }
 
-    private void runMenuSequence() {
+    void runMenuSequence() {
         this.ui.showMenu();
         String menuChoice = this.ui.readUserInput();
 
-        if (menuChoice.equals("1")) {
+        if (menuChoice.equals(UserInterface.MENU_CHOICE_LIST_BOOKS)) {
             this.setState(AppState.LIST_BOOKS);
             return;
         }
 
-        if (menuChoice.equals("2")) {
+        if (menuChoice.equals(UserInterface.MENU_CHOICE_QUIT)) {
             this.hasQuit = true;
             return;
         }
 
-        this.ui.show("Invalid selection! Please try again.");
+        this.ui.show(UserInterface.INVALID_MENU_CHOICE);
     }
 
-    private void runListBooksSequence() {
+    void runListBooksSequence() {
         this.ui.showBookList(store.getBooks());
         this.ui.showBookListMenu();
         String menuChoice = this.ui.readUserInput();
 
-        if (menuChoice.equals("b")) {
+        if (menuChoice.equals(UserInterface.BOOK_LIST_CHOICE_BACK)) {
             this.setState(AppState.MAIN_MENU);
         }
 
