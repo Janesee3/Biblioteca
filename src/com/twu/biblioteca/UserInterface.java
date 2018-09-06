@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-	
-	public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";
 
-	public static final String MENU_CHOICE_LIST_BOOKS = "1";
+    public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";
+
+    public static final String MENU_CHOICE_LIST_BOOKS = "1";
     public static final String MENU_CHOICE_QUIT = "2";
     public static final String MENU = String.format(
             "---- MAIN MENU ---- \n[%s] List Books\n[%s] Quit\nPlease select by typing the corresponding number of the option you want.",
@@ -30,30 +30,31 @@ public class UserInterface {
 
     private Scanner scanner;
 
-    public UserInterface() {}
+    public UserInterface() {
+    }
 
-    public void show(String content) {
+    void show(String content) {
         System.out.println(content);
     }
 
-    public String readUserInput() {
-    		scanner = new Scanner(System.in);
-    		return scanner.nextLine();
+    String readUserInput() {
+        scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
-    public void showWelcomeSequence() {
-    		show(WELCOME_MESSAGE);
+    void showWelcomeSequence() {
+        show(WELCOME_MESSAGE);
     }
 
-    public void showMenu() {
+    void showMenu() {
         show(MENU);
     }
 
-    public void showBookList(ArrayList<Book> list) {
+    void showBookList(ArrayList<Book> list) {
         this.show(this.getBookListDisplayString(list));
     }
 
-    public void showBookListMenu() {
+    void showBookListMenu() {
         show(BOOK_LIST_MENU);
     }
 
