@@ -5,12 +5,14 @@ public class Book {
     private String title;
     private String author;
     private String year;
+    private boolean isCheckedOut;
 
 
     public Book(String title, String author, String year) {
         this.title = title;
         this.author = author;
         this.year = year;
+        this.isCheckedOut = false;
     }
 
     public String getTitle() {
@@ -23,5 +25,17 @@ public class Book {
 
     public String getYear() {
         return this.year;
+    }
+
+    public boolean getCheckoutStatus() {
+        return this.isCheckedOut;
+    }
+
+    public void markAsCheckedOut() {
+        this.isCheckedOut = true;
+    }
+
+    public void markAsNotCheckedOut() {
+        this.isCheckedOut = false;
     }
 }
