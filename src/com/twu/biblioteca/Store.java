@@ -7,7 +7,7 @@ public class Store {
     private ArrayList<Book> books;
 
     public Store() {
-        books = new ArrayList<Book>();
+        books = new ArrayList<Book>(BookSeeder.getSeedData());
     }
 
     public void addBook(Book book) {

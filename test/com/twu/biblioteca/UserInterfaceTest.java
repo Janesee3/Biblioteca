@@ -14,10 +14,7 @@ import org.junit.Test;
 public class UserInterfaceTest {
 	
 	private UserInterface ui;
-	
-	
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	
 	private final PrintStream originalOut = System.out;
 	private final InputStream originalIn = System.in;
 	
@@ -74,7 +71,12 @@ public class UserInterfaceTest {
 		ui.showWelcomeSequence(); 
 		assertEquals(UserInterface.WELCOME_MESSAGE, getOutputFromStream());
     }
-	
+
+	@Test
+	public void showMenuShouldPrintMenu() {
+		ui.showMenu();
+		assertEquals(UserInterface.MENU, getOutputFromStream());
+	}
 	
 	
 	
