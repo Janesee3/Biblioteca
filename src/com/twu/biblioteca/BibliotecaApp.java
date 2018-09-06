@@ -80,7 +80,22 @@ public class BibliotecaApp {
             this.setState(AppState.MAIN_MENU);
         }
 
+        if (menuChoice.contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT)) {
+            int bookId = getIdFromCheckoutStatement(menuChoice);
+        }
+
     }
 
+    int getIdFromCheckoutStatement(String statement) {
+        String[] wordsArray = statement.split(" ");
+        if (wordsArray.length <= 1) {
+            return -1;
+        }
+        try {
+            return Integer.parseInt(wordsArray[1]);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 
 }

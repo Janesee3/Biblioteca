@@ -84,4 +84,21 @@ public class BibliotecaAppTest {
         assertEquals(AppState.MAIN_MENU, app.getState());
     }
 
+    @Test
+    public void shouldParseBookIdFromCheckoutStatement() {
+        int id = 10;
+        String input = "checkout " + id;
+        assertEquals(id, app.getIdFromCheckoutStatement(input));
+    }
+
+    @Test
+    public void shouldReturnNegativeIfInvalidCheckoutStatement() {
+        int id = -1;
+        String input = "checkout " + "dasdad";
+        assertEquals(id, app.getIdFromCheckoutStatement(input));
+
+        input = "checkout";
+        assertEquals(id, app.getIdFromCheckoutStatement(input));
+    }
+
 }

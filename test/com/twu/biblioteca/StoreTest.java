@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,24 +9,23 @@ import static junit.framework.TestCase.assertEquals;
 
 public class StoreTest {
 
-    private static ArrayList<Book> booksSeed;
-
+    private ArrayList<Book> booksSeed;
     private Store store;
-
-    @BeforeClass
-    public static void setupFixtures() {
-        booksSeed = BookSeeder.getSeedData();
-    }
 
     @Before
     public void init() {
+        booksSeed = BookSeeder.getSeedData();
         store = new Store();
+        store.seedBooksData(booksSeed);
     }
 
-
     @Test
-    public void getBooksShouldReturnListOfAllBooks() {
+    public void getBooksShouldReturnListOfNotCheckedOutBooks() {
+        booksSeed.get(0).markAsCheckedOut();
+        store.seedBooksData(booksSeed);
+
         ArrayList<Book> books = store.getBooks();
-        assertEquals(this.booksSeed.size(), books.size());
+
+        assertEquals(booksSeed.size() - 1, books.size());
     }
 }
