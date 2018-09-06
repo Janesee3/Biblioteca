@@ -22,7 +22,7 @@ public class BibliotecaApp {
     }
 
     public void run() {
-        while (!hasQuit) {
+        while (!this.hasQuit) {
             this.processState();
         }
     }
@@ -39,10 +39,13 @@ public class BibliotecaApp {
         switch (this.state) {
             case STARTUP:
                 this.runStartupSequence();
+                break;
             case MAIN_MENU:
                 this.runMenuSequence();
+                break;
             case LIST_BOOKS:
                 this.runListBooksSequence();
+                break;
         }
     }
 
@@ -60,13 +63,23 @@ public class BibliotecaApp {
             return;
         }
 
+        if (menuChoice.equals("2")) {
+            this.hasQuit = true;
+            return;
+        }
+
         this.ui.show("Invalid selection! Please try again.");
-        runMenuSequence();
     }
 
     private void runListBooksSequence() {
         this.ui.showBookList(store.getBooks());
-        this.ui.readUserInput();
+        this.ui.showBookListMenu();
+        String menuChoice = this.ui.readUserInput();
+
+        if (menuChoice.equals("b")) {
+            this.setState(AppState.MAIN_MENU);
+        }
+
     }
 
 
