@@ -49,20 +49,16 @@ public class BibliotecaAppTest {
     @Test
     public void startupSequenceShouldPrintMessageAndChangeState() {
         app.runStartupSequence();
-        
-        
-//        assertEquals(AppState.MAIN_MENU, app.getState());
-//        assertEquals(UserInterface.WELCOME_MESSAGE, getOutputFromStream());
+        assertEquals(AppState.MAIN_MENU, app.getState());
+        assertTrue(getOutputFromStream().contains(UserInterface.WELCOME_MESSAGE));
     }
 
     @Test
     public void menuSequenceShouldPrintMenu() {
         String dummyInput = "meow";
         injectInput(dummyInput);
-
         app.runMenuSequence();
-
-        assertEquals(UserInterface.MENU + System.lineSeparator() + UserInterface.INVALID_MENU_CHOICE, getOutputFromStream());
+        assertTrue(getOutputFromStream().contains(UserInterface.MENU));
     }
 
     @Test
@@ -103,4 +99,11 @@ public class BibliotecaAppTest {
         assertEquals(id, app.getIdFromCheckoutStatement(input));
     }
 
+    @Test
+    public void shouldPrintInvalidMessageWhenCheckoutInvalidBook() {
+    		String input = "checkout " + "dasdad";
+        injectInput(input);
+        app.runListBooksSequence();
+        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT_INVALID));
+    }
 }

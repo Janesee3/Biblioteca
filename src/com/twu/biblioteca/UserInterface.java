@@ -26,6 +26,7 @@ public class UserInterface {
             BOOK_LIST_CHOICE_BACK,
             BOOK_LIST_CHOICE_CHECKOUT
     );
+    public static final String BOOK_LIST_CHOICE_CHECKOUT_INVALID = "Unable to checkout the specified book!";
 
 
     private Scanner scanner;

@@ -10,12 +10,8 @@ public class BibliotecaApp {
 
     boolean hasQuit;
     
-    // Controller
     public BibliotecaApp() {
-        this.ui = new UserInterface(); //View
-        // this.parser = new Parser();
-        
-        
+        this.ui = new UserInterface();
         this.state = AppState.STARTUP;
         this.store = new Store();
         this.hasQuit = false;
@@ -30,9 +26,10 @@ public class BibliotecaApp {
     		// this.ui show main memu
     	
         while (!this.hasQuit) {
-        		// String input = waitforinput();
-        		// String output = parser.parse(input, state);
+       
         	/*
+        	 *  	String input = waitforinput();
+        	 *  String output = parser.parse(input, state);
         	 * Paser.parse( input,  state) 
         	 * => Parse.match(enum: state==MAIN_MENU, input==LISTBOOKS) 
         	 * => ResponseObj (content In String Form, new State) = logic.execute(ACTION_TYPE) (call Ui Static prettify method)
@@ -90,7 +87,9 @@ public class BibliotecaApp {
     }
 
     void runListBooksSequence() {
-        this.ui.showBookList(store.getBooks());
+    		ArrayList<Book> bookList = store.getBooks();
+    		
+        this.ui.showBookList(bookList);
         this.ui.showBookListMenu();
         
         String menuChoice = this.ui.readUserInput();
@@ -102,14 +101,17 @@ public class BibliotecaApp {
         if (menuChoice.contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT)) {
             int bookId = getIdFromCheckoutStatement(menuChoice);
             if (bookId < 0) {
-                // Handle invalid case
+                this.ui.show(UserInterface.BOOK_LIST_CHOICE_CHECKOUT_INVALID);
             } else {
                 store.checkoutBook(bookId);
             }
         }
 
     }
-
+    
+    
+    // Parsing related
+    
     int getIdFromCheckoutStatement(String statement) {
         String[] wordsArray = statement.split(" ");
         if (wordsArray.length <= 1) {
