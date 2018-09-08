@@ -104,6 +104,6 @@ public class BibliotecaAppTest {
     		String input = "checkout " + "dasdad";
         injectInput(input);
         app.runListBooksSequence();
-        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT_INVALID));
+        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHECKOUT_INVALID));
     }
 }

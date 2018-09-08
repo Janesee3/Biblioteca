@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";
+    public static final String QUIT_MESSAGE = "Goodbye!";
 
     public static final String MENU_CHOICE_LIST_BOOKS = "1";
     public static final String MENU_CHOICE_QUIT = "2";
@@ -18,6 +19,7 @@ public class UserInterface {
 
     public static final String BOOK_LIST_CHOICE_BACK = "b";
     public static final String BOOK_LIST_CHOICE_CHECKOUT = "checkout";
+    public static final String BOOK_LIST_CHOICE_INVALID = "Invalid choice, please try again!\n";
     public static final String BOOK_LIST_TITLE = "---- BOOK LIST ----\n";
     public static final String BOOK_LIST_TABLE_HEADING = String.format("%-5s | %-20s | %-20s | %-8s\n", "ID", "Title", "Author", "Year");
     public static final String BOOK_LIST_ITEM = "%-5d | %-20s | %-20s | %-8s\n";
@@ -26,8 +28,8 @@ public class UserInterface {
             BOOK_LIST_CHOICE_BACK,
             BOOK_LIST_CHOICE_CHECKOUT
     );
-    public static final String BOOK_LIST_CHOICE_CHECKOUT_INVALID = "Unable to checkout the specified book!";
-
+    public static final String BOOK_LIST_CHECKOUT_INVALID = "That book is not available.\n";
+    public static final String BOOK_LIST_CHECKOUT_SUCCESS = "Thank you! Enjoy the book!\n";
 
     private Scanner scanner;
 

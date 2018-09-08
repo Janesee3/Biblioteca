@@ -39,6 +39,8 @@ public class BibliotecaApp {
         	
             this.processState();
         }
+        
+        this.ui.show(UserInterface.QUIT_MESSAGE);
     }
 
     public AppState getState() {
@@ -96,16 +98,21 @@ public class BibliotecaApp {
 
         if (menuChoice.equals(UserInterface.BOOK_LIST_CHOICE_BACK)) {
             this.setState(AppState.MAIN_MENU);
+            return;
         }
 
         if (menuChoice.contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT)) {
             int bookId = getIdFromCheckoutStatement(menuChoice);
             if (bookId < 0) {
-                this.ui.show(UserInterface.BOOK_LIST_CHOICE_CHECKOUT_INVALID);
+                this.ui.show(UserInterface.BOOK_LIST_CHECKOUT_INVALID);
             } else {
                 store.checkoutBook(bookId);
+                this.ui.show(UserInterface.BOOK_LIST_CHECKOUT_SUCCESS);
             }
+            return;
         }
+        
+        this.ui.show(UserInterface.BOOK_LIST_CHOICE_INVALID);
 
     }
     
