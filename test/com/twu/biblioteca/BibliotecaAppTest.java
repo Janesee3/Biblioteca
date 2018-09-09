@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BibliotecaAppTest {
@@ -40,6 +39,8 @@ public class BibliotecaAppTest {
     private String getOutputFromStream() {
         return outContent.toString().trim();
     }
+    
+    /*** Test for Startup **/
 	
     @Test
     public void shouldBeInStartupStateWhenInitialised() {
@@ -53,6 +54,8 @@ public class BibliotecaAppTest {
         assertTrue(getOutputFromStream().contains(UserInterface.WELCOME_MESSAGE));
     }
 
+    /*** Test for Menu Sequence ***/
+    
     @Test
     public void menuSequenceShouldPrintMenu() {
         String dummyInput = "meow";
@@ -74,6 +77,8 @@ public class BibliotecaAppTest {
         app.runMenuSequence();
         assertTrue(app.hasQuit);
     }
+    
+    /*** Test for List Books Sequence ***/
 
     @Test
     public void bookListMenuBackShouldChangeStateCorrectly() {
@@ -81,6 +86,16 @@ public class BibliotecaAppTest {
         app.runListBooksSequence();
         assertEquals(AppState.MAIN_MENU, app.getState());
     }
+    
+    @Test
+    public void shouldPrintInvalidMessageWhenCheckoutInvalidBook() {
+    		String input = "checkout " + "dasdad";
+        injectInput(input);
+        app.runListBooksSequence();
+        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHECKOUT_INVALID));
+    }
+    
+    /*** Test for Parsing Checkout Statement ***/
 
     @Test
     public void shouldParseBookIdFromCheckoutStatement() {
@@ -99,11 +114,5 @@ public class BibliotecaAppTest {
         assertEquals(id, app.getIdFromCheckoutStatement(input));
     }
 
-    @Test
-    public void shouldPrintInvalidMessageWhenCheckoutInvalidBook() {
-    		String input = "checkout " + "dasdad";
-        injectInput(input);
-        app.runListBooksSequence();
-        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHECKOUT_INVALID));
-    }
+   
 }
