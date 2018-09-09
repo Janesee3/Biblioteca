@@ -2,13 +2,16 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class BibliotecaApp {
+public class BibliotecaApp implements UserDelegate {
 
     private UserInterface ui;
     private AppState state;
     private Store store;
 
     boolean hasQuit;
+    
+    private boolean isLoggedIn = false;
+    private String currentUser = "1234";
     
     public BibliotecaApp() {
         this.ui = new UserInterface();
@@ -21,6 +24,28 @@ public class BibliotecaApp {
         this.state = state;
     }
 
+    // Interface 
+    
+    public boolean isLoggedIn() {
+    		return this.isLoggedIn;
+    }
+    
+    public String getCurrentUser() {
+    		return this.currentUser;
+    }
+    
+	public void login(String username) {
+		this.isLoggedIn = true;
+		currentUser = username;
+	}
+	
+	public void logout() {
+		this.isLoggedIn = false;
+		currentUser = null;
+	}
+
+	// Actual Methods
+	
     public void run() {
     		// this.ui show welcome sequence;
     		// this.ui show main memu
@@ -28,13 +53,12 @@ public class BibliotecaApp {
         while (!this.hasQuit) {
        
         	/*
-        	 *  	String input = waitforinput();
-        	 *  String output = parser.parse(input, state);
-        	 * Paser.parse( input,  state) 
-        	 * => Parse.match(enum: state==MAIN_MENU, input==LISTBOOKS) 
-        	 * => ResponseObj (content In String Form, new State) = logic.execute(ACTION_TYPE) (call Ui Static prettify method)
-        	 * => Set the new State.
-        	 * => if empty string, dont show, else ui.show(content);
+        	 *  	String input = this.ui.readUserInput();
+        	 *  Action action = Parser.parse(this.getState(), input);
+        	 *  Response res = logic.execute(action)
+        	 *  this.ui.displayResponse(res)
+        	 *  this.setState(res.getState());
+        	 *  
         	 */
         	
             this.processState();
