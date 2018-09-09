@@ -14,6 +14,10 @@ public class Parser {
 			return Parser.parseListBookMenuSelection(input);
 		}
 		
+		if (state == AppState.RETURN_BOOKS) {
+			return Parser.parseReturnBookMenuSelection(input);
+		}
+		
 		return null;
 	}
 	
@@ -51,12 +55,26 @@ public class Parser {
 		}
 		
 		if (input.contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT)) {
-			Integer id = Parser.getIdFromActionStatement(input);
-			Action action = new Action(ActionType.CHECKOUT_BOOK);
-			action.addArg(id);
-			return action;
+			return Parser.createActionFromCommandWithId(ActionType.CHECKOUT_BOOK, input);
+		}
+		return new Action(ActionType.INVALID_LIST_BOOK_MENU_CHOICE);
+	}
+	
+	private static Action parseReturnBookMenuSelection(String input) {
+		if (input.equals(UserInterface.RETURN_BOOKS_CHOICE_BACK)) {
+			return new Action(ActionType.BACK_TO_MAIN_MENU);
 		}
 		
-		return new Action(ActionType.INVALID_LIST_BOOK_MENU_CHOICE);
+		if (input.contains(UserInterface.RETURN_BOOKS_CHOICE_RETURN)) {
+			return Parser.createActionFromCommandWithId(ActionType.RETURN_BOOK, input);
+		}
+		return new Action(ActionType.INVALID_RETURN_BOOK_MENU_CHOICE);
+	}
+	
+	private static Action createActionFromCommandWithId(ActionType type, String input) {
+		Integer id = Parser.getIdFromActionStatement(input);
+		Action action = new Action(type);
+		action.addArg(id);
+		return action;
 	}
 }

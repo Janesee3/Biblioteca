@@ -81,5 +81,46 @@ public class ParserTest {
 		assertEquals(expectedAction, action);
 	}
 	
+	// Test for parsing return book menu input
+	
+		@Test
+		public void parseBackFromReturnBookReturnsCorrectAction() {
+			String input = UserInterface.RETURN_BOOKS_CHOICE_BACK;
+			Action expectedAction = new Action(ActionType.BACK_TO_MAIN_MENU);
+			Action action = Parser.parse(AppState.RETURN_BOOKS, input);
+			assertEquals(expectedAction, action);
+		}
+		
+		@Test
+		public void parseReturnBookGivesCorrectActionWithArg() {
+			Integer bookId = 1;
+			String input = UserInterface.RETURN_BOOKS_CHOICE_RETURN + " " + bookId;
+			Action expectedAction = new Action(ActionType.RETURN_BOOK);
+			expectedAction.addArg(bookId);
+			
+			Action action = Parser.parse(AppState.RETURN_BOOKS, input);
+
+			assertEquals(expectedAction, action);
+		}
+		
+		@Test
+		public void parseReturnInvalidBookGivesCorrectActionWithArg() {
+			String input = UserInterface.RETURN_BOOKS_CHOICE_RETURN + " " + "absdad";
+			Action expectedAction = new Action(ActionType.RETURN_BOOK);
+			expectedAction.addArg(Parser.PARSED_INVALID_ID);
+			
+			Action action = Parser.parse(AppState.RETURN_BOOKS, input);
+
+			assertEquals(expectedAction, action);
+		}
+		
+		@Test
+		public void parseReturnBookInvalidSelectionGivesCorrectAction() {
+			String input = "asdsad";
+			Action expectedAction = new Action(ActionType.INVALID_RETURN_BOOK_MENU_CHOICE);
+			Action action = Parser.parse(AppState.RETURN_BOOKS, input);
+			assertEquals(expectedAction, action);
+		}
+		
 
 }
