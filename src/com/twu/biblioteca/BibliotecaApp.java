@@ -97,7 +97,7 @@ public class BibliotecaApp {
     }
 
     void runListBooksSequence() {
-    		ArrayList<Book> bookList = store.getBooks();
+    		ArrayList<Book> bookList = store.getAvailableBooks();
     		
         this.ui.showBookList(bookList);
         this.ui.showBookListMenu();
@@ -110,7 +110,7 @@ public class BibliotecaApp {
         }
 
         if (menuChoice.contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT)) {
-            int bookId = getIdFromCheckoutStatement(menuChoice);
+            int bookId = getIdFromActionStatement(menuChoice);
             if (bookId < 0) {
                 this.ui.show(UserInterface.BOOK_LIST_CHECKOUT_INVALID);
             } else {
@@ -123,13 +123,38 @@ public class BibliotecaApp {
     }
     
     void runReturnBooksSequence() {
-    	
+    		ArrayList<Book> bookList = store.getReturnableBooks();
+		
+        this.ui.showBookList(bookList);
+    		this.ui.showReturnBooksMenu();
+    		
+    		String menuChoice = this.ui.readUserInput();
+    		
+    		if (menuChoice.equals(UserInterface.RETURN_BOOKS_CHOICE_BACK)) {
+            this.setState(AppState.MAIN_MENU);
+            return;
+        }
+    		
+    		 if (menuChoice.contains(UserInterface.RETURN_BOOKS_CHOICE_RETURN)) {
+    	            int bookId = getIdFromActionStatement(menuChoice);
+    	            if (bookId < 0) {
+    	                this.ui.show(UserInterface.RETURN_BOOKS_RETURN_INVALID);
+    	            } else {
+    	                store.returnBook(bookId);
+    	                this.ui.show(UserInterface.RETURN_BOOKS_RETURN_SUCCESS);
+    	            }
+    	            return;
+    	        }
+    		
+    		this.ui.show(UserInterface.RETURN_BOOKS_CHOICE_INVALID);
+    		
     }
     
     
     // Parsing related
     
-    int getIdFromCheckoutStatement(String statement) {
+    // example of action statement: "<action> <id>"
+    int getIdFromActionStatement(String statement) {
         String[] wordsArray = statement.split(" ");
         if (wordsArray.length <= 1) {
             return -1;

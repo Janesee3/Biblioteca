@@ -1,20 +1,26 @@
 package com.twu.biblioteca;
 
 public class Book {
-
+	
+	private int index;
     private String title;
     private String author;
     private String year;
     private boolean isCheckedOut;
 
 
-    public Book(String title, String author, String year) {
+    public Book(int index, String title, String author, String year) {
+    		this.index = index;
         this.title = title;
         this.author = author;
         this.year = year;
         this.isCheckedOut = false;
     }
-
+    
+    public int getIndex() {
+    		return this.index;
+    }
+    
     public String getTitle() {
         return this.title;
     }

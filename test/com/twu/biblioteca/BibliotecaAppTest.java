@@ -85,6 +85,17 @@ public class BibliotecaAppTest {
 	    	assertEquals(AppState.RETURN_BOOKS, app.getState());
     }
     
+    @Test
+    public void menuChoiceInvalidShouldNotChangeState() {
+	    	app.setState(AppState.MAIN_MENU);    	
+	    	injectInput("asdadas");
+	    	
+	    	app.runMenuSequence();
+	    	
+	    	assertEquals(AppState.MAIN_MENU, app.getState());
+	    	assertTrue(getOutputFromStream().contains(UserInterface.INVALID_MENU_CHOICE));
+    }
+    
     /*** Test for List Books Sequence ***/
 
     @Test
@@ -95,35 +106,117 @@ public class BibliotecaAppTest {
     }
     
     @Test
-    public void shouldPrintInvalidMessageWhenCheckoutInvalidBook() {
-    		String input = "checkout " + "dasdad";
+    public void bookListSequenceShouldShowCorrectMenu() {
+    		String dummyInput = "asd";
+    		injectInput(dummyInput);
+    		app.runListBooksSequence();
+    		assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_MENU));
+    }
+    
+    @Test
+    public void shouldPrintInvalidMsgWhenCheckoutInvalidBook() {
+    		String input = UserInterface.BOOK_LIST_CHOICE_CHECKOUT + " " + "dasdad";
         injectInput(input);
         app.runListBooksSequence();
-        String output = getOutputFromStream();
-        assertTrue(output.contains(UserInterface.BOOK_LIST_CHECKOUT_INVALID));
+        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHECKOUT_INVALID));
+    }
+    
+    @Test
+    public void shouldPrintSuccessMsgAndCheckoutBook() {
+    		String input = "checkout 0";
+        injectInput(input);
+        app.runListBooksSequence();
+        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHECKOUT_SUCCESS));
+    }
+    
+    @Test
+    public void invalidBookListChoiceShouldPrintInvalidMsg() {
+    		String input = "dasdasd";
+        injectInput(input);
+        
+        app.runListBooksSequence();
+        
+        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHOICE_INVALID));
     }
     
     /*** Test for Return Books Sequence ***/
     
+    @Test
+    public void returnBooksSequenceShouldShowCorrectMenu() {
+    		String dummyInput = "asd";
+    		injectInput(dummyInput);
+    		app.runReturnBooksSequence();
+    		assertTrue(getOutputFromStream().contains(UserInterface.RETURN_BOOKS_MENU));
+    }
+    
+    @Test
+    public void returnBooksMenuBackShouldChangeStateCorrectly() {
+        injectInput(UserInterface.RETURN_BOOKS_CHOICE_BACK);
+        app.runReturnBooksSequence();
+        assertEquals(AppState.MAIN_MENU, app.getState());
+    }
+    
+
+    @Test
+    public void shouldPrintInvalidMsgWhenReturnInvalidBook() {
+    		String input = UserInterface.RETURN_BOOKS_CHOICE_RETURN + " " + "dasdad";
+        injectInput(input);
+        app.runReturnBooksSequence();
+        assertTrue(getOutputFromStream().contains(UserInterface.RETURN_BOOKS_RETURN_INVALID));
+    }
+    
+    @Test
+    public void shouldPrintSuccessMsgWhenReturnBook() {
+    		// TODO: Allow injection of store data when initialising app
+    }
     
     
-    /*** Test for Parsing Checkout Statement ***/
+    @Test
+    public void invalidReturnBooksChoiceShouldPrintInvalidMsg() {
+    		String input = "dasdasd";
+        injectInput(input);
+        
+        app.runReturnBooksSequence();
+        
+        assertTrue(getOutputFromStream().contains(UserInterface.RETURN_BOOKS_CHOICE_INVALID));
+    }
+    
+
+    
+    /*** Test for Parsing Action Statement ***/
 
     @Test
     public void shouldParseIdFromCheckoutStatement() {
         int id = 10;
         String input = "checkout " + id;
-        assertEquals(id, app.getIdFromCheckoutStatement(input));
+        assertEquals(id, app.getIdFromActionStatement(input));
     }
 
     @Test
     public void shouldReturnNegativeIfInvalidCheckoutStatement() {
         int id = -1;
         String input = "checkout " + "dasdad";
-        assertEquals(id, app.getIdFromCheckoutStatement(input));
+        assertEquals(id, app.getIdFromActionStatement(input));
 
         input = "checkout";
-        assertEquals(id, app.getIdFromCheckoutStatement(input));
+        assertEquals(id, app.getIdFromActionStatement(input));
+    }
+    
+    @Test
+    public void shouldParseIdFromReturnStatement() {
+        int id = 10;
+        String input = "return " + id;
+        assertEquals(id, app.getIdFromActionStatement(input));
+    }
+
+    @Test
+    public void shouldReturnNegativeIfInvalidReturnStatement() {
+        int id = -1;
+        String input = "return " + "dasdad";
+        assertEquals(id, app.getIdFromActionStatement(input));
+
+        input = "return";
+        assertEquals(id, app.getIdFromActionStatement(input));
     }
 
    

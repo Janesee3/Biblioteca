@@ -18,15 +18,45 @@ public class Store {
     public void addBook(Book book) {
         this.books.add(book);
     }
-
-    public ArrayList<Book> getBooks() {
+    
+    public ArrayList<Book> getAllBooks() {
+    		return this.books;
+    }
+    
+    public ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> availableBooks = new ArrayList<Book>(this.books.stream()
                 .filter(book -> !book.getCheckoutStatus()).collect(Collectors.toList()));
 
         return availableBooks;
     }
+    
+    public ArrayList<Book> getReturnableBooks() {
+        ArrayList<Book> returnableBooks = new ArrayList<Book>(this.books.stream()
+                .filter(book -> book.getCheckoutStatus()).collect(Collectors.toList()));
+
+        return returnableBooks;
+    }
 
     public void checkoutBook(int bookId) {
-        this.books.get(bookId).markAsCheckedOut();
+        Book book = this.findBookById(bookId);
+        if (book != null) {
+        		book.markAsCheckedOut();
+        }
+    }
+    
+    public void returnBook(int bookId) {
+	    	Book book = this.findBookById(bookId);
+	    if (book != null) {
+	        	book.markAsNotCheckedOut();
+	    }
+    }
+    
+    Book findBookById(int bookId) {
+    		for (Book book: this.books) {
+    			if (book.getIndex() == bookId) {
+    				return book;
+    			}
+    		}
+    		return null;
     }
 }
