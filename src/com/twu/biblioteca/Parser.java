@@ -18,7 +18,7 @@ public class Parser {
 			return Parser.parseReturnBookMenuSelection(input);
 		}
 		
-		return null;
+		return new Action(ActionType.UNRECOGNISED_ACTION);
 	}
 	
 	// Example of action statement: "<action> <id>"
