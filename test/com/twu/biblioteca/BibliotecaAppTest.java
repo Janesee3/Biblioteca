@@ -37,7 +37,7 @@ public class BibliotecaAppTest {
     }
 
     private String getOutputFromStream() {
-        return outContent.toString().trim();
+        return outContent.toString();
     }
     
     /*** Test for Startup **/
@@ -78,6 +78,13 @@ public class BibliotecaAppTest {
         assertTrue(app.hasQuit);
     }
     
+    @Test
+    public void menuChoiceReturnBooksShouldChangeStateCorrectly() {
+	    	injectInput(UserInterface.MENU_CHOICE_RETURN_BOOKS);
+	    	app.runMenuSequence();
+	    	assertEquals(AppState.RETURN_BOOKS, app.getState());
+    }
+    
     /*** Test for List Books Sequence ***/
 
     @Test
@@ -92,13 +99,18 @@ public class BibliotecaAppTest {
     		String input = "checkout " + "dasdad";
         injectInput(input);
         app.runListBooksSequence();
-        assertTrue(getOutputFromStream().contains(UserInterface.BOOK_LIST_CHECKOUT_INVALID));
+        String output = getOutputFromStream();
+        assertTrue(output.contains(UserInterface.BOOK_LIST_CHECKOUT_INVALID));
     }
+    
+    /*** Test for Return Books Sequence ***/
+    
+    
     
     /*** Test for Parsing Checkout Statement ***/
 
     @Test
-    public void shouldParseBookIdFromCheckoutStatement() {
+    public void shouldParseIdFromCheckoutStatement() {
         int id = 10;
         String input = "checkout " + id;
         assertEquals(id, app.getIdFromCheckoutStatement(input));

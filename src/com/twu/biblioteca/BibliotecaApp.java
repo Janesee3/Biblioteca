@@ -62,6 +62,9 @@ public class BibliotecaApp {
             case LIST_BOOKS:
                 this.runListBooksSequence();
                 break;
+            case RETURN_BOOKS:
+            		this.runReturnBooksSequence();
+            		break;
         }
     }
 
@@ -77,6 +80,11 @@ public class BibliotecaApp {
 
         if (menuChoice.equals(UserInterface.MENU_CHOICE_LIST_BOOKS)) {
             this.setState(AppState.LIST_BOOKS);
+            return;
+        }
+        
+        if (menuChoice.equals(UserInterface.MENU_CHOICE_RETURN_BOOKS)) {
+            this.setState(AppState.RETURN_BOOKS);
             return;
         }
 
@@ -111,9 +119,11 @@ public class BibliotecaApp {
             }
             return;
         }
-        
         this.ui.show(UserInterface.BOOK_LIST_CHOICE_INVALID);
-
+    }
+    
+    void runReturnBooksSequence() {
+    	
     }
     
     
