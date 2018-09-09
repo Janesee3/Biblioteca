@@ -78,7 +78,7 @@ public class LogicTest {
 		Response res = logic.execute(action);
 		
 		assertEquals(expectedRes, res);
-		assertEquals(this.bookSeed.size() - 1, store.getAvailableBooks().size());
+		assertEquals(1, store.getReturnableBooks().size());
 	}
 	
 	@Test
@@ -95,6 +95,39 @@ public class LogicTest {
 		assertEquals(expectedRes, res);
 		
 		action = new Action(ActionType.CHECKOUT_BOOK);
+		res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
+	public void testExecuteReturnBookAction() throws Exception {
+		Integer bookId = this.bookSeed.get(0).getIndex();
+		store.seedBooksData(this.bookSeed);
+		store.checkoutBook(bookId);
+		
+		Action action = new Action(ActionType.RETURN_BOOK, bookId);
+		Response expectedRes = new Response(UserInterface.RETURN_BOOKS_RETURN_SUCCESS, AppState.RETURN_BOOKS);
+		
+		Response res = logic.execute(action);
+		
+		assertEquals(expectedRes, res);
+		assertEquals(this.bookSeed.size(), store.getAvailableBooks().size());
+	}
+	
+	@Test
+	public void testExecuteInvalidReturnBookAction() {
+		store.seedBooksData(this.bookSeed);
+		
+		Action action = new Action(ActionType.RETURN_BOOK, 1231);
+		Response expectedRes = new Response(UserInterface.RETURN_BOOKS_RETURN_INVALID, AppState.RETURN_BOOKS);	
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+		
+		action = new Action(ActionType.RETURN_BOOK, "asdas");
+		res = logic.execute(action);
+		assertEquals(expectedRes, res);
+		
+		action = new Action(ActionType.RETURN_BOOK);
 		res = logic.execute(action);
 		assertEquals(expectedRes, res);
 	}

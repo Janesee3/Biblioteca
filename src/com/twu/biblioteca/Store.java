@@ -46,10 +46,12 @@ public class Store {
         }
     }
     
-    public void returnBook(int bookId) {
+    public void returnBook(int bookId) throws Exception {
 	    	Book book = this.findBookById(bookId);
 	    if (book != null) {
 	        	book.markAsNotCheckedOut();
+	    } else {
+	    		throw new Exception("Unable to find book.");
 	    }
     }
     
