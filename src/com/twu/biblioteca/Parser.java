@@ -73,8 +73,6 @@ public class Parser {
 	
 	private static Action createActionFromCommandWithId(ActionType type, String input) {
 		Integer id = Parser.getIdFromActionStatement(input);
-		Action action = new Action(type);
-		action.addArg(id);
-		return action;
+		return new Action(type, id);
 	}
 }

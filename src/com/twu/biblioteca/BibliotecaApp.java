@@ -2,16 +2,12 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class BibliotecaApp implements UserDelegate {
+public class BibliotecaApp {
 
     private UserInterface ui;
     private AppState state;
     private Store store;
-
     boolean hasQuit;
-    
-    private boolean isLoggedIn = false;
-    private String currentUser = "1234";
     
     public BibliotecaApp() {
         this.ui = new UserInterface();
@@ -24,25 +20,6 @@ public class BibliotecaApp implements UserDelegate {
         this.state = state;
     }
 
-    // Interface 
-    
-    public boolean isLoggedIn() {
-    		return this.isLoggedIn;
-    }
-    
-    public String getCurrentUser() {
-    		return this.currentUser;
-    }
-    
-	public void login(String username) {
-		this.isLoggedIn = true;
-		currentUser = username;
-	}
-	
-	public void logout() {
-		this.isLoggedIn = false;
-		currentUser = null;
-	}
 
 	// Actual Methods
 	

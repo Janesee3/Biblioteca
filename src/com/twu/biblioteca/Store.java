@@ -37,10 +37,12 @@ public class Store {
         return returnableBooks;
     }
 
-    public void checkoutBook(int bookId) {
+    public void checkoutBook(int bookId) throws Exception {
         Book book = this.findBookById(bookId);
         if (book != null) {
         		book.markAsCheckedOut();
+        } else {
+        		throw new Exception("Unable to find book.");
         }
     }
     

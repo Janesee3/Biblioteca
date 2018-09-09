@@ -7,14 +7,17 @@ public class Action {
 	public ActionType type;
 	public ArrayList<Object> args;
 	
-	public Action(ActionType type, ArrayList<Object> args) {
-		this.type = type;
-		this.args = args;
-	}
-	
 	public Action(ActionType type) {
 		this.type = type;
 		this.args = new ArrayList<Object>();
+	}
+	
+	public Action(ActionType type, Object... args) {
+		this.type = type;
+		this.args = new ArrayList<Object>();
+		for (Object o: args) {
+			this.args.add(o);
+		}
 	}
 	
 	public void addArg(Object arg) {
