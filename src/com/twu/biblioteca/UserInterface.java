@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!" + System.lineSeparator();
+    public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";
     public static final String QUIT_MESSAGE = "Goodbye!";
+    public static final String UNRECOGNISED_ACTION_MESSAGE = "This input cannot be parsed!";
     
     // MAIN MENU
     public static final String MENU_CHOICE_LIST_BOOKS = "1";
@@ -59,12 +60,12 @@ public class UserInterface {
         return scanner.nextLine();
     }
 
-    private void show(String content) {
+    public void show(String content) {
     		System.out.println(content);
     }
     
     public void showWelcomeSequence() {
-        show(WELCOME_MESSAGE);
+        show(WELCOME_MESSAGE + System.lineSeparator());
     }
 
     public void showMenu() {
@@ -80,8 +81,7 @@ public class UserInterface {
     			show(res.getDisplayContent());
     		}
     }
-
-    
+  
     public static String getBooksListDisplayString(String listTitle, ArrayList<Book> list, String menu) {
         return String.format("%s\n%s\n\n%s", listTitle, getBooksTableDisplayString(list), menu);
     }

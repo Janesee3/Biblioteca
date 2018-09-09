@@ -22,14 +22,20 @@ public class Logic {
 			return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
 		case QUIT:
 			return new Response("", getQuitDisplayContent(), AppState.QUIT);
+		case INVALID_MENU_CHOICE:
+			return new Response(UserInterface.INVALID_MENU_CHOICE, getMainMenuDisplayContent(), AppState.MAIN_MENU);
 		case BACK_TO_MAIN_MENU:
 			return new Response("", getMainMenuDisplayContent(), AppState.MAIN_MENU);
 		case CHECKOUT_BOOK:
 			return handleCheckoutBookAction(action.args);
+		case INVALID_LIST_BOOK_MENU_CHOICE:
+			return new Response(UserInterface.BOOK_LIST_CHOICE_INVALID, getListBooksDisplayContent(), AppState.LIST_BOOKS);
 		case RETURN_BOOK:
 			return handleReturnBookAction(action.args);
+		case INVALID_RETURN_BOOK_MENU_CHOICE:
+			return new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID, getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
 		default:
-			return null;
+			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(), AppState.MAIN_MENU);
 		}
 	}
 	

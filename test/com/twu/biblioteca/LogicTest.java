@@ -10,9 +10,6 @@ import org.junit.Test;
 public class LogicTest {
 	
 	/* 
-	INVALID_MENU_CHOICE,
-	INVALID_LIST_BOOK_MENU_CHOICE,
-	INVALID_RETURN_BOOK_MENU_CHOICE,
 	UNRECOGNISED_ACTION
 	 */
 	
@@ -56,6 +53,19 @@ public class LogicTest {
 		assertEquals(expectedRes, res);
 	}
 	
+
+	@Test
+	public void testExecuteInvalideMenuAction() {
+		Action action = new Action(ActionType.INVALID_MENU_CHOICE);
+		Response expectedRes = new Response(UserInterface.INVALID_MENU_CHOICE, 
+				this.logic.getMainMenuDisplayContent(), 
+				AppState.MAIN_MENU);
+		
+		Response res = logic.execute(action);
+		
+		assertEquals(expectedRes, res);
+	}
+	
 	@Test
 	public void testExecuteBackToMenuAction() {
 		Action action = new Action(ActionType.BACK_TO_MAIN_MENU);
@@ -92,7 +102,7 @@ public class LogicTest {
 	}
 	
 	@Test
-	public void testExecuteInvalidCheckoutBookAction() {
+	public void testExecuteIllegalCheckoutBookAction() {
 		store.seedBooksData(this.bookSeed);
 		
 		Action action = new Action(ActionType.CHECKOUT_BOOK, 1231);
@@ -108,6 +118,16 @@ public class LogicTest {
 		
 		action = new Action(ActionType.CHECKOUT_BOOK);
 		res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
+	public void testExecuteInvalidCheckoutBookAction() {
+		Action action = new Action(ActionType.INVALID_LIST_BOOK_MENU_CHOICE);
+		Response expectedRes = new Response(UserInterface.BOOK_LIST_CHOICE_INVALID,
+											this.logic.getListBooksDisplayContent(), 
+											AppState.LIST_BOOKS);
+		Response res = logic.execute(action);
 		assertEquals(expectedRes, res);
 	}
 	
@@ -129,7 +149,7 @@ public class LogicTest {
 	}
 	
 	@Test
-	public void testExecuteInvalidReturnBookAction() {
+	public void testExecuteIllegalReturnBookAction() {
 		store.seedBooksData(this.bookSeed);
 		
 		Action action = new Action(ActionType.RETURN_BOOK, 1231);
@@ -147,5 +167,25 @@ public class LogicTest {
 		res = logic.execute(action);
 		assertEquals(expectedRes, res);
 	}
-
+	
+	@Test
+	public void testExecuteInvalidReturnBookAction() {
+		Action action = new Action(ActionType.INVALID_RETURN_BOOK_MENU_CHOICE);
+		Response expectedRes = new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID,
+											this.logic.getReturnBooksDisplayContent(), 
+											AppState.RETURN_BOOKS);
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
+	
+	
+	@Test
+	public void testExecuteUnrecognisedAction() {
+		Action action = new Action(ActionType.UNRECOGNISED_ACTION);
+		Response expectedRes = new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE,
+											this.logic.getMainMenuDisplayContent(), 
+											AppState.MAIN_MENU);
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
 }

@@ -183,41 +183,7 @@ public class BibliotecaAppTest {
     
 
     
-    /*** Test for Parsing Action Statement ***/
-
-    @Test
-    public void shouldParseIdFromCheckoutStatement() {
-        int id = 10;
-        String input = "checkout " + id;
-        assertEquals(id, app.getIdFromActionStatement(input));
-    }
-
-    @Test
-    public void shouldReturnNegativeIfInvalidCheckoutStatement() {
-        int id = -1;
-        String input = "checkout " + "dasdad";
-        assertEquals(id, app.getIdFromActionStatement(input));
-
-        input = "checkout";
-        assertEquals(id, app.getIdFromActionStatement(input));
-    }
     
-    @Test
-    public void shouldParseIdFromReturnStatement() {
-        int id = 10;
-        String input = "return " + id;
-        assertEquals(id, app.getIdFromActionStatement(input));
-    }
-
-    @Test
-    public void shouldReturnNegativeIfInvalidReturnStatement() {
-        int id = -1;
-        String input = "return " + "dasdad";
-        assertEquals(id, app.getIdFromActionStatement(input));
-
-        input = "return";
-        assertEquals(id, app.getIdFromActionStatement(input));
-    }
 
    
 }
