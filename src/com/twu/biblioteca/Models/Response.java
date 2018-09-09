@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Models;
+
+import com.twu.biblioteca.EnumTypes.AppState;
 
 public class Response {
 	private String feedbackString;

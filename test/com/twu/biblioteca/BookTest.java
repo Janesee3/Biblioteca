@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.twu.biblioteca.Models.Book;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class BookTest {

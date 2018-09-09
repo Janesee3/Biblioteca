@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.twu.biblioteca.EnumTypes.ActionType;
+import com.twu.biblioteca.Models.Action;
+
 public class ActionTest {
 	
 	@Test

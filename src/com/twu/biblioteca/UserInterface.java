@@ -3,6 +3,9 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.twu.biblioteca.Models.Book;
+import com.twu.biblioteca.Models.Response;
+
 public class UserInterface {
 
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";

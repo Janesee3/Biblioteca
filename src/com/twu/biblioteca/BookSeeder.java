@@ -2,6 +2,8 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
+import com.twu.biblioteca.Models.Book;
+
 public class BookSeeder {
 
     public static final Book TEST_BOOK_1 = new Book(1, "Harry Potter", "JK Rowling", "1998");

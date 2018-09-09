@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.twu.biblioteca.EnumTypes.ActionType;
+import com.twu.biblioteca.EnumTypes.AppState;
+import com.twu.biblioteca.Models.Action;
+
 public class ParserTest {
 	
 	// Test for parsing main menu state input

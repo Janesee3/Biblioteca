@@ -1,6 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.Models;
 
 import java.util.ArrayList;
+
+import com.twu.biblioteca.EnumTypes.ActionType;
 
 public class Action {
 	

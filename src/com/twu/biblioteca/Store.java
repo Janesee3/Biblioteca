@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import com.twu.biblioteca.Models.Book;
+
 public class Store {
 
     private ArrayList<Book> books;

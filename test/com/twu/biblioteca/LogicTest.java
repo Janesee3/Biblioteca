@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.twu.biblioteca.EnumTypes.ActionType;
+import com.twu.biblioteca.EnumTypes.AppState;
+import com.twu.biblioteca.Models.Action;
+import com.twu.biblioteca.Models.Book;
+import com.twu.biblioteca.Models.Response;
+
 public class LogicTest {
 	
 	/* 

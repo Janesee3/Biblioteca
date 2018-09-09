@@ -2,6 +2,10 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
+import com.twu.biblioteca.EnumTypes.AppState;
+import com.twu.biblioteca.Models.Action;
+import com.twu.biblioteca.Models.Response;
+
 public class BibliotecaApp {
 
     private UserInterface ui;

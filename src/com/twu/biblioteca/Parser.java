@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.EnumTypes.ActionType;
+import com.twu.biblioteca.EnumTypes.AppState;
+import com.twu.biblioteca.Models.Action;
+
 public class Parser {
 	
 	public static Integer PARSED_INVALID_ID = -1;
