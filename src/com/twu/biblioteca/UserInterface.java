@@ -24,7 +24,7 @@ public class UserInterface {
     public static final String BOOK_LIST_CHOICE_BACK = "b";
     public static final String BOOK_LIST_CHOICE_CHECKOUT = "checkout";
     public static final String BOOK_LIST_CHOICE_INVALID = "Invalid choice, please try again!";
-    public static final String BOOK_LIST_TITLE = "---- BOOK LIST ----";
+    public static final String BOOK_LIST_TITLE = "---- AVAILABLE BOOKS ----";
     public static final String BOOK_LIST_TABLE_HEADING = String.format("%-5s | %-20s | %-20s | %-8s", "ID", "Title", "Author", "Year");
     public static final String BOOK_LIST_ITEM = "%-5d | %-20s | %-20s | %-8s";
     public static final String BOOK_LIST_MENU = String.format(
@@ -42,7 +42,7 @@ public class UserInterface {
     public static final String RETURN_BOOKS_CHOICE_INVALID = "Invalid choice, please try again!";
     public static final String RETURN_BOOKS_RETURN_INVALID = "That is not a valid book to return." + System.lineSeparator();
     public static final String RETURN_BOOKS_RETURN_SUCCESS = "Thank you for returning the book." + System.lineSeparator();
-    
+    public static final String RETURN_BOOKS_TITLE = "---- BOOKS TO BE RETURNED ----";
     public static final String RETURN_BOOKS_MENU = String.format(
             "[%s] Back To Menu     [%s <book id>] Return book",
             RETURN_BOOKS_CHOICE_BACK,
@@ -54,42 +54,45 @@ public class UserInterface {
 
     public UserInterface() {}
 
-    void show(String content) {
-        System.out.println(content);
-    }
-
-    String readUserInput() {
+    public String readUserInput() {
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
-    void showWelcomeSequence() {
+    private void show(String content) {
+    		System.out.println(content);
+    }
+    
+    public void showWelcomeSequence() {
         show(WELCOME_MESSAGE);
     }
 
-    void showMenu() {
+    public void showMenu() {
         show(MENU);
     }
-
-    void showBookList(ArrayList<Book> list) {
-        this.show(this.getBookListDisplayString(list));
+    
+    public void displayResponse(Response res) {
+    		if (!res.getFeedbackString().isEmpty()) {
+    			show(res.getFeedbackString());    			
+    		}
+    		
+    		if (!res.getDisplayContent().isEmpty()) {
+    			show(res.getDisplayContent());
+    		}
     }
 
-    void showBookListMenu() {
-        show(BOOK_LIST_MENU);
-    }
-
-    void showReturnBooksMenu() {
-    		show(RETURN_BOOKS_MENU);
+    
+    public static String getBooksListDisplayString(String listTitle, ArrayList<Book> list, String menu) {
+        return String.format("%s\n%s\n\n%s", listTitle, getBooksTableDisplayString(list), menu);
     }
     
-    private String getBookListDisplayString(ArrayList<Book> list) {
-        String displayString = BOOK_LIST_TITLE + System.lineSeparator() + BOOK_LIST_TABLE_HEADING + System.lineSeparator();
+    private static String getBooksTableDisplayString(ArrayList<Book> list) {
+    		String table = BOOK_LIST_TABLE_HEADING + System.lineSeparator();
         for (Book book: list) {
             String listItemString = String.format(BOOK_LIST_ITEM, book.getIndex(), book.getTitle(), book.getAuthor(), book.getYear());
-            displayString += listItemString + System.lineSeparator();
+            table += listItemString + System.lineSeparator();
         }
-        return displayString;
+        return table;
     }
     
     

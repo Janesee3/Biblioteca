@@ -6,42 +6,35 @@ public class BibliotecaApp {
 
     private UserInterface ui;
     private AppState state;
-    private Store store;
-    boolean hasQuit;
+    private Logic logic;
     
     public BibliotecaApp() {
         this.ui = new UserInterface();
-        this.state = AppState.STARTUP;
-        this.store = new Store();
-        this.hasQuit = false;
+        this.state = AppState.MAIN_MENU;
+        this.logic = new Logic(new Store());
     }
-
-    public BibliotecaApp(AppState state) {
-        this.state = state;
+    
+    public BibliotecaApp(Store store) {
+        this.ui = new UserInterface();
+        this.state = AppState.MAIN_MENU;
+        this.logic = new Logic(store);
     }
 
 
 	// Actual Methods
 	
     public void run() {
-    		// this.ui show welcome sequence;
-    		// this.ui show main memu
+    		
+    		this.ui.showWelcomeSequence();
+    		this.ui.showMenu();
     	
-        while (!this.hasQuit) {
-       
-        	/*
-        	 *  	String input = this.ui.readUserInput();
-        	 *  Action action = Parser.parse(this.getState(), input);
-        	 *  Response res = logic.execute(action)
-        	 *  this.ui.displayResponse(res)
-        	 *  this.setState(res.getState());
-        	 *  
-        	 */
-        	
-            this.processState();
+        while (this.getState() != AppState.QUIT) {
+        		String input = this.ui.readUserInput();
+        		Action action = Parser.parse(this.getState(), input);
+        		Response res = logic.execute(action);
+        		this.setState(res.getNewState());
+        		this.ui.displayResponse(res);
         }
-        
-        this.ui.show(UserInterface.QUIT_MESSAGE);
     }
 
     public AppState getState() {
@@ -52,119 +45,5 @@ public class BibliotecaApp {
         this.state = state;
     }
 
-    private void processState() {
-        switch (this.state) {
-            case STARTUP:
-                this.runStartupSequence();
-                break;
-            case MAIN_MENU:
-                this.runMenuSequence();
-                break;
-            case LIST_BOOKS:
-                this.runListBooksSequence();
-                break;
-            case RETURN_BOOKS:
-            		this.runReturnBooksSequence();
-            		break;
-        }
-    }
-
-    void runStartupSequence() {
-        this.ui.showWelcomeSequence();
-        this.setState(AppState.MAIN_MENU);
-    }
-
-    void runMenuSequence() {
-        this.ui.showMenu();
-        
-        String menuChoice = this.ui.readUserInput();
-
-        if (menuChoice.equals(UserInterface.MENU_CHOICE_LIST_BOOKS)) {
-            this.setState(AppState.LIST_BOOKS);
-            return;
-        }
-        
-        if (menuChoice.equals(UserInterface.MENU_CHOICE_RETURN_BOOKS)) {
-            this.setState(AppState.RETURN_BOOKS);
-            return;
-        }
-
-        if (menuChoice.equals(UserInterface.MENU_CHOICE_QUIT)) {
-            this.hasQuit = true;
-            return;
-        }
-
-        this.ui.show(UserInterface.INVALID_MENU_CHOICE);
-    }
-
-    void runListBooksSequence() {
-    		ArrayList<Book> bookList = store.getAvailableBooks();
-    		
-        this.ui.showBookList(bookList);
-        this.ui.showBookListMenu();
-        
-        String menuChoice = this.ui.readUserInput();
-
-        if (menuChoice.equals(UserInterface.BOOK_LIST_CHOICE_BACK)) {
-            this.setState(AppState.MAIN_MENU);
-            return;
-        }
-
-        if (menuChoice.contains(UserInterface.BOOK_LIST_CHOICE_CHECKOUT)) {
-            int bookId = getIdFromActionStatement(menuChoice);
-            if (bookId < 0) {
-                this.ui.show(UserInterface.BOOK_LIST_CHECKOUT_INVALID);
-            } else {
-                store.checkoutBook(bookId);
-                this.ui.show(UserInterface.BOOK_LIST_CHECKOUT_SUCCESS);
-            }
-            return;
-        }
-        this.ui.show(UserInterface.BOOK_LIST_CHOICE_INVALID);
-    }
-    
-    void runReturnBooksSequence() {
-    		ArrayList<Book> bookList = store.getReturnableBooks();
-		
-        this.ui.showBookList(bookList);
-    		this.ui.showReturnBooksMenu();
-    		
-    		String menuChoice = this.ui.readUserInput();
-    		
-    		if (menuChoice.equals(UserInterface.RETURN_BOOKS_CHOICE_BACK)) {
-            this.setState(AppState.MAIN_MENU);
-            return;
-        }
-    		
-    		 if (menuChoice.contains(UserInterface.RETURN_BOOKS_CHOICE_RETURN)) {
-    	            int bookId = getIdFromActionStatement(menuChoice);
-    	            if (bookId < 0) {
-    	                this.ui.show(UserInterface.RETURN_BOOKS_RETURN_INVALID);
-    	            } else {
-    	                store.returnBook(bookId);
-    	                this.ui.show(UserInterface.RETURN_BOOKS_RETURN_SUCCESS);
-    	            }
-    	            return;
-    	        }
-    		
-    		this.ui.show(UserInterface.RETURN_BOOKS_CHOICE_INVALID);
-    		
-    }
-    
-    
-    // Parsing related
-    
-    // example of action statement: "<action> <id>"
-    int getIdFromActionStatement(String statement) {
-        String[] wordsArray = statement.split(" ");
-        if (wordsArray.length <= 1) {
-            return -1;
-        }
-        try {
-            return Integer.parseInt(wordsArray[1]);
-        } catch (Exception e) {
-            return -1;
-        }
-    }
-
+   
 }
