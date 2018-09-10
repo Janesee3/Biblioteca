@@ -71,7 +71,7 @@ public class Logic {
 											AppState.LIST_MOVIES);	
 		try {
 			Integer movieId = (Integer) args.get(0);
-			this.store.checkoutBook(movieId);
+			this.store.checkoutMovie(movieId);
 			return new Response(UserInterface.MOVIE_LIST_CHECKOUT_SUCCESS, 
 								getListMoviesDisplayContent(),
 								AppState.LIST_MOVIES);
@@ -108,7 +108,8 @@ public class Logic {
 	}
 	
 	String getListMoviesDisplayContent() {
-		return UserInterface.MOVIE_LIST_TITLE + System.lineSeparator() + UserInterface.MOVIE_LIST_MENU;
+		return UserInterface.getMoviesListDisplayString(UserInterface.MOVIE_LIST_TITLE, 
+				this.store.getAvailableMovies(), UserInterface.MOVIE_LIST_MENU);
 	}
 	
 	String getQuitDisplayContent() {

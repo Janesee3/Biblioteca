@@ -18,6 +18,10 @@ public class Parser {
 			return Parser.parseListBookMenuSelection(input);
 		}
 		
+		if (state == AppState.LIST_MOVIES) {
+			return Parser.parseListMovieMenuSelection(input);
+		}
+		
 		if (state == AppState.RETURN_BOOKS) {
 			return Parser.parseReturnBookMenuSelection(input);
 		}
@@ -43,6 +47,10 @@ public class Parser {
 			return new Action(ActionType.GOTO_LIST_BOOKS);
 		}
 		
+		if (input.equals(UserInterface.MENU_CHOICE_LIST_MOVIES)) {
+			return new Action(ActionType.GOTO_LIST_MOVIES);
+		}
+		
 		if (input.equals(UserInterface.MENU_CHOICE_QUIT)) {
 			return new Action(ActionType.QUIT);
 		}
@@ -62,6 +70,17 @@ public class Parser {
 			return Parser.createActionFromCommandWithId(ActionType.CHECKOUT_BOOK, input);
 		}
 		return new Action(ActionType.INVALID_LIST_BOOK_MENU_CHOICE);
+	}
+	
+	private static Action parseListMovieMenuSelection(String input) {
+		if (input.equals(UserInterface.MOVIE_LIST_CHOICE_BACK)) {
+			return new Action(ActionType.BACK_TO_MAIN_MENU);
+		}
+		
+		if (input.contains(UserInterface.MOVIE_LIST_CHOICE_CHECKOUT)) {
+			return Parser.createActionFromCommandWithId(ActionType.CHECKOUT_MOVIE, input);
+		}
+		return new Action(ActionType.INVALID_LIST_MOVIE_MENU_CHOICE);
 	}
 	
 	private static Action parseReturnBookMenuSelection(String input) {

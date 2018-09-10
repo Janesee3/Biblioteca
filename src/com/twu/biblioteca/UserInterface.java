@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.twu.biblioteca.Models.Book;
+import com.twu.biblioteca.Models.Movie;
 import com.twu.biblioteca.Models.Response;
 
 public class UserInterface {
@@ -110,6 +111,19 @@ public class UserInterface {
     		String table = BOOK_LIST_TABLE_HEADING + System.lineSeparator();
         for (Book book: list) {
             String listItemString = String.format(BOOK_LIST_ITEM, book.getIndex(), book.getTitle(), book.getAuthor(), book.getYear());
+            table += listItemString + System.lineSeparator();
+        }
+        return table;
+    }
+    
+    public static String getMoviesListDisplayString(String listTitle, ArrayList<Movie> list, String menu) {
+        return String.format("%s\n%s\n\n%s", listTitle, getMoviesTableDisplayString(list), menu);
+    }
+    
+    private static String getMoviesTableDisplayString(ArrayList<Movie> list) {
+    		String table = MOVIE_LIST_TABLE_HEADING + System.lineSeparator();
+        for (Movie movie: list) {
+            String listItemString = String.format(MOVIE_LIST_ITEM, movie.getIndex(), movie.getName(), movie.getYear(), movie.getDirector(), movie.getRating().toString());
             table += listItemString + System.lineSeparator();
         }
         return table;
