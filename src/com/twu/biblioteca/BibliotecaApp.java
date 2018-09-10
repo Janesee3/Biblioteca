@@ -24,8 +24,6 @@ public class BibliotecaApp {
         this.logic = new Logic(store);
     }
 
-
-	// Actual Methods
 	
     public void run() {
     		

@@ -77,12 +77,8 @@ public class UserInterfaceTest {
 		ui.showMenu();
 		assertEquals(UserInterface.MENU, getOutputFromStream());
 	}
-	
-	
-	
-	
-	
-	
+
+
 	
 	
 }

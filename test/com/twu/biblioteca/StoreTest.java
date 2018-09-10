@@ -1,15 +1,18 @@
 package com.twu.biblioteca;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import com.twu.biblioteca.Models.Book;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class StoreTest {
 
@@ -58,19 +61,31 @@ public class StoreTest {
     		store.returnBook(bookIndex);
     		assertFalse(store.findBookById(bookIndex).getCheckoutStatus());
     }
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
     
-//    @Test
-//    public void shouldNotDoAnythingWhenCheckoutInvalidBook() {
-//    		int bookIndex = 9901;
-//    		store.checkoutBook(bookIndex);
-//    		assert(true);
-//    }
-//    
-//    @Test
-//    public void shouldNotDoAnythingWhenReturnInvalidBook() {
-//    		int bookIndex = -1;
-//    		store.checkoutBook(bookIndex);
-//    		assert(true);
-//    }
+    @Test
+    public void shouldThrowExceptionWhenCheckoutInvalidBook() {
+    		int bookIndex = 9901;
+
+    		try {
+                store.checkoutBook(bookIndex);
+                fail("Exception should be thrown.");
+            } catch (Exception e) {
+                assert (true);
+            }
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenReturnInvalidBook() {
+    		int bookIndex = -1;
+        try {
+            store.returnBook(bookIndex);
+            fail("Exception should be thrown.");
+        } catch (Exception e) {
+            assert (true);
+        }
+    }
 }
 
