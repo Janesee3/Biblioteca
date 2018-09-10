@@ -11,23 +11,22 @@ import com.twu.biblioteca.EnumTypes.ActionType;
 import com.twu.biblioteca.EnumTypes.AppState;
 import com.twu.biblioteca.Models.Action;
 import com.twu.biblioteca.Models.Book;
+import com.twu.biblioteca.Models.Movie;
 import com.twu.biblioteca.Models.Response;
 
 public class LogicTest {
 	
-	/* 
-	UNRECOGNISED_ACTION
-	 */
-	
 	private Logic logic;
 	private Store store;
-	private ArrayList<Book> bookSeed = BookSeeder.getSeedData();
+	private ArrayList<Book> bookSeed = Seeder.getBookSeedData();
+	private ArrayList<Movie> movieSeed = Seeder.getMovieSeedData();
 	
 	@Before
 	public void setup() {
 		this.store = new Store();
 		this.logic = new Logic(this.store);
 		store.seedBooksData(bookSeed);
+		store.seedMoviesData(movieSeed);
 	}
 	
 	
@@ -205,6 +204,52 @@ public class LogicTest {
 		Response expectedRes = new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE,
 											this.logic.getMainMenuDisplayContent(), 
 											AppState.MAIN_MENU);
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
+	public void testExecuteCheckoutMovieAction() {
+		store.seedMoviesData(this.movieSeed);
+		Integer movieId = this.movieSeed.get(0).getIndex();
+		Action action = new Action(ActionType.CHECKOUT_MOVIE, movieId);
+		
+		Response res = logic.execute(action);
+		Response expectedRes = new Response(UserInterface.MOVIE_LIST_CHECKOUT_SUCCESS, 
+				this.logic.getListMoviesDisplayContent(), 
+				AppState.LIST_MOVIES);
+		
+		assertEquals(expectedRes, res);
+//		assertEquals(1, store.getReturnableBooks().size());
+	}
+	
+	@Test
+	public void testExecuteIllegalCheckoutMovieAction() {
+		store.seedMoviesData(this.movieSeed);
+		
+		Action action = new Action(ActionType.CHECKOUT_MOVIE, 1233);
+		Response expectedRes = new Response(UserInterface.MOVIE_LIST_CHECKOUT_INVALID, 
+				this.logic.getListMoviesDisplayContent(), 
+				AppState.LIST_MOVIES);
+		
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+		
+		action = new Action(ActionType.CHECKOUT_MOVIE, "asdas");
+		res = logic.execute(action);
+		assertEquals(expectedRes, res);
+		
+		action = new Action(ActionType.CHECKOUT_MOVIE);
+		res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
+	public void testExecuteInvalidCheckoutMovieAction() {
+		Action action = new Action(ActionType.INVALID_LIST_MOVIE_MENU_CHOICE);
+		Response expectedRes = new Response(UserInterface.MOVIE_LIST_CHOICE_INVALID,
+											this.logic.getListMoviesDisplayContent(), 
+											AppState.LIST_MOVIES);
 		Response res = logic.execute(action);
 		assertEquals(expectedRes, res);
 	}

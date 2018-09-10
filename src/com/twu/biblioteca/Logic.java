@@ -40,13 +40,17 @@ public class Logic {
 			return handleReturnBookAction(action.args);
 		case INVALID_RETURN_BOOK_MENU_CHOICE:
 			return new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID, getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
+		case CHECKOUT_MOVIE:
+			return handleCheckoutMovieAction(action.args);
+		case INVALID_LIST_MOVIE_MENU_CHOICE:
+			return new Response(UserInterface.MOVIE_LIST_CHOICE_INVALID, getListMoviesDisplayContent(), AppState.LIST_MOVIES);
 		default:
 			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(), AppState.MAIN_MENU);
 		}
 	}
 	
 	
-	Response handleCheckoutBookAction(ArrayList<Object> args) {
+	private Response handleCheckoutBookAction(ArrayList<Object> args) {
 		Response invalidRes = new Response(UserInterface.BOOK_LIST_CHECKOUT_INVALID, 
 											getListBooksDisplayContent(),
 											AppState.LIST_BOOKS);	
@@ -56,6 +60,21 @@ public class Logic {
 			return new Response(UserInterface.BOOK_LIST_CHECKOUT_SUCCESS, 
 								getListBooksDisplayContent(),
 								AppState.LIST_BOOKS);
+		} catch (Exception e) {
+			return invalidRes;
+		}
+	}
+	
+	private Response handleCheckoutMovieAction(ArrayList<Object> args) {
+		Response invalidRes = new Response(UserInterface.MOVIE_LIST_CHECKOUT_INVALID, 
+											getListMoviesDisplayContent(),
+											AppState.LIST_MOVIES);	
+		try {
+			Integer movieId = (Integer) args.get(0);
+			this.store.checkoutBook(movieId);
+			return new Response(UserInterface.MOVIE_LIST_CHECKOUT_SUCCESS, 
+								getListMoviesDisplayContent(),
+								AppState.LIST_MOVIES);
 		} catch (Exception e) {
 			return invalidRes;
 		}

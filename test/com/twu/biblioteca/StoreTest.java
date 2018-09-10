@@ -21,7 +21,7 @@ public class StoreTest {
 
     @Before
     public void init() {
-        booksSeed = BookSeeder.getSeedData();
+        booksSeed = Seeder.getBookSeedData();
         store = new Store();
         store.seedBooksData(booksSeed);
     }
@@ -49,14 +49,14 @@ public class StoreTest {
     
     @Test
     public void shouldCorrectlyCheckoutBookWhenGivenValidId() throws Exception {
-    		int bookIndex = BookSeeder.TEST_BOOK_1.getIndex();
+    		int bookIndex = Seeder.TEST_BOOK_1.getIndex();
     		store.checkoutBook(bookIndex);
     		assertTrue(store.findBookById(bookIndex).getCheckoutStatus());
     }
     
     @Test
     public void shouldCorrectlyReturnBookWhenGivenValidId() throws Exception {
-    		int bookIndex = BookSeeder.TEST_BOOK_1.getIndex();
+    		int bookIndex = Seeder.TEST_BOOK_1.getIndex();
     		store.checkoutBook(bookIndex);
     		store.returnBook(bookIndex);
     		assertFalse(store.findBookById(bookIndex).getCheckoutStatus());

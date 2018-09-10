@@ -4,17 +4,24 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import com.twu.biblioteca.Models.Book;
+import com.twu.biblioteca.Models.Movie;
 
 public class Store {
 
     private ArrayList<Book> books;
-
+    private ArrayList<Movie> movies;
+    
     public Store() {
-        books = new ArrayList<Book>(BookSeeder.getSeedData());
+        books = new ArrayList<Book>(Seeder.getBookSeedData());
+        movies = new ArrayList<Movie>(Seeder.getMovieSeedData());
     }
 
     public void seedBooksData(ArrayList<Book> seed) {
         this.books = seed;
+    }
+    
+    public void seedMoviesData(ArrayList<Movie> seed) {
+        this.movies = seed;
     }
 
     public void addBook(Book book) {
