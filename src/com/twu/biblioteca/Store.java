@@ -23,6 +23,9 @@ public class Store {
     public void seedMoviesData(ArrayList<Movie> seed) {
         this.movies = seed;
     }
+    
+    
+    // Books
 
     public void addBook(Book book) {
         this.books.add(book);
@@ -72,4 +75,40 @@ public class Store {
     		}
     		return null;
     }
+    
+    // Movies
+    
+    Movie findMovieById(int movieId) {
+		for (Movie movie: this.movies) {
+			if (movie.getIndex() == movieId) {
+				return movie;
+			}
+		}
+			return null;
+    		}
+    
+    public ArrayList<Movie> getAvailableMovies() {
+    		ArrayList<Movie> availableMovies = new ArrayList<Movie>(this.movies.stream()
+                .filter(movie -> !movie.getCheckoutStatus()).collect(Collectors.toList()));
+
+        return availableMovies;
+    }
+    
+    public ArrayList<Movie> getReturnableMovies() {
+        ArrayList<Movie> returnableMovies = new ArrayList<Movie>(this.movies.stream()
+                .filter(movie -> movie.getCheckoutStatus()).collect(Collectors.toList()));
+
+        return returnableMovies;
+    }
+    
+    public void checkoutMovie(int movieId) throws Exception {
+        Movie movie = this.findMovieById(movieId);
+        if (movie != null) {
+        		movie.markAsCheckedOut();
+        } else {
+        		throw new Exception("Unable to find movie.");
+        }
+    }
+    
+    
 }
