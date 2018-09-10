@@ -39,6 +39,10 @@ public class LogicTest {
 		return this.logic.getReturnBooksDisplayContent();
 	}
 	
+	private String getListMoviesDisplayContent() {
+		return this.logic.getListMoviesDisplayContent();
+	}
+	
 	@Test
 	public void testExecuteGoToListBooksAction() {
 		Action action = new Action(ActionType.GOTO_LIST_BOOKS);
@@ -53,6 +57,16 @@ public class LogicTest {
 	public void testExecuteGoToReturnBooksAction() {
 		Action action = new Action(ActionType.GOTO_RETURN_BOOKS);
 		Response expectedRes = new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
+		
+		Response res = logic.execute(action);
+		
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
+	public void testExecuteGoToListMoviesAction() {
+		Action action = new Action(ActionType.GOTO_LIST_MOVIES);
+		Response expectedRes = new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES);
 		
 		Response res = logic.execute(action);
 		

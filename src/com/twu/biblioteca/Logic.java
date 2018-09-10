@@ -24,6 +24,8 @@ public class Logic {
 			return new Response("", getListBooksDisplayContent(), AppState.LIST_BOOKS);
 		case GOTO_RETURN_BOOKS:
 			return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
+		case GOTO_LIST_MOVIES:
+			return new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES);
 		case QUIT:
 			return new Response("", getQuitDisplayContent(), AppState.QUIT);
 		case INVALID_MENU_CHOICE:
@@ -84,6 +86,10 @@ public class Logic {
 	String getReturnBooksDisplayContent() {
 		return UserInterface.getBooksListDisplayString(UserInterface.RETURN_BOOKS_TITLE, 
 				this.store.getReturnableBooks(), UserInterface.RETURN_BOOKS_MENU);
+	}
+	
+	String getListMoviesDisplayContent() {
+		return UserInterface.MOVIE_LIST_TITLE + System.lineSeparator() + UserInterface.MOVIE_LIST_MENU;
 	}
 	
 	String getQuitDisplayContent() {

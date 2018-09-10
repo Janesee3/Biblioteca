@@ -15,12 +15,14 @@ public class UserInterface {
     // MAIN MENU
     public static final String MENU_CHOICE_LIST_BOOKS = "1";
     public static final String MENU_CHOICE_RETURN_BOOKS = "2";
-    public static final String MENU_CHOICE_QUIT = "3";
+    public static final String MENU_CHOICE_LIST_MOVIES = "3";
+    public static final String MENU_CHOICE_QUIT = "4";
     public static final String INVALID_MENU_CHOICE = "Invalid selection! Please try again.";
     public static final String MENU = String.format(
-            "---- MAIN MENU ----\n" + "[%s] List Books\n" + "[%s] Return Books\n" + "[%s] Quit\n" + System.lineSeparator() + "Please select by typing the corresponding number of the option you want.",
+            "---- MAIN MENU ----\n" + "[%s] List Books\n" + "[%s] Return Books\n" + "[%s] List Movies\n" + "[%s] Quit\n" + System.lineSeparator() + "Please select by typing the corresponding number of the option you want.",
             MENU_CHOICE_LIST_BOOKS,
             MENU_CHOICE_RETURN_BOOKS,
+            MENU_CHOICE_LIST_MOVIES,
             MENU_CHOICE_QUIT
     );
     
@@ -52,6 +54,21 @@ public class UserInterface {
             RETURN_BOOKS_CHOICE_BACK,
             RETURN_BOOKS_CHOICE_RETURN
     );
+    
+    // MOVIE LIST
+    public static final String MOVIE_LIST_CHOICE_BACK = "b";
+    public static final String MOVIE_LIST_CHOICE_CHECKOUT = "checkout";
+    public static final String MOVIE_LIST_CHOICE_INVALID = "Invalid choice, please try again!";
+    public static final String MOVIE_LIST_TITLE = "---- AVAILABLE MOVIES ----";
+    public static final String MOVIE_LIST_TABLE_HEADING = String.format("%-5s | %-25s | %-8s | %-20s | %-10s", "ID", "Name", "Year", "Director", "Rating");
+    public static final String MOVIE_LIST_ITEM = "%-5d | %-25s | %-8s | %-20s | %-10s";
+    public static final String MOVIE_LIST_MENU = String.format(
+            "[%s] Back To Menu     [%s <movie id>] Checkout movie",
+            MOVIE_LIST_CHOICE_BACK,
+            MOVIE_LIST_CHOICE_CHECKOUT
+    );
+    public static final String MOVIE_LIST_CHECKOUT_INVALID = "That movie is not available." + System.lineSeparator();
+    public static final String MOVIE_LIST_CHECKOUT_SUCCESS = "Thank you! Enjoy the movie!" + System.lineSeparator();
     
     
     private Scanner scanner;
