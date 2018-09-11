@@ -9,24 +9,19 @@ public class Parser {
 	public static Integer PARSED_INVALID_ID = -1;
 	
 	public static Action parse(AppState state, String input) {
-		
-		if (state == AppState.MAIN_MENU) {
-			return Parser.parseMainMenuSelection(input);
+
+		switch (state) {
+			case MAIN_MENU:
+				return Parser.parseMainMenuSelection(input);
+			case LIST_BOOKS:
+				return Parser.parseListBookMenuSelection(input);
+			case LIST_MOVIES:
+				return Parser.parseListMovieMenuSelection(input);
+			case RETURN_BOOKS:
+				return Parser.parseReturnBookMenuSelection(input);
+			default:
+				return new Action(ActionType.UNRECOGNISED_ACTION);
 		}
-		
-		if (state == AppState.LIST_BOOKS) {
-			return Parser.parseListBookMenuSelection(input);
-		}
-		
-		if (state == AppState.LIST_MOVIES) {
-			return Parser.parseListMovieMenuSelection(input);
-		}
-		
-		if (state == AppState.RETURN_BOOKS) {
-			return Parser.parseReturnBookMenuSelection(input);
-		}
-		
-		return new Action(ActionType.UNRECOGNISED_ACTION);
 	}
 	
 	// Example of action statement: "<action> <id>"

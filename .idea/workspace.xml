@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99c67f9c-4ca7-4559-8391-8cd853d6d08a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,12 +31,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="10898" />
+          <entry key="java" value="11026" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="10898" />
+          <entry key="JAVA" value="11026" />
         </counts>
       </usages-collector>
     </session>
@@ -74,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="44" column="64" selection-start-line="44" selection-start-column="64" selection-end-line="44" selection-end-column="64" />
+            <state relative-caret-position="294">
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -203,7 +200,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.com.twu.biblioteca in biblioteca">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.Main" />
       <module name="biblioteca" />
@@ -278,9 +275,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.com.twu.biblioteca in biblioteca" />
         <item itemvalue="JUnit.StoreTest" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in biblioteca" />
         <item itemvalue="JUnit.BibliotecaAppTest.shouldReturnNegativeIfInvalidCheckoutStatement" />
       </list>
@@ -300,15 +297,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="StoreTest - 2018.09.06 at 17h 26m 40s.xml">
-      <configuration name="StoreTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BibliotecaAppTest_shouldParseBookIdFromCheckoutStatement - 2018.09.06 at 17h 30m 20s.xml">
-      <configuration name="BibliotecaAppTest.shouldParseBookIdFromCheckoutStatement" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BibliotecaAppTest_shouldParseBookIdFromCheckoutStatement - 2018.09.06 at 17h 33m 46s.xml">
-      <configuration name="BibliotecaAppTest.shouldParseBookIdFromCheckoutStatement" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="BibliotecaAppTest_shouldParseBookIdFromCheckoutStatement - 2018.09.06 at 17h 34m 04s.xml">
       <configuration name="BibliotecaAppTest.shouldParseBookIdFromCheckoutStatement" configurationId="JUnit" />
     </history-entry>
@@ -330,6 +318,15 @@
     <history-entry file="com_twu_biblioteca_in_biblioteca - 2018.09.11 at 10h 27m 01s.xml">
       <configuration name="com.twu.biblioteca in biblioteca" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="com_twu_biblioteca_in_biblioteca - 2018.09.11 at 10h 53m 19s.xml">
+      <configuration name="com.twu.biblioteca in biblioteca" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_twu_biblioteca_in_biblioteca - 2018.09.11 at 10h 58m 33s.xml">
+      <configuration name="com.twu.biblioteca in biblioteca" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_twu_biblioteca_in_biblioteca - 2018.09.11 at 10h 58m 46s.xml">
+      <configuration name="com.twu.biblioteca in biblioteca" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -338,7 +335,7 @@
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Learn" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.21281742" />
+      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.21281742" />
       <window_info id="Structure" order="4" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.429867" side_tool="true" visible="true" weight="0.28465608" />
@@ -347,7 +344,7 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.49758163" weight="0.26137567" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.57013303" visible="true" weight="0.28465608" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.57013303" visible="true" weight="0.28465608" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -538,8 +535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="44" column="64" selection-start-line="44" selection-start-column="64" selection-end-line="44" selection-end-column="64" />
+        <state relative-caret-position="294">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
         </state>
       </provider>
     </entry>
