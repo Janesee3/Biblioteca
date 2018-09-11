@@ -220,7 +220,7 @@ public class LogicTest {
 				AppState.LIST_MOVIES);
 		
 		assertEquals(expectedRes, res);
-		assertEquals(1, store.getReturnableBooks().size());
+		assertEquals(1, store.getReturnableMovies().size());
 	}
 	
 	@Test

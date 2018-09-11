@@ -43,22 +43,18 @@ public class Parser {
     }
 	
 	private static Action parseMainMenuSelection(String input) {
-		if (input.equals(UserInterface.MENU_CHOICE_LIST_BOOKS)) {
-			return new Action(ActionType.GOTO_LIST_BOOKS);
+		switch (input) {
+			case UserInterface.MENU_CHOICE_LIST_BOOKS:
+				return new Action(ActionType.GOTO_LIST_BOOKS);
+			case UserInterface.MENU_CHOICE_LIST_MOVIES:
+				return  new Action(ActionType.GOTO_LIST_MOVIES);
+			case UserInterface.MENU_CHOICE_QUIT:
+				return new Action(ActionType.QUIT);
+			case UserInterface.MENU_CHOICE_RETURN_BOOKS:
+				return new Action(ActionType.GOTO_RETURN_BOOKS);
+			default:
+				return new Action(ActionType.INVALID_MENU_CHOICE);
 		}
-		
-		if (input.equals(UserInterface.MENU_CHOICE_LIST_MOVIES)) {
-			return new Action(ActionType.GOTO_LIST_MOVIES);
-		}
-		
-		if (input.equals(UserInterface.MENU_CHOICE_QUIT)) {
-			return new Action(ActionType.QUIT);
-		}
-		
-		if (input.equals(UserInterface.MENU_CHOICE_RETURN_BOOKS)) {
-			return new Action(ActionType.GOTO_RETURN_BOOKS);
-		}
-		return new Action(ActionType.INVALID_MENU_CHOICE);	
 	}
 	
 	private static Action parseListBookMenuSelection(String input) {

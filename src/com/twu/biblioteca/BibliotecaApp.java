@@ -27,9 +27,9 @@ public class BibliotecaApp {
 	
     public void run() {
     		
-    		this.ui.showWelcomeSequence();
-    		this.ui.showMenu();
-    	
+        this.ui.showWelcomeSequence();
+        this.ui.showMenu();
+
         while (this.getState() != AppState.QUIT) {
         		String input = this.ui.readUserInput();
         		Action action = Parser.parse(this.getState(), input);
