@@ -5,15 +5,18 @@ import java.util.stream.Collectors;
 
 import com.twu.biblioteca.Models.Book;
 import com.twu.biblioteca.Models.Movie;
+import com.twu.biblioteca.Models.User;
 
 public class Store {
 
     private ArrayList<Book> books;
     private ArrayList<Movie> movies;
+    private ArrayList<User> users;
     
     public Store() {
         books = new ArrayList<Book>(Seeder.getBookSeedData());
         movies = new ArrayList<Movie>(Seeder.getMovieSeedData());
+        users = new ArrayList<User>();
     }
 
     public void seedBooksData(ArrayList<Book> seed) {
@@ -23,17 +26,12 @@ public class Store {
     public void seedMoviesData(ArrayList<Movie> seed) {
         this.movies = seed;
     }
+
+    public void seedUsersData(ArrayList<User> seed) { this.users = seed; }
     
     
     // Books
 
-    public void addBook(Book book) {
-        this.books.add(book);
-    }
-    
-    public ArrayList<Book> getAllBooks() {
-    		return this.books;
-    }
     
     public ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> availableBooks = new ArrayList<Book>(this.books.stream()
@@ -109,6 +107,19 @@ public class Store {
         		throw new Exception("Unable to find movie.");
         }
     }
+
+    // Users
+
+    User findUserByCredentials(String libNum, String pw) {
+        for (User user: users) {
+            if (user.getLibraryNumber() == libNum && user.getPassword() == pw) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+
     
     
 }

@@ -66,9 +66,6 @@ public class StoreTest {
     		store.returnBook(bookIndex);
     		assertFalse(store.findBookById(bookIndex).getCheckoutStatus());
     }
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
     
     @Test
     public void shouldThrowExceptionWhenCheckoutInvalidBook() {
@@ -119,6 +116,13 @@ public class StoreTest {
     		int movieIndex = Seeder.TEST_MOVIE_1.getIndex();
     		store.checkoutMovie(movieIndex);
     		assertTrue(store.findMovieById(movieIndex).getCheckoutStatus());
+    }
+
+    @Test
+    public void shouldReturnUserWhenGivenValidCredentials() {
+        String libNum = "123-1234";
+        String pw = "123";
+
     }
 }
 
