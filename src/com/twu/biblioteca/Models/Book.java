@@ -10,7 +10,7 @@ public class Book {
 
 
     public Book(int index, String title, String author, String year) {
-    		this.index = index;
+        this.index = index;
         this.title = title;
         this.author = author;
         this.year = year;
@@ -44,4 +44,6 @@ public class Book {
     public void markAsNotCheckedOut() {
         this.isCheckedOut = false;
     }
+
+
 }
