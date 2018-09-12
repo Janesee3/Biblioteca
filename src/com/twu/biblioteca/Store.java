@@ -47,6 +47,7 @@ public class Store {
         return returnableBooks;
     }
 
+    // TODO: Change this to take in User arg as well
     public void checkoutBook(int bookId) throws Exception {
         Book book = this.findBookById(bookId);
         if (book != null) {
@@ -55,7 +56,8 @@ public class Store {
         		throw new Exception("Unable to find book.");
         }
     }
-    
+
+    // TODO: Change this to take in User arg
     public void returnBook(int bookId) throws Exception {
 	    	Book book = this.findBookById(bookId);
 	    if (book != null) {
