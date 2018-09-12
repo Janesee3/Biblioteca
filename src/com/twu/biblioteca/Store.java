@@ -16,7 +16,7 @@ public class Store {
     public Store() {
         books = new ArrayList<Book>(Seeder.getBookSeedData());
         movies = new ArrayList<Movie>(Seeder.getMovieSeedData());
-        users = new ArrayList<User>();
+        users = new ArrayList<User>(Seeder.getUserSeedData());
     }
 
     public void seedBooksData(ArrayList<Book> seed) {

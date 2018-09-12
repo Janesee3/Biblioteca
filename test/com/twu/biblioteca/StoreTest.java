@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Models.User;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -120,9 +121,20 @@ public class StoreTest {
 
     @Test
     public void shouldReturnUserWhenGivenValidCredentials() {
-        String libNum = "123-1234";
-        String pw = "123";
+        String libNum = Seeder.TEST_USER_1.getLibraryNumber();
+        String pw = Seeder.TEST_USER_1.getPassword();
+        User expectedUser = new User(libNum, pw);
+        User user = store.findUserByCredentials(libNum, pw);
+        assertEquals(expectedUser, user);
+    }
 
+    @Test
+    public void shouldReturnNullWhenGivenInvalidCredentials() {
+        String libNum = "123123";
+        String pw = "zzzasdds";
+        User expectedUser = null;
+        User user = store.findUserByCredentials(libNum, pw);
+        assertEquals(expectedUser, user);
     }
 }
 
