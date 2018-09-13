@@ -76,6 +76,20 @@ public class LogicTest implements UserDelegate {
 	}
 	
 	@Test
+	public void testExecuteGoToReturnBooksWhenNotLoggedIn() {
+		this.currentUser = null;
+		
+		Action action = new Action(ActionType.GOTO_RETURN_BOOKS);
+		Response expectedRes = new Response(UserInterface.LOGIN_REQUIRED, 
+				this.logic.getMainMenuDisplayContent(), 
+				AppState.MAIN_MENU);
+		
+		Response res = logic.execute(action);
+		
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
 	public void testExecuteGoToListMoviesAction() {
 		Action action = new Action(ActionType.GOTO_LIST_MOVIES);
 		Response expectedRes = new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES);
@@ -157,6 +171,17 @@ public class LogicTest implements UserDelegate {
 	public void testExecuteInvalidCheckoutBookAction() {
 		Action action = new Action(ActionType.INVALID_LIST_BOOK_MENU_CHOICE);
 		Response expectedRes = new Response(UserInterface.BOOK_LIST_CHOICE_INVALID,
+											this.logic.getListBooksDisplayContent(), 
+											AppState.LIST_BOOKS);
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
+	public void testCheckoutBookWhenNotLoggedIn() {
+		this.currentUser = null;
+		Action action = new Action(ActionType.CHECKOUT_BOOK);
+		Response expectedRes = new Response(UserInterface.LOGIN_REQUIRED,
 											this.logic.getListBooksDisplayContent(), 
 											AppState.LIST_BOOKS);
 		Response res = logic.execute(action);
@@ -261,6 +286,17 @@ public class LogicTest implements UserDelegate {
 	public void testExecuteInvalidCheckoutMovieAction() {
 		Action action = new Action(ActionType.INVALID_LIST_MOVIE_MENU_CHOICE);
 		Response expectedRes = new Response(UserInterface.MOVIE_LIST_CHOICE_INVALID,
+											this.logic.getListMoviesDisplayContent(), 
+											AppState.LIST_MOVIES);
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
+	
+	@Test
+	public void testCheckoutMovieWhenNotLoggedIn() {
+		this.currentUser = null;
+		Action action = new Action(ActionType.CHECKOUT_MOVIE);
+		Response expectedRes = new Response(UserInterface.LOGIN_REQUIRED,
 											this.logic.getListMoviesDisplayContent(), 
 											AppState.LIST_MOVIES);
 		Response res = logic.execute(action);

@@ -72,7 +72,7 @@ public class Logic {
 	
 	private Response handleCheckoutMovieAction(ArrayList<Object> args) {
 		if (!userDelegate.isLoggedIn()) {
-			return getLoginRequiredResponse(AppState.LIST_BOOKS);
+			return getLoginRequiredResponse(AppState.LIST_MOVIES);
 		}
 		
 		try {
