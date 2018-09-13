@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
+import com.twu.biblioteca.EnumTypes.ActionType;
 import com.twu.biblioteca.EnumTypes.AppState;
 import com.twu.biblioteca.Models.Action;
 import com.twu.biblioteca.Models.Response;
@@ -9,6 +10,7 @@ import com.twu.biblioteca.Models.Response;
 public class Logic {
 	
 	private Store store;
+	private UserDelegate userDelegate;
 	
 	public Logic() {
 		this.store = new Store();
@@ -16,6 +18,10 @@ public class Logic {
 	
 	public Logic(Store store) {
 		this.store = store;
+	}
+	
+	public void setUserDelegate(UserDelegate delegate) {
+		this.userDelegate = delegate;
 	}
 	
 	public Response execute(Action action) {
@@ -51,52 +57,100 @@ public class Logic {
 	
 	
 	private Response handleCheckoutBookAction(ArrayList<Object> args) {
-		Response invalidRes = new Response(UserInterface.BOOK_LIST_CHECKOUT_INVALID, 
-											getListBooksDisplayContent(),
-											AppState.LIST_BOOKS);	
+//		if (!userDelegate.isLoggedIn()) {
+//			return getLoginRequiredResponse(AppState.LIST_BOOKS);
+//		}
+		
 		try {
 			Integer bookId = (Integer) args.get(0);
 			this.store.checkoutBook(bookId);
-			return new Response(UserInterface.BOOK_LIST_CHECKOUT_SUCCESS, 
-								getListBooksDisplayContent(),
-								AppState.LIST_BOOKS);
+			return getSuccessActionResponse(ActionType.CHECKOUT_BOOK, AppState.LIST_BOOKS);
 		} catch (Exception e) {
-			return invalidRes;
+			return getInvalidActionResponse(ActionType.CHECKOUT_BOOK, AppState.LIST_BOOKS);
 		}
 	}
 	
 	private Response handleCheckoutMovieAction(ArrayList<Object> args) {
-		Response invalidRes = new Response(UserInterface.MOVIE_LIST_CHECKOUT_INVALID, 
-											getListMoviesDisplayContent(),
-											AppState.LIST_MOVIES);	
 		try {
 			Integer movieId = (Integer) args.get(0);
 			this.store.checkoutMovie(movieId);
-			return new Response(UserInterface.MOVIE_LIST_CHECKOUT_SUCCESS, 
-								getListMoviesDisplayContent(),
-								AppState.LIST_MOVIES);
+			return getSuccessActionResponse(ActionType.CHECKOUT_MOVIE, AppState.LIST_MOVIES);
 		} catch (Exception e) {
-			return invalidRes;
+			return getInvalidActionResponse(ActionType.CHECKOUT_MOVIE, AppState.LIST_MOVIES);
 		}
 	}
 	
 	private Response handleReturnBookAction(ArrayList<Object> args) {
-		Response invalidRes = new Response(UserInterface.RETURN_BOOKS_RETURN_INVALID, 
-											getReturnBooksDisplayContent(),
-											AppState.RETURN_BOOKS);	
 		try {
 			Integer bookId = (Integer) args.get(0);
 			this.store.returnBook(bookId);
-			return new Response(UserInterface.RETURN_BOOKS_RETURN_SUCCESS, 
-								getReturnBooksDisplayContent(), 
-								AppState.RETURN_BOOKS);
+			return getSuccessActionResponse(ActionType.RETURN_BOOK, AppState.RETURN_BOOKS);
 		} catch (Exception e) {
-			return invalidRes;
+			return getInvalidActionResponse(ActionType.RETURN_BOOK, AppState.RETURN_BOOKS);
 		}
+	}
+	
+	// Methods to package response according to state or action
+	
+	private Response getLoginRequiredResponse(AppState stateToReturn) {
+		return new Response(UserInterface.LOGIN_REQUIRED, getDisplayContentForState(stateToReturn), stateToReturn);
+	}
+	
+	private Response getInvalidActionResponse(ActionType action, AppState stateToReturn) {
+		String displayContent = getDisplayContentForState(stateToReturn);
+		String feedbackContent = "";
+		
+		switch (action) {
+			case CHECKOUT_BOOK:
+				feedbackContent = UserInterface.BOOK_LIST_CHECKOUT_INVALID;
+				break;
+			case CHECKOUT_MOVIE:
+				feedbackContent = UserInterface.MOVIE_LIST_CHECKOUT_INVALID;
+				break;
+			case RETURN_BOOK:
+				feedbackContent = UserInterface.RETURN_BOOKS_RETURN_INVALID;
+				break;
+		}
+		
+		return new Response(feedbackContent, displayContent, stateToReturn);
+	}
+	
+	private Response getSuccessActionResponse(ActionType action, AppState stateToReturn) {
+		String displayContent = getDisplayContentForState(stateToReturn);
+		String feedbackContent = "";
+		
+		switch (action) {
+			case CHECKOUT_BOOK:
+				feedbackContent = UserInterface.BOOK_LIST_CHECKOUT_SUCCESS;
+				break;
+			case CHECKOUT_MOVIE:
+				feedbackContent = UserInterface.MOVIE_LIST_CHECKOUT_SUCCESS;
+				break;
+			case RETURN_BOOK:
+				feedbackContent = UserInterface.RETURN_BOOKS_RETURN_SUCCESS;
+				break;
+		}
+		
+		return new Response(feedbackContent, displayContent, stateToReturn);
 	}
 	
 	// Methods to retrieve Display Content from UserInterface 
 	
+	private String getDisplayContentForState(AppState stateToReturn) {
+		switch (stateToReturn) {
+		case LIST_BOOKS:
+			return getListBooksDisplayContent();
+		case RETURN_BOOKS:
+			return getReturnBooksDisplayContent();
+		case MAIN_MENU:
+			return getMainMenuDisplayContent();
+		case LIST_MOVIES:
+			return getListMoviesDisplayContent();
+		default:
+			return "";
+		}
+	}
+
 	String getListBooksDisplayContent() {
 		return UserInterface.getBooksListDisplayString(UserInterface.BOOK_LIST_TITLE, 
 				this.store.getAvailableBooks(), UserInterface.BOOK_LIST_MENU);

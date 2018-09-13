@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import com.twu.biblioteca.EnumTypes.AppState;
 import com.twu.biblioteca.Models.Action;
 import com.twu.biblioteca.Models.Response;
+import com.twu.biblioteca.Models.User;
 
-public class BibliotecaApp {
+public class BibliotecaApp implements UserDelegate {
 
     private UserInterface ui;
     private AppState state;
@@ -16,6 +17,7 @@ public class BibliotecaApp {
         this.ui = new UserInterface();
         this.state = AppState.MAIN_MENU;
         this.logic = new Logic(new Store());
+        this.logic.setUserDelegate(this);
     }
     
     public BibliotecaApp(Store store) {
@@ -45,6 +47,18 @@ public class BibliotecaApp {
 
     public void setState(AppState state) {
         this.state = state;
+    }
+    
+    /** UserDelegate **/
+    
+    private User currentUser = null; 
+    
+    public boolean isLoggedIn() {
+    		return this.currentUser != null;
+    }
+    
+    public User getCurrentUser() {
+    	return this.currentUser;
     }
 
    

@@ -1,9 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.Models.User;
+
 public interface UserDelegate {
 	
 	public boolean isLoggedIn();
-	public String getCurrentUser();
-	public void login(String username);
-	public void logout();
+	public User getCurrentUser();
 }
