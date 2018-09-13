@@ -13,18 +13,31 @@ import com.twu.biblioteca.Models.Action;
 import com.twu.biblioteca.Models.Book;
 import com.twu.biblioteca.Models.Movie;
 import com.twu.biblioteca.Models.Response;
+import com.twu.biblioteca.Models.User;
 
-public class LogicTest {
+public class LogicTest implements UserDelegate {
 	
 	private Logic logic;
 	private Store store;
 	private ArrayList<Book> bookSeed = Seeder.getBookSeedData();
 	private ArrayList<Movie> movieSeed = Seeder.getMovieSeedData();
 	
+	private final String USER_NUM = "123-1234";
+	private final String USER_PW = "123";
+	private User currentUser;
+	public boolean isLoggedIn() {
+		return currentUser != null;
+	}
+	public User getCurrentUser() {
+		return currentUser;
+	}
+	
 	@Before
 	public void setup() {
 		this.store = new Store();
 		this.logic = new Logic(this.store);
+		this.logic.setUserDelegate(this);
+		currentUser = new User(USER_NUM, USER_PW);
 		store.seedBooksData(bookSeed);
 		store.seedMoviesData(movieSeed);
 	}

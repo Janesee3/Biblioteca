@@ -29,7 +29,7 @@ public class Logic {
 		case GOTO_LIST_BOOKS:
 			return new Response("", getListBooksDisplayContent(), AppState.LIST_BOOKS);
 		case GOTO_RETURN_BOOKS:
-			return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
+			return handleGoToReturnBooksAction();
 		case GOTO_LIST_MOVIES:
 			return new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES);
 		case QUIT:
@@ -57,9 +57,9 @@ public class Logic {
 	
 	
 	private Response handleCheckoutBookAction(ArrayList<Object> args) {
-//		if (!userDelegate.isLoggedIn()) {
-//			return getLoginRequiredResponse(AppState.LIST_BOOKS);
-//		}
+		if (!userDelegate.isLoggedIn()) {
+			return getLoginRequiredResponse(AppState.LIST_BOOKS);
+		}
 		
 		try {
 			Integer bookId = (Integer) args.get(0);
@@ -71,6 +71,10 @@ public class Logic {
 	}
 	
 	private Response handleCheckoutMovieAction(ArrayList<Object> args) {
+		if (!userDelegate.isLoggedIn()) {
+			return getLoginRequiredResponse(AppState.LIST_BOOKS);
+		}
+		
 		try {
 			Integer movieId = (Integer) args.get(0);
 			this.store.checkoutMovie(movieId);
@@ -88,6 +92,14 @@ public class Logic {
 		} catch (Exception e) {
 			return getInvalidActionResponse(ActionType.RETURN_BOOK, AppState.RETURN_BOOKS);
 		}
+	}
+	
+	private Response handleGoToReturnBooksAction() {
+		if (!userDelegate.isLoggedIn()) {
+			return getLoginRequiredResponse(AppState.MAIN_MENU);
+		}	
+		return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
+		
 	}
 	
 	// Methods to package response according to state or action
