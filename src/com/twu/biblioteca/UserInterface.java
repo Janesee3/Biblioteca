@@ -15,13 +15,15 @@ public class UserInterface {
     public static final String LOGIN_REQUIRED = "Please login from the main menu first!";
     
     // MAIN MENU
-    public static final String MENU_CHOICE_LIST_BOOKS = "1";
-    public static final String MENU_CHOICE_RETURN_BOOKS = "2";
-    public static final String MENU_CHOICE_LIST_MOVIES = "3";
-    public static final String MENU_CHOICE_QUIT = "4";
+    public static final String MENU_CHOICE_AUTH = "1";
+    public static final String MENU_CHOICE_LIST_BOOKS = "2";
+    public static final String MENU_CHOICE_RETURN_BOOKS = "3";
+    public static final String MENU_CHOICE_LIST_MOVIES = "4";
+    public static final String MENU_CHOICE_QUIT = "5";
     public static final String INVALID_MENU_CHOICE = "Invalid selection! Please try again.";
     public static final String MENU = String.format(
-            "---- MAIN MENU ----\n" + "[%s] List Books\n" + "[%s] Return Books\n" + "[%s] List Movies\n" + "[%s] Quit\n" + System.lineSeparator() + "Please select by typing the corresponding number of the option you want.",
+            "---- MAIN MENU ----\n" + "[%s] Login\n" + "[%s] List Books\n" + "[%s] Return Books\n" + "[%s] List Movies\n" + "[%s] Quit\n" + System.lineSeparator() + "Please select by typing the corresponding number of the option you want.",
+            MENU_CHOICE_AUTH,
             MENU_CHOICE_LIST_BOOKS,
             MENU_CHOICE_RETURN_BOOKS,
             MENU_CHOICE_LIST_MOVIES,

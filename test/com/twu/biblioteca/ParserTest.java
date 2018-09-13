@@ -12,6 +12,14 @@ public class ParserTest {
 	
 	// Test for parsing main menu state input
 	
+//	@Test
+//	public void parseLoginSelectionReturnsCorrectAction() {
+//		String input = UserInterface.MENU_CHOICE_LIST_BOOKS;
+//		Action expectedAction = new Action(ActionType.GOTO_LIST_BOOKS);
+//		Action action = Parser.parse(AppState.MAIN_MENU, input);
+//		assertEquals(expectedAction, action);
+//	}
+	
 	@Test
 	public void parseListBookSelectionReturnsCorrectAction() {
 		String input = UserInterface.MENU_CHOICE_LIST_BOOKS;
