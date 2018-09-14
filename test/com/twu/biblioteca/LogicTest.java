@@ -403,6 +403,45 @@ public class LogicTest implements UserDelegate {
         assertEquals(expectedRes, res);
     }
 
+    @Test
+    public void testExecuteInvalidLoginInput() {
+        Action action = new Action(ActionType.INVALID_LOGIN_INPUT);
+
+        Response expectedRes = new Response(
+                UserInterface.UNRECOGNISED_ACTION_MESSAGE,
+                logic.getLoginDisplayContent(),
+                AppState.LOGIN
+        );
+        Response res = logic.execute(action);
+        assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void testExecuteLogoutAction() {
+        Action action = new Action(ActionType.LOGOUT);
+
+        Response expectedRes = new Response(
+                UserInterface.LOGOUT_SUCCESS_MESSAGE,
+                logic.getMainMenuDisplayContent(false),
+                AppState.MAIN_MENU
+        );
+        Response res = logic.execute(action);
+        assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void testExecuteInvalidLogoutInput() {
+        Action action = new Action(ActionType.INVALID_LOGOUT_INPUT);
+
+        Response expectedRes = new Response(
+                UserInterface.UNRECOGNISED_ACTION_MESSAGE,
+                logic.getLogoutDisplayContent(),
+                AppState.LOGOUT
+        );
+        Response res = logic.execute(action);
+        assertEquals(expectedRes, res);
+    }
+
 
 	// Test for unrecognised action
 

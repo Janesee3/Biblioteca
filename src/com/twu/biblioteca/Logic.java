@@ -45,6 +45,8 @@ public class Logic {
 			// User Actions
 		case LOGIN:
 			return handleLogin(action.args);
+        case LOGOUT:
+            return handleLogout();
 		case CHECKOUT_BOOK:
 			return handleCheckoutBookAction(action.args);
 		case RETURN_BOOK:
@@ -55,6 +57,8 @@ public class Logic {
 			// Invalid
 		case INVALID_LOGIN_INPUT:
 			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getLoginDisplayContent(), AppState.LOGIN);
+        case INVALID_LOGOUT_INPUT:
+            return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getLogoutDisplayContent(), AppState.LOGOUT);
 		case INVALID_MENU_CHOICE:
 			return new Response(UserInterface.INVALID_MENU_CHOICE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
 		case INVALID_LIST_BOOK_MENU_CHOICE:
@@ -78,8 +82,21 @@ public class Logic {
 		}
 
 		userDelegate.logUserIn(user);
-		return new Response(UserInterface.LOGIN_SUCCESS_MESSAGE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
+		return new Response(
+		        UserInterface.LOGIN_SUCCESS_MESSAGE,
+                getMainMenuDisplayContent(userDelegate.isLoggedIn()),
+                AppState.MAIN_MENU
+        );
 	}
+
+	private Response handleLogout() {
+	    userDelegate.logUserOut();
+	    return new Response(
+	            UserInterface.LOGOUT_SUCCESS_MESSAGE,
+                getMainMenuDisplayContent(userDelegate.isLoggedIn()),
+                AppState.MAIN_MENU
+        );
+    }
 
 	private Response handleCheckoutBookAction(ArrayList<Object> args) {
 		if (!userDelegate.isLoggedIn()) {
@@ -127,8 +144,12 @@ public class Logic {
 	}
 
 	private Response handleGoToAuth() {
-		AppState newAppState = userDelegate.isLoggedIn() ? AppState.LOGOUT : AppState.LOGIN;
-		return new Response("", getLoginDisplayContent(), newAppState);
+	    if (!userDelegate.isLoggedIn()) {
+            return new Response("", getLoginDisplayContent(), AppState.LOGIN);
+        } else {
+            return new Response("", getLogoutDisplayContent(), AppState.LOGOUT);
+        }
+
 	}
 	
 	// Methods to package response according to state or action
