@@ -15,20 +15,37 @@ public class UserInterface {
     public static final String LOGIN_REQUIRED = "Please login from the main menu first!";
     
     // MAIN MENU
+    public static final String MENU_TITLE = "---- MAIN MENU ----\n";
+    public static final String MENU_PROMPT = "Please select by typing the corresponding number of the option you want.";
     public static final String MENU_CHOICE_AUTH = "1";
     public static final String MENU_CHOICE_LIST_BOOKS = "2";
     public static final String MENU_CHOICE_RETURN_BOOKS = "3";
     public static final String MENU_CHOICE_LIST_MOVIES = "4";
     public static final String MENU_CHOICE_QUIT = "5";
     public static final String INVALID_MENU_CHOICE = "Invalid selection! Please try again.";
-    public static final String MENU = String.format(
-            "---- MAIN MENU ----\n" + "[%s] Login\n" + "[%s] List Books\n" + "[%s] Return Books\n" + "[%s] List Movies\n" + "[%s] Quit\n" + System.lineSeparator() + "Please select by typing the corresponding number of the option you want.",
-            MENU_CHOICE_AUTH,
-            MENU_CHOICE_LIST_BOOKS,
-            MENU_CHOICE_RETURN_BOOKS,
-            MENU_CHOICE_LIST_MOVIES,
-            MENU_CHOICE_QUIT
-    );
+    public static final String MENU_LOGIN = "[%s] Login\n";
+    public static final String MENU_LOGOUT = "[%s] Logout\n";
+    public static final String MENU_LIST_BOOKS = "[%s] List Books\n";
+    public static final String MENU_RETURN_BOOKS = "[%s] Return Books\n";
+    public static final String MENU_LIST_MOVIES = "[%s] List Movies\n";
+    public static final String MENU_QUIT = "[%s] Quit\n";
+//    public static final String MENU  = String.format(
+//            MENU_TITLE + MENU_LOGIN + MENU_LIST_BOOKS + MENU_RETURN_BOOKS + MENU_LIST_MOVIES + MENU_QUIT + System.lineSeparator() + MENU_PROMPT,
+//            MENU_CHOICE_AUTH,
+//            MENU_CHOICE_LIST_BOOKS,
+//            MENU_CHOICE_RETURN_BOOKS,
+//            MENU_CHOICE_LIST_MOVIES,
+//            MENU_CHOICE_QUIT
+//    );
+//    public static final String MENU_WITH_LOGOUT  = String.format(
+//            MENU_TITLE + MENU_LOGOUT + MENU_LIST_BOOKS + MENU_RETURN_BOOKS + MENU_LIST_MOVIES + MENU_QUIT + System.lineSeparator() + MENU_PROMPT,
+//            MENU_CHOICE_AUTH,
+//            MENU_CHOICE_LIST_BOOKS,
+//            MENU_CHOICE_RETURN_BOOKS,
+//            MENU_CHOICE_LIST_MOVIES,
+//            MENU_CHOICE_QUIT
+//    );
+
     
     // BOOK LIST
     public static final String BOOK_LIST_CHOICE_BACK = "b";
@@ -93,7 +110,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        show(MENU);
+        show(getMenuDisplayString(false));
     }
     
     public void displayResponse(Response res) {
@@ -105,11 +122,27 @@ public class UserInterface {
     			show(res.getDisplayContent());
     		}
     }
-  
+
+    public static String getMenuDisplayString(boolean isLoggedIn) {
+        String authOption = isLoggedIn ? MENU_LOGOUT : MENU_LOGIN;
+        return String.format(
+                MENU_TITLE + authOption + MENU_LIST_BOOKS + MENU_RETURN_BOOKS + MENU_LIST_MOVIES + MENU_QUIT + System.lineSeparator() + MENU_PROMPT,
+                MENU_CHOICE_AUTH,
+                MENU_CHOICE_LIST_BOOKS,
+                MENU_CHOICE_RETURN_BOOKS,
+                MENU_CHOICE_LIST_MOVIES,
+                MENU_CHOICE_QUIT
+        );
+    }
+
     public static String getBooksListDisplayString(String listTitle, ArrayList<Book> list, String menu) {
         return String.format("%s\n%s\n\n%s", listTitle, getBooksTableDisplayString(list), menu);
     }
-    
+
+    public static String getMoviesListDisplayString(String listTitle, ArrayList<Movie> list, String menu) {
+        return String.format("%s\n%s\n\n%s", listTitle, getMoviesTableDisplayString(list), menu);
+    }
+
     private static String getBooksTableDisplayString(ArrayList<Book> list) {
     		String table = BOOK_LIST_TABLE_HEADING + System.lineSeparator();
         for (Book book: list) {
@@ -118,11 +151,8 @@ public class UserInterface {
         }
         return table;
     }
-    
-    public static String getMoviesListDisplayString(String listTitle, ArrayList<Movie> list, String menu) {
-        return String.format("%s\n%s\n\n%s", listTitle, getMoviesTableDisplayString(list), menu);
-    }
-    
+
+
     private static String getMoviesTableDisplayString(ArrayList<Movie> list) {
     		String table = MOVIE_LIST_TABLE_HEADING + System.lineSeparator();
         for (Movie movie: list) {
@@ -131,6 +161,6 @@ public class UserInterface {
         }
         return table;
     }
-    
-    
+
+
 }

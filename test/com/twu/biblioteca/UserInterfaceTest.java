@@ -75,7 +75,7 @@ public class UserInterfaceTest {
 	@Test
 	public void showMenuShouldPrintMenu() {
 		ui.showMenu();
-		assertEquals(UserInterface.MENU, getOutputFromStream());
+		assertEquals(UserInterface.getMenuDisplayString(false), getOutputFromStream());
 	}
 
 

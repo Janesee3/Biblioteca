@@ -183,7 +183,7 @@ public class Logic {
 	}
 	
 	String getMainMenuDisplayContent() {
-		return UserInterface.MENU;
+		return UserInterface.getMenuDisplayString(false);
 	}
 	
 	
