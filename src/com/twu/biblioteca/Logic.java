@@ -26,6 +26,8 @@ public class Logic {
 	
 	public Response execute(Action action) {
 		switch (action.type) {
+		case LOGIN:
+			return new Response("", getLoginDisplayContent(), AppState.LOGIN);
 		case GOTO_LIST_BOOKS:
 			return new Response("", getListBooksDisplayContent(), AppState.LIST_BOOKS);
 		case GOTO_RETURN_BOOKS:
@@ -195,6 +197,10 @@ public class Logic {
 
 	String getMainMenuDisplayContent() {
 		return UserInterface.getMenuDisplayString(this.userDelegate.isLoggedIn());
+	}
+
+	String getLoginDisplayContent() {
+		return UserInterface.LOGIN_PROMPT;
 	}
 	
 	

@@ -302,4 +302,13 @@ public class LogicTest implements UserDelegate {
 		Response res = logic.execute(action);
 		assertEquals(expectedRes, res);
 	}
+
+	@Test
+	public void testExecuteAuthActionWhenNotLoggedIn() {
+		this.currentUser = null;
+		Action action = new Action(ActionType.LOGIN);
+		Response expectedRes = new Response("", this.logic.getLoginDisplayContent(), AppState.LOGIN);
+		Response res = logic.execute(action);
+		assertEquals(expectedRes, res);
+	}
 }

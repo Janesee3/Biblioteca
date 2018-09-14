@@ -13,6 +13,14 @@ public class UserInterface {
     public static final String QUIT_MESSAGE = "Goodbye!";
     public static final String UNRECOGNISED_ACTION_MESSAGE = "This input cannot be parsed!";
     public static final String LOGIN_REQUIRED = "Please login from the main menu first!";
+
+    // LOGIN RELATED
+    public static final String LOGIN_BACK = "b";
+    public static final String LOGIN_PROMPT = "Please enter your library number and password in this format: '<library-number> <password>'\nType 'b' to return to menu.";
+    public static final String LOGOUT_PROMPT = "Are you sure you want to logout? Y / N";
+    public static final String LOGIN_FAIL_MESSAGE = "Invalid credentials! Please try again";
+    public static final String LOGIN_SUCCESS_MESSAGE = "Login Succeeded!";
+    public static final String LOGOUT_SUCCESS_MESSAGE = "Successfully logged out!";
     
     // MAIN MENU
     public static final String MENU_TITLE = "---- MAIN MENU ----\n";
@@ -29,22 +37,6 @@ public class UserInterface {
     public static final String MENU_RETURN_BOOKS = "[%s] Return Books\n";
     public static final String MENU_LIST_MOVIES = "[%s] List Movies\n";
     public static final String MENU_QUIT = "[%s] Quit\n";
-//    public static final String MENU  = String.format(
-//            MENU_TITLE + MENU_LOGIN + MENU_LIST_BOOKS + MENU_RETURN_BOOKS + MENU_LIST_MOVIES + MENU_QUIT + System.lineSeparator() + MENU_PROMPT,
-//            MENU_CHOICE_AUTH,
-//            MENU_CHOICE_LIST_BOOKS,
-//            MENU_CHOICE_RETURN_BOOKS,
-//            MENU_CHOICE_LIST_MOVIES,
-//            MENU_CHOICE_QUIT
-//    );
-//    public static final String MENU_WITH_LOGOUT  = String.format(
-//            MENU_TITLE + MENU_LOGOUT + MENU_LIST_BOOKS + MENU_RETURN_BOOKS + MENU_LIST_MOVIES + MENU_QUIT + System.lineSeparator() + MENU_PROMPT,
-//            MENU_CHOICE_AUTH,
-//            MENU_CHOICE_LIST_BOOKS,
-//            MENU_CHOICE_RETURN_BOOKS,
-//            MENU_CHOICE_LIST_MOVIES,
-//            MENU_CHOICE_QUIT
-//    );
 
     
     // BOOK LIST
