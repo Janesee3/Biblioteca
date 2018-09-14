@@ -114,7 +114,7 @@ public class Store {
 
     User findUserByCredentials(String libNum, String pw) {
         for (User user: users) {
-            if (user.getLibraryNumber() == libNum && user.getPassword() == pw) {
+            if (user.getLibraryNumber().equals(libNum) && user.getPassword().equals(pw)) {
                 return user;
             }
         }

@@ -11,19 +11,21 @@ public class UserInterface {
 
     public static final String WELCOME_MESSAGE = "Welcome to Biblioteca!";
     public static final String QUIT_MESSAGE = "Goodbye!";
-    public static final String UNRECOGNISED_ACTION_MESSAGE = "This input cannot be parsed!";
-    public static final String LOGIN_REQUIRED = "Please login from the main menu first!";
+    public static final String UNRECOGNISED_ACTION_MESSAGE = "This input cannot be parsed!" + System.lineSeparator();
+    public static final String LOGIN_REQUIRED = "Please login from the main menu first!" + System.lineSeparator();
 
     // LOGIN RELATED
+    public static final String LOGOUT_YES = "Y";
+    public static final String LOGOUT_NO = "N";
     public static final String LOGIN_BACK = "b";
     public static final String LOGIN_PROMPT = "Please enter your library number and password in this format: '<library-number> <password>'\nType 'b' to return to menu.";
-    public static final String LOGOUT_PROMPT = "Are you sure you want to logout? Y / N";
-    public static final String LOGIN_FAIL_MESSAGE = "Invalid credentials! Please try again";
-    public static final String LOGIN_SUCCESS_MESSAGE = "Login Succeeded!";
-    public static final String LOGOUT_SUCCESS_MESSAGE = "Successfully logged out!";
+    public static final String LOGOUT_PROMPT = "Are you sure you want to logout? " + LOGOUT_YES + " / " + LOGOUT_NO;
+    public static final String LOGIN_FAIL_MESSAGE = "Invalid credentials! Please try again" + System.lineSeparator();
+    public static final String LOGIN_SUCCESS_MESSAGE = "Login Succeeded!" + System.lineSeparator();
+    public static final String LOGOUT_SUCCESS_MESSAGE = "Successfully logged out!" + System.lineSeparator();
     
     // MAIN MENU
-    public static final String MENU_TITLE = "---- MAIN MENU ----\n";
+    public static final String MENU_TITLE = "---- MAIN MENU ----" + System.lineSeparator();
     public static final String MENU_PROMPT = "Please select by typing the corresponding number of the option you want.";
     public static final String MENU_CHOICE_AUTH = "1";
     public static final String MENU_CHOICE_LIST_BOOKS = "2";
@@ -31,18 +33,18 @@ public class UserInterface {
     public static final String MENU_CHOICE_LIST_MOVIES = "4";
     public static final String MENU_CHOICE_QUIT = "5";
     public static final String INVALID_MENU_CHOICE = "Invalid selection! Please try again.";
-    public static final String MENU_LOGIN = "[%s] Login\n";
-    public static final String MENU_LOGOUT = "[%s] Logout\n";
-    public static final String MENU_LIST_BOOKS = "[%s] List Books\n";
-    public static final String MENU_RETURN_BOOKS = "[%s] Return Books\n";
-    public static final String MENU_LIST_MOVIES = "[%s] List Movies\n";
-    public static final String MENU_QUIT = "[%s] Quit\n";
+    public static final String MENU_LOGIN = "[%s] Login" + System.lineSeparator();
+    public static final String MENU_LOGOUT = "[%s] Logout" + System.lineSeparator();
+    public static final String MENU_LIST_BOOKS = "[%s] List Books" + System.lineSeparator();
+    public static final String MENU_RETURN_BOOKS = "[%s] Return Books" + System.lineSeparator();
+    public static final String MENU_LIST_MOVIES = "[%s] List Movies" + System.lineSeparator();
+    public static final String MENU_QUIT = "[%s] Quit" + System.lineSeparator();
 
     
     // BOOK LIST
     public static final String BOOK_LIST_CHOICE_BACK = "b";
     public static final String BOOK_LIST_CHOICE_CHECKOUT = "checkout";
-    public static final String BOOK_LIST_CHOICE_INVALID = "Invalid choice, please try again!";
+    public static final String BOOK_LIST_CHOICE_INVALID = "Invalid choice, please try again!" + System.lineSeparator();
     public static final String BOOK_LIST_TITLE = "---- AVAILABLE BOOKS ----";
     public static final String BOOK_LIST_TABLE_HEADING = String.format("%-5s | %-20s | %-20s | %-8s", "ID", "Title", "Author", "Year");
     public static final String BOOK_LIST_ITEM = "%-5d | %-20s | %-20s | %-8s";

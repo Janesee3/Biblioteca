@@ -229,6 +229,10 @@ public class Logic {
 	String getLoginDisplayContent() {
 		return UserInterface.LOGIN_PROMPT;
 	}
+
+    String getLogoutDisplayContent() {
+	    return UserInterface.LOGOUT_PROMPT;
+    }
 	
 	
 

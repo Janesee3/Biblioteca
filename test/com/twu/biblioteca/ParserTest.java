@@ -194,6 +194,30 @@ public class ParserTest {
 		assertEquals(expectedAction, action);
 	}
 
+    @Test
+    public void parseDeclineLogout() {
+        String input = UserInterface.LOGOUT_NO;
+        Action expectedAction = new Action(ActionType.BACK_TO_MAIN_MENU);
+        Action action = Parser.parse(AppState.LOGOUT, input);
+        assertEquals(expectedAction, action);
+    }
+
+    @Test
+    public void parseAcceptLogout() {
+        String input = UserInterface.LOGOUT_YES;
+        Action expectedAction = new Action(ActionType.LOGOUT);
+        Action action = Parser.parse(AppState.LOGOUT, input);
+        assertEquals(expectedAction, action);
+    }
+
+    @Test
+    public void parseInvalidLogoutInput() {
+	    String input = "asd";
+	    Action expectedAction = new Action(ActionType.INVALID_LOGOUT_INPUT);
+	    Action action = Parser.parse(AppState.LOGOUT, input);
+	    assertEquals(expectedAction, action);
+    }
+
 	@Test
 	public void parseLoginWithValidCredentialsFormat() {
 		String mockLibNum = "123-1234";

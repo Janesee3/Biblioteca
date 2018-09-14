@@ -83,7 +83,7 @@ public class LogicTest implements UserDelegate {
     @Test
     public void testExecuteGoToAuthActionWhenLoggedIn() {
         Action action = new Action(ActionType.GOTO_AUTH);
-        Response expectedRes = new Response("", logic.getLoginDisplayContent(), AppState.LOGOUT);
+        Response expectedRes = new Response("", logic.getLogoutDisplayContent(), AppState.LOGOUT);
 
         Response res = logic.execute(action);
 

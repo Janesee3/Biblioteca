@@ -21,6 +21,8 @@ public class Parser {
 				return Parser.parseReturnBookMenuSelection(input);
 			case LOGIN:
 				return Parser.parseLogin(input);
+            case LOGOUT:
+                return Parser.parseLogout(input);
 			default:
 				return new Action(ActionType.UNRECOGNISED_ACTION);
 		}
@@ -102,4 +104,16 @@ public class Parser {
 		}
 		return new Action(ActionType.INVALID_LOGIN_INPUT);
 	}
+
+	private static Action parseLogout(String input) {
+	    if (input.equals(UserInterface.LOGOUT_YES)) {
+	        return new Action(ActionType.LOGOUT);
+        }
+
+        if (input.equals(UserInterface.LOGOUT_NO)) {
+            return new Action(ActionType.BACK_TO_MAIN_MENU);
+        }
+
+        return new Action(ActionType.INVALID_LOGOUT_INPUT);
+    }
 }
