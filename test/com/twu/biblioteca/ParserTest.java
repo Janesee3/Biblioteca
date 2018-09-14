@@ -15,7 +15,7 @@ public class ParserTest {
 	@Test
 	public void parseAuthSelectionReturnsCorrectAction() {
 		String input = UserInterface.MENU_CHOICE_AUTH;
-		Action expectedAction = new Action(ActionType.LOGIN);
+		Action expectedAction = new Action(ActionType.GOTO_AUTH);
 		Action action = Parser.parse(AppState.MAIN_MENU, input);
 		assertEquals(expectedAction, action);
 	}

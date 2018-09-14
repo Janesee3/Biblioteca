@@ -6,6 +6,7 @@ import com.twu.biblioteca.EnumTypes.ActionType;
 import com.twu.biblioteca.EnumTypes.AppState;
 import com.twu.biblioteca.Models.Action;
 import com.twu.biblioteca.Models.Response;
+import com.twu.biblioteca.Models.User;
 
 public class Logic {
 	
@@ -26,38 +27,60 @@ public class Logic {
 	
 	public Response execute(Action action) {
 		switch (action.type) {
-		case LOGIN:
-			return new Response("", getLoginDisplayContent(), AppState.LOGIN);
+
+			// Navigation
+		case GOTO_AUTH:
+			return handleGoToAuth();
 		case GOTO_LIST_BOOKS:
 			return new Response("", getListBooksDisplayContent(), AppState.LIST_BOOKS);
 		case GOTO_RETURN_BOOKS:
 			return handleGoToReturnBooksAction();
 		case GOTO_LIST_MOVIES:
 			return new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES);
+		case BACK_TO_MAIN_MENU:
+			return new Response("", getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
 		case QUIT:
 			return new Response("", getQuitDisplayContent(), AppState.QUIT);
-		case INVALID_MENU_CHOICE:
-			return new Response(UserInterface.INVALID_MENU_CHOICE, getMainMenuDisplayContent(), AppState.MAIN_MENU);
-		case BACK_TO_MAIN_MENU:
-			return new Response("", getMainMenuDisplayContent(), AppState.MAIN_MENU);
+
+			// User Actions
+		case LOGIN:
+			return handleLogin(action.args);
 		case CHECKOUT_BOOK:
 			return handleCheckoutBookAction(action.args);
-		case INVALID_LIST_BOOK_MENU_CHOICE:
-			return new Response(UserInterface.BOOK_LIST_CHOICE_INVALID, getListBooksDisplayContent(), AppState.LIST_BOOKS);
 		case RETURN_BOOK:
 			return handleReturnBookAction(action.args);
-		case INVALID_RETURN_BOOK_MENU_CHOICE:
-			return new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID, getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
 		case CHECKOUT_MOVIE:
 			return handleCheckoutMovieAction(action.args);
+
+			// Invalid
+		case INVALID_LOGIN_INPUT:
+			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getLoginDisplayContent(), AppState.LOGIN);
+		case INVALID_MENU_CHOICE:
+			return new Response(UserInterface.INVALID_MENU_CHOICE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
+		case INVALID_LIST_BOOK_MENU_CHOICE:
+			return new Response(UserInterface.BOOK_LIST_CHOICE_INVALID, getListBooksDisplayContent(), AppState.LIST_BOOKS);
+		case INVALID_RETURN_BOOK_MENU_CHOICE:
+			return new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID, getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
 		case INVALID_LIST_MOVIE_MENU_CHOICE:
 			return new Response(UserInterface.MOVIE_LIST_CHOICE_INVALID, getListMoviesDisplayContent(), AppState.LIST_MOVIES);
 		default:
-			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(), AppState.MAIN_MENU);
+			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
 		}
 	}
-	
-	
+
+	private Response handleLogin(ArrayList<Object> args) {
+		String libNum = (String) args.get(0);
+		String password = (String) args.get(1);
+		User user = store.findUserByCredentials(libNum, password);
+
+		if (user == null) {
+			return new Response(UserInterface.LOGIN_FAIL_MESSAGE, getLoginDisplayContent(), AppState.LOGIN);
+		}
+
+		userDelegate.logUserIn(user);
+		return new Response(UserInterface.LOGIN_SUCCESS_MESSAGE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
+	}
+
 	private Response handleCheckoutBookAction(ArrayList<Object> args) {
 		if (!userDelegate.isLoggedIn()) {
 			return getLoginRequiredResponse(AppState.LIST_BOOKS);
@@ -101,7 +124,11 @@ public class Logic {
 			return getLoginRequiredResponse(AppState.MAIN_MENU);
 		}	
 		return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
-		
+	}
+
+	private Response handleGoToAuth() {
+		AppState newAppState = userDelegate.isLoggedIn() ? AppState.LOGOUT : AppState.LOGIN;
+		return new Response("", getLoginDisplayContent(), newAppState);
 	}
 	
 	// Methods to package response according to state or action
@@ -157,7 +184,7 @@ public class Logic {
 		case RETURN_BOOKS:
 			return getReturnBooksDisplayContent();
 		case MAIN_MENU:
-			return getMainMenuDisplayContent();
+			return getMainMenuDisplayContent(userDelegate.isLoggedIn());
 		case LIST_MOVIES:
 			return getListMoviesDisplayContent();
 		case QUIT:
@@ -195,8 +222,8 @@ public class Logic {
 		return UserInterface.QUIT_MESSAGE;
 	}
 
-	String getMainMenuDisplayContent() {
-		return UserInterface.getMenuDisplayString(this.userDelegate.isLoggedIn());
+	String getMainMenuDisplayContent(boolean isUserLoggedIn) {
+		return UserInterface.getMenuDisplayString(isUserLoggedIn);
 	}
 
 	String getLoginDisplayContent() {

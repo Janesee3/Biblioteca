@@ -40,7 +40,7 @@ public class Parser {
 	private static Action parseMainMenuSelection(String input) {
 		switch (input) {
 			case UserInterface.MENU_CHOICE_AUTH:
-				return new Action(ActionType.LOGIN);
+				return new Action(ActionType.GOTO_AUTH);
 			case UserInterface.MENU_CHOICE_LIST_BOOKS:
 				return new Action(ActionType.GOTO_LIST_BOOKS);
 			case UserInterface.MENU_CHOICE_LIST_MOVIES:

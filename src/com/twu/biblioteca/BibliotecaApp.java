@@ -60,5 +60,13 @@ public class BibliotecaApp implements UserDelegate {
     	return this.currentUser;
     }
 
+    public void logUserIn(User user) {
+        this.currentUser = user;
+    }
+
+    public void logUserOut() {
+        this.currentUser = null;
+    }
+
    
 }

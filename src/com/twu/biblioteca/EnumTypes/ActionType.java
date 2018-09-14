@@ -7,6 +7,7 @@ public enum ActionType {
 	GOTO_RETURN_BOOKS, 
 	GOTO_LIST_MOVIES,
 	BACK_TO_MAIN_MENU,
+	GOTO_AUTH,
 	QUIT,
 
 	// INVALID
