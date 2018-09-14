@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -67,16 +69,29 @@ public class UserInterfaceTest {
     }
 	
 	@Test
-    public void showWelcomeSequenceShouldPrintWelcomeMessage() {
-		ui.showWelcomeSequence(); 
-		assertEquals(UserInterface.WELCOME_MESSAGE, getOutputFromStream());
+    public void showStartupSequenceShouldPrintWelcomeMessageAndMenu() {
+		ui.showStartupSequence();
+		assertTrue(getOutputFromStream().contains(UserInterface.WELCOME_MESSAGE));
+		assertTrue(getOutputFromStream().contains(UserInterface.getMenuDisplayString(false)));
     }
 
-	@Test
-	public void showMenuShouldPrintMenu() {
-		ui.showMenu();
-		assertEquals(UserInterface.getMenuDisplayString(false), getOutputFromStream());
+    private String MENU_LOGIN = String.format(UserInterface.MENU_LOGIN, UserInterface.MENU_CHOICE_AUTH);
+	private String MENU_LOGOUT = String.format(UserInterface.MENU_LOGOUT, UserInterface.MENU_CHOICE_AUTH);
+
+    @Test
+	public void testGetMenuDisplayStringWhenLoggedIn() {
+		String menu = UserInterface.getMenuDisplayString(true);
+		assertTrue(menu.contains(MENU_LOGOUT));
+		assertFalse(menu.contains(MENU_LOGIN));
 	}
+
+	@Test
+	public void testGetMenuDisplayStringWhenLoggedOut() {
+		String menu = UserInterface.getMenuDisplayString(false);
+		assertTrue(menu.contains(MENU_LOGIN));
+		assertFalse(menu.contains(MENU_LOGOUT));
+	}
+
 
 
 	

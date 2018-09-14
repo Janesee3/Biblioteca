@@ -29,8 +29,7 @@ public class BibliotecaApp implements UserDelegate {
 	
     public void run() {
     		
-        this.ui.showWelcomeSequence();
-        this.ui.showMenu();
+        this.ui.showStartupSequence();
 
         while (this.getState() != AppState.QUIT) {
         		String input = this.ui.readUserInput();

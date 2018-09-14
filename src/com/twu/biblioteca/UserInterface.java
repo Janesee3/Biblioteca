@@ -104,15 +104,12 @@ public class UserInterface {
     public void show(String content) {
     		System.out.println(content);
     }
-    
-    public void showWelcomeSequence() {
-        show(WELCOME_MESSAGE + System.lineSeparator());
-    }
 
-    public void showMenu() {
+    public void showStartupSequence() {
+        show(WELCOME_MESSAGE + System.lineSeparator());
         show(getMenuDisplayString(false));
     }
-    
+
     public void displayResponse(Response res) {
     		if (!res.getFeedbackString().isEmpty()) {
     			show(res.getFeedbackString());    			

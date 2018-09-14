@@ -148,7 +148,7 @@ public class Logic {
 	
 	// Methods to retrieve Display Content from UserInterface 
 	
-	private String getDisplayContentForState(AppState stateToReturn) {
+	String getDisplayContentForState(AppState stateToReturn) {
 		switch (stateToReturn) {
 		case LIST_BOOKS:
 			return getListBooksDisplayContent();
@@ -158,32 +158,43 @@ public class Logic {
 			return getMainMenuDisplayContent();
 		case LIST_MOVIES:
 			return getListMoviesDisplayContent();
+		case QUIT:
+			return getQuitDisplayContent();
 		default:
 			return "";
 		}
 	}
 
 	String getListBooksDisplayContent() {
-		return UserInterface.getBooksListDisplayString(UserInterface.BOOK_LIST_TITLE, 
-				this.store.getAvailableBooks(), UserInterface.BOOK_LIST_MENU);
+		return UserInterface.getBooksListDisplayString(
+				UserInterface.BOOK_LIST_TITLE,
+				this.store.getAvailableBooks(),
+				UserInterface.BOOK_LIST_MENU
+		);
 	}
-	
+
 	String getReturnBooksDisplayContent() {
-		return UserInterface.getBooksListDisplayString(UserInterface.RETURN_BOOKS_TITLE, 
-				this.store.getReturnableBooks(), UserInterface.RETURN_BOOKS_MENU);
+		return UserInterface.getBooksListDisplayString(
+				UserInterface.RETURN_BOOKS_TITLE,
+				this.store.getReturnableBooks(),
+				UserInterface.RETURN_BOOKS_MENU
+		);
 	}
-	
+
 	String getListMoviesDisplayContent() {
-		return UserInterface.getMoviesListDisplayString(UserInterface.MOVIE_LIST_TITLE, 
-				this.store.getAvailableMovies(), UserInterface.MOVIE_LIST_MENU);
+		return UserInterface.getMoviesListDisplayString(
+				UserInterface.MOVIE_LIST_TITLE,
+				this.store.getAvailableMovies(),
+				UserInterface.MOVIE_LIST_MENU
+		);
 	}
-	
+
 	String getQuitDisplayContent() {
 		return UserInterface.QUIT_MESSAGE;
 	}
-	
+
 	String getMainMenuDisplayContent() {
-		return UserInterface.getMenuDisplayString(false);
+		return UserInterface.getMenuDisplayString(this.userDelegate.isLoggedIn());
 	}
 	
 	
