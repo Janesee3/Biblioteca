@@ -32,6 +32,8 @@ public class StoreTest {
         this.store.seedUsersData(this.usersSeed);
     }
 
+    // Tests for Retrieving Books
+
     @Test
     public void getAvailableBooksShouldReturnListOfNotCheckedOutBooks() {
         Book toBeBorrowed = booksSeed.get(0);
@@ -51,7 +53,8 @@ public class StoreTest {
 
         assertEquals(1, books.size());
     }
-    
+
+    // Tests for checkout books
     
     @Test
     public void shouldCorrectlyCheckoutBookWhenGivenValidId() throws Exception {
@@ -61,6 +64,20 @@ public class StoreTest {
         assertTrue(store.findBookById(bookIndex).getCheckoutStatus());
         assertEquals(1, store.findUserByUserNumber(userNumber).getBooksBorrowed().size());
     }
+
+    @Test
+    public void shouldThrowExceptionWhenCheckoutInvalidBook() {
+    		int bookIndex = 9901;
+
+    		try {
+                store.checkoutBook(bookIndex, usersSeed.get(0).getLibraryNumber());
+                fail("Exception should be thrown.");
+            } catch (Exception e) {
+                assert (true);
+            }
+    }
+
+    // Tests for return books
 
     @Test
     public void shouldCorrectlyReturnBookWhenGivenValidId() throws Exception {
@@ -77,18 +94,6 @@ public class StoreTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenCheckoutInvalidBook() {
-    		int bookIndex = 9901;
-
-    		try {
-                store.checkoutBook(bookIndex, usersSeed.get(0).getLibraryNumber());
-                fail("Exception should be thrown.");
-            } catch (Exception e) {
-                assert (true);
-            }
-    }
-
-    @Test
     public void shouldThrowExceptionWhenReturnInvalidBook() {
     		int bookIndex = -1;
         try {
@@ -98,6 +103,8 @@ public class StoreTest {
             assert (true);
         }
     }
+
+    // Tests for retrieving movies
 
     @Test
     public void getAvailableMoviesShouldReturnListOfNotCheckedOutMovies() {
@@ -110,22 +117,66 @@ public class StoreTest {
     }
 
     @Test
-    public void getReturnableMoviesShouldReturnListOfCheckedOutMovies() {
+    public void getReturnableMoviesShouldReturnListOfCheckedOutMovies() throws Exception {
         String borrowerId = Seeder.TEST_USER_1.getLibraryNumber();
-//        store.checkoutMovie(Seeder.TEST_MOVIE_1.getIndex(), borrowerId);
+        store.checkoutMovie(Seeder.TEST_MOVIE_1.getIndex(), borrowerId);
 
-        ArrayList<Book> books = store.getReturnableBooks(borrowerId);
+        ArrayList<Movie> movies = store.getReturnableMovies(borrowerId);
 
-        assertEquals(1, books.size());
+        assertEquals(1, movies.size());
     }
 
+    // Tests for checking out movie
 
     @Test
     public void shouldCorrectlyCheckoutMovieWhenGivenValidId() throws Exception {
-    		int movieIndex = Seeder.TEST_MOVIE_1.getIndex();
-    		store.checkoutMovie(movieIndex);
-    		assertTrue(store.findMovieById(movieIndex).getCheckoutStatus());
+        int movieIndex = Seeder.TEST_MOVIE_1.getIndex();
+        String userNumber = Seeder.TEST_USER_1.getLibraryNumber();
+        store.checkoutMovie(movieIndex, userNumber);
+        assertTrue(store.findMovieById(movieIndex).getCheckoutStatus());
+        assertEquals(1, store.findUserByUserNumber(userNumber).getMoviesBorrowed().size());
     }
+
+    @Test
+    public void shouldThrowExceptionWhenCheckoutInvalidMovie() {
+        int movieIndex = 9901;
+
+        try {
+            store.checkoutMovie(movieIndex, usersSeed.get(0).getLibraryNumber());
+            fail("Exception should be thrown.");
+        } catch (Exception e) {
+            assert (true);
+        }
+    }
+
+    // Tests for returning movie
+
+    @Test
+    public void shouldCorrectlyReturnMovieWhenGivenValidId() throws Exception {
+        int movieIndex = Seeder.TEST_MOVIE_1.getIndex();
+        String userNumber = Seeder.TEST_USER_1.getLibraryNumber();
+
+        store.checkoutMovie(movieIndex, userNumber);
+        store.returnMovie(movieIndex, userNumber);
+
+        User user = store.findUserByUserNumber(userNumber);
+        ArrayList<Movie> borrowedMovies = user.getMoviesBorrowed();
+        assertFalse(store.findMovieById(movieIndex).getCheckoutStatus());
+        assertEquals(0, borrowedMovies.size());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenReturnInvalidMovie() {
+        int bookIndex = -1;
+        try {
+            store.returnMovie(bookIndex, usersSeed.get(0).getLibraryNumber());
+            fail("Exception should be thrown.");
+        } catch (Exception e) {
+            assert (true);
+        }
+    }
+
+    // Tests for retrieving Users
 
     @Test
     public void shouldReturnUserWhenGivenValidCredentials() {

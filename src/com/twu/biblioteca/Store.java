@@ -91,7 +91,8 @@ public class Store {
     
     public ArrayList<Movie> getAvailableMovies() {
     		ArrayList<Movie> availableMovies = new ArrayList<Movie>(this.movies.stream()
-                .filter(movie -> !movie.getCheckoutStatus()).collect(Collectors.toList()));
+                    .filter(movie -> !movie.getCheckoutStatus())
+                    .collect(Collectors.toList()));
 
         return availableMovies;
     }
@@ -105,12 +106,25 @@ public class Store {
         return returnableMovies;
     }
     
-    public void checkoutMovie(int movieId) throws Exception {
+    public void checkoutMovie(int movieId, String libNum) throws Exception {
+        User matchedUser = findUserByUserNumber(libNum);
         Movie movie = this.findMovieById(movieId);
-        if (movie != null) {
-        		movie.markAsCheckedOut();
+        if (movie != null && matchedUser != null) {
+            movie.markAsCheckedOut();
+            matchedUser.borrowMovie(movie);
         } else {
-        		throw new Exception("Unable to find movie.");
+            throw new Exception("Unable to find movie/user.");
+        }
+    }
+
+    public void returnMovie(int movieId, String libNum) throws Exception {
+        User matchedUser = findUserByUserNumber(libNum);
+        Movie movie = this.findMovieById(movieId);
+        if (movie != null && matchedUser != null) {
+            movie.markAsNotCheckedOut();
+            matchedUser.returnMovie(movie);
+        } else {
+            throw new Exception("Unable to find movie/user.");
         }
     }
 

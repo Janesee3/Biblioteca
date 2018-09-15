@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99c67f9c-4ca7-4559-8391-8cd853d6d08a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/biblioteca/com/twu/biblioteca/StoreTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/biblioteca/com/twu/biblioteca/StoreTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,35 +30,35 @@
         <counts>
           <entry key="class" value="19" />
           <entry key="classpath" value="1" />
-          <entry key="java" value="117" />
+          <entry key="java" value="119" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="19" />
           <entry key="Eclipse" value="1" />
-          <entry key="JAVA" value="117" />
+          <entry key="JAVA" value="119" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="24254" />
+          <entry key="java" value="24654" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="24254" />
+          <entry key="JAVA" value="24654" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Store.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="100" column="76" selection-start-line="100" selection-start-column="76" selection-end-line="100" selection-end-column="76" />
+            <state relative-caret-position="280">
+              <caret line="120" column="8" selection-start-line="120" selection-start-column="8" selection-end-line="127" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3122#3129#0" expanded="true" />
@@ -70,44 +70,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-263">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="115">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#824#825#0" expanded="true" />
-                <element signature="e#860#861#0" expanded="true" />
+                <element signature="e#1783#1784#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
-              <folding>
-                <element signature="e#476#477#0" expanded="true" />
-                <element signature="e#519#520#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Models/Movie.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Seeder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -115,17 +83,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="118" selection-start-line="118" selection-end-line="118" />
+            <state relative-caret-position="257">
+              <caret line="164" column="47" lean-forward="true" selection-start-line="164" selection-start-column="47" selection-end-line="164" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java">
+        <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="324" column="54" selection-start-line="324" selection-start-column="54" selection-end-line="324" selection-end-column="54" />
+            <state relative-caret-position="380">
+              <caret line="121" column="94" selection-start-line="121" selection-start-column="94" selection-end-line="121" selection-end-column="94" />
             </state>
           </provider>
         </entry>
@@ -174,15 +142,15 @@
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/EnumTypes/ActionType.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Parser.java" />
         <option value="$PROJECT_DIR$/test/com/twu/biblioteca/ParserTest.java" />
-        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Models/Book.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Models/Movie.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Seeder.java" />
-        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" />
-        <option value="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" />
         <option value="$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java" />
         <option value="$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java" />
+        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java" />
+        <option value="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" />
+        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Store.java" />
       </list>
     </option>
   </component>
@@ -267,7 +235,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.UserTest">
+  <component name="RunManager" selected="JUnit.StoreTest">
     <configuration name="StoreTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="biblioteca" />
       <extension name="coverage">
@@ -294,22 +262,6 @@
       <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
       <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.StoreTest" />
       <option name="METHOD_NAME" value="getAvailableBooksShouldReturnListOfNotCheckedOutBooks" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StoreTest.getAvailableMoviesShouldReturnListOfNotCheckedOutMovies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="biblioteca" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.twu.biblioteca.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
-      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.StoreTest" />
-      <option name="METHOD_NAME" value="getAvailableMoviesShouldReturnListOfNotCheckedOutMovies" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -345,20 +297,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="com.twu.biblioteca in biblioteca" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biblioteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twu.biblioteca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="JUnit.StoreTest.getAvailableMoviesShouldReturnListOfNotCheckedOutMovies" />
       <item itemvalue="JUnit.StoreTest.getReturnableMoviesShouldReturnListOfCheckedOutMovies" />
       <item itemvalue="JUnit.StoreTest.getAvailableBooksShouldReturnListOfNotCheckedOutBooks" />
       <item itemvalue="JUnit.StoreTest" />
       <item itemvalue="JUnit.UserTest" />
+      <item itemvalue="JUnit.com.twu.biblioteca in biblioteca" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.StoreTest" />
-        <item itemvalue="JUnit.StoreTest.getAvailableBooksShouldReturnListOfNotCheckedOutBooks" />
         <item itemvalue="JUnit.StoreTest.getReturnableMoviesShouldReturnListOfCheckedOutMovies" />
-        <item itemvalue="JUnit.StoreTest.getAvailableMoviesShouldReturnListOfNotCheckedOutMovies" />
+        <item itemvalue="JUnit.com.twu.biblioteca in biblioteca" />
+        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.StoreTest.getAvailableBooksShouldReturnListOfNotCheckedOutBooks" />
       </list>
     </recent_temporary>
   </component>
@@ -376,35 +342,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="com_twu_biblioteca_in_biblioteca - 2018.09.15 at 14h 02m 10s.xml">
-      <configuration name="com.twu.biblioteca in biblioteca" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StoreTest_getAvailableMoviesShouldReturnListOfNotCheckedOutMovies - 2018.09.15 at 16h 07m 52s.xml">
-      <configuration name="StoreTest.getAvailableMoviesShouldReturnListOfNotCheckedOutMovies" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StoreTest_getAvailableMoviesShouldReturnListOfNotCheckedOutMovies - 2018.09.15 at 16h 08m 16s.xml">
-      <configuration name="StoreTest.getAvailableMoviesShouldReturnListOfNotCheckedOutMovies" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StoreTest_getReturnableMoviesShouldReturnListOfCheckedOutMovies - 2018.09.15 at 16h 09m 15s.xml">
-      <configuration name="StoreTest.getReturnableMoviesShouldReturnListOfCheckedOutMovies" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StoreTest_getAvailableBooksShouldReturnListOfNotCheckedOutBooks - 2018.09.15 at 16h 09m 27s.xml">
-      <configuration name="StoreTest.getAvailableBooksShouldReturnListOfNotCheckedOutBooks" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StoreTest - 2018.09.15 at 16h 09m 29s.xml">
-      <configuration name="StoreTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="StoreTest - 2018.09.15 at 16h 34m 41s.xml">
-      <configuration name="StoreTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UserTest - 2018.09.15 at 16h 34m 57s.xml">
-      <configuration name="UserTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="UserTest - 2018.09.15 at 16h 37m 17s.xml">
       <configuration name="UserTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="UserTest - 2018.09.15 at 16h 42m 03s.xml">
       <configuration name="UserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserTest - 2018.09.15 at 16h 42m 24s.xml">
+      <configuration name="UserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserTest - 2018.09.15 at 17h 16m 23s.xml">
+      <configuration name="UserTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_twu_biblioteca_in_biblioteca - 2018.09.15 at 17h 16m 31s.xml">
+      <configuration name="com.twu.biblioteca in biblioteca" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="com_twu_biblioteca_in_biblioteca - 2018.09.15 at 17h 20m 02s.xml">
+      <configuration name="com.twu.biblioteca in biblioteca" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StoreTest_getReturnableMoviesShouldReturnListOfCheckedOutMovies - 2018.09.15 at 17h 24m 36s.xml">
+      <configuration name="StoreTest.getReturnableMoviesShouldReturnListOfCheckedOutMovies" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StoreTest_getReturnableMoviesShouldReturnListOfCheckedOutMovies - 2018.09.15 at 17h 25m 02s.xml">
+      <configuration name="StoreTest.getReturnableMoviesShouldReturnListOfCheckedOutMovies" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StoreTest - 2018.09.15 at 17h 25m 30s.xml">
+      <configuration name="StoreTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StoreTest - 2018.09.15 at 17h 32m 02s.xml">
+      <configuration name="StoreTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -417,14 +383,14 @@
       <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49911818" visible="true" weight="0.18319227" />
       <window_info id="Structure" order="4" sideWeight="0.50088185" side_tool="true" weight="0.18319227" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.41172913" side_tool="true" visible="true" weight="0.34179893" />
+      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.41293833" side_tool="true" visible="true" weight="0.34179893" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.4903265" weight="0.32804233" />
+      <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.4897219" weight="0.32804233" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.3292683" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.49758163" weight="0.26137567" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.58827084" visible="true" weight="0.34179893" />
-      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49455863" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.58706164" visible="true" weight="0.34179893" />
+      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49395406" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -465,15 +431,35 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/twu/biblioteca/Store.java</url>
+          <line>113</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
-        <watch expression="this.store.users.get(0).booksBorrowed;" language="JAVA" />
-        <watch expression="this.usersSeed.get(0).booksBorrowed;" language="JAVA" />
+        <watch expression="matchedUser.getMoviesBorrowed()" language="JAVA" />
+        <watch expression="this." language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>this.</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>matchedUser.getMoviesBorrowed()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>this.usersSeed.get(0).booksBorrowed;</expression-string>
         <language-id>JAVA</language-id>
@@ -619,13 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="131" column="90" selection-start-line="131" selection-start-column="90" selection-end-line="131" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/junit-4.11.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -716,6 +695,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1019">
+          <caret line="88" column="57" lean-forward="true" selection-start-line="88" selection-start-column="57" selection-end-line="88" selection-end-column="57" />
+          <folding>
+            <element signature="e#476#477#0" expanded="true" />
+            <element signature="e#519#520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="121" column="94" selection-start-line="121" selection-start-column="94" selection-end-line="121" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="324" column="55" selection-start-line="324" selection-start-column="55" selection-end-line="324" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Seeder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
@@ -730,50 +734,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="324" column="54" selection-start-line="324" selection-start-column="54" selection-end-line="324" selection-end-column="54" />
+        <state relative-caret-position="115">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1783#1784#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="118" selection-start-line="118" selection-end-line="118" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-263">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#824#825#0" expanded="true" />
-            <element signature="e#860#861#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="257">
+          <caret line="164" column="47" lean-forward="true" selection-start-line="164" selection-start-column="47" selection-end-line="164" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Store.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="100" column="76" selection-start-line="100" selection-start-column="76" selection-end-line="100" selection-end-column="76" />
+        <state relative-caret-position="280">
+          <caret line="120" column="8" selection-start-line="120" selection-start-column="8" selection-end-line="127" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3122#3129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="89" column="5" lean-forward="true" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
-          <folding>
-            <element signature="e#476#477#0" expanded="true" />
-            <element signature="e#519#520#0" expanded="true" />
           </folding>
         </state>
       </provider>

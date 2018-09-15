@@ -119,7 +119,7 @@ public class Logic {
 		
 		try {
 			Integer movieId = (Integer) args.get(0);
-			this.store.checkoutMovie(movieId);
+			this.store.checkoutMovie(movieId, userDelegate.getCurrentUser().getLibraryNumber());
 			return getSuccessActionResponse(ActionType.CHECKOUT_MOVIE, AppState.LIST_MOVIES);
 		} catch (Exception e) {
 			return getInvalidActionResponse(ActionType.CHECKOUT_MOVIE, AppState.LIST_MOVIES);
