@@ -197,9 +197,9 @@ public class LogicTest implements UserDelegate {
 				this.logic.getListBooksDisplayContent(), 
 				AppState.LIST_BOOKS
         );
-		
+		ArrayList<Book> returnableBooks = store.getReturnableBooks(userDelegate.getCurrentUser().getLibraryNumber());
 		assertEquals(expectedRes, res);
-		assertEquals(1, store.getReturnableBooks().size());
+		assertEquals(1, returnableBooks.size());
 	}
 	
 	@Test
@@ -255,7 +255,7 @@ public class LogicTest implements UserDelegate {
 	public void testExecuteReturnBookAction() throws Exception {
 		Integer bookId = this.bookSeed.get(0).getIndex();
 		store.seedBooksData(this.bookSeed);
-		store.checkoutBook(bookId);
+		store.checkoutBook(bookId, userDelegate.getCurrentUser().getLibraryNumber());
 		
 		Action action = new Action(ActionType.RETURN_BOOK, bookId);
 		

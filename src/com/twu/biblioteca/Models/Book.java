@@ -16,7 +16,15 @@ public class Book {
         this.year = year;
         this.isCheckedOut = false;
     }
-    
+
+    public Book(Book book) {
+        this.index = book.index;
+        this.title = book.title;
+        this.author = book.author;
+        this.year = book.year;
+        this.isCheckedOut = book.isCheckedOut;
+    }
+
     public int getIndex() {
     		return this.index;
     }

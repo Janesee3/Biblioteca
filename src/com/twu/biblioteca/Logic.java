@@ -105,7 +105,7 @@ public class Logic {
 		
 		try {
 			Integer bookId = (Integer) args.get(0);
-			this.store.checkoutBook(bookId);
+			this.store.checkoutBook(bookId, userDelegate.getCurrentUser().getLibraryNumber());
 			return getSuccessActionResponse(ActionType.CHECKOUT_BOOK, AppState.LIST_BOOKS);
 		} catch (Exception e) {
 			return getInvalidActionResponse(ActionType.CHECKOUT_BOOK, AppState.LIST_BOOKS);
@@ -129,7 +129,7 @@ public class Logic {
 	private Response handleReturnBookAction(ArrayList<Object> args) {
 		try {
 			Integer bookId = (Integer) args.get(0);
-			this.store.returnBook(bookId);
+			this.store.returnBook(bookId, userDelegate.getCurrentUser().getLibraryNumber());
 			return getSuccessActionResponse(ActionType.RETURN_BOOK, AppState.RETURN_BOOKS);
 		} catch (Exception e) {
 			return getInvalidActionResponse(ActionType.RETURN_BOOK, AppState.RETURN_BOOKS);
@@ -226,7 +226,7 @@ public class Logic {
 	String getReturnBooksDisplayContent() {
 		return UserInterface.getBooksListDisplayString(
 				UserInterface.RETURN_BOOKS_TITLE,
-				this.store.getReturnableBooks(),
+				this.store.getReturnableBooks(userDelegate.getCurrentUser().getLibraryNumber()),
 				UserInterface.RETURN_BOOKS_MENU
 		);
 	}

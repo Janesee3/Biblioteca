@@ -14,6 +14,16 @@ public class User {
         this.booksBorrowed = new ArrayList<Book>();
     }
 
+    public User(User user) {
+        this.password = user.password;
+        this.libraryNumber = user.libraryNumber;
+        this.booksBorrowed = new ArrayList<Book>();
+        for (Book book: user.booksBorrowed) {
+            Book cloneBook = new Book(book);
+            this.booksBorrowed.add(cloneBook);
+        }
+    }
+
     public String getLibraryNumber() {
         return this.libraryNumber;
     }

@@ -19,6 +19,15 @@ public class Movie {
 		this.rating = rating;
 		this.isCheckedOut = false;
 	}
+
+	public Movie(Movie movie) {
+		this.index = movie.index;
+		this.name = movie.name;
+		this.director = movie.director;
+		this.year = movie.year;
+		this.rating = movie.rating;
+		this.isCheckedOut = movie.isCheckedOut;
+	}
 	
 	 public int getIndex() {
  		return this.index;

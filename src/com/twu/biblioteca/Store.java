@@ -30,9 +30,13 @@ public class Store {
     public void seedUsersData(ArrayList<User> seed) { this.users = seed; }
     
     
+    // Users
+    public ArrayList<User> getAllUsers() {
+        return this.users;
+    }
+
     // Books
 
-    
     public ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> availableBooks = new ArrayList<Book>(this.books.stream()
                 .filter(book -> !book.getCheckoutStatus()).collect(Collectors.toList()));
@@ -40,30 +44,34 @@ public class Store {
         return availableBooks;
     }
     
-    public ArrayList<Book> getReturnableBooks() {
-        ArrayList<Book> returnableBooks = new ArrayList<Book>(this.books.stream()
-                .filter(book -> book.getCheckoutStatus()).collect(Collectors.toList()));
+    public ArrayList<Book> getReturnableBooks(String libNum) {
+        User matchedUser = findUserByUserNumber(libNum);
+        ArrayList<Book> returnableBooks = new ArrayList<Book>(matchedUser.getBooksBorrowed().stream()
+                .filter(book -> book.getCheckoutStatus())
+                .collect(Collectors.toList()));
 
         return returnableBooks;
     }
 
-    // TODO: Change this to take in User arg as well
-    public void checkoutBook(int bookId) throws Exception {
+    public void checkoutBook(int bookId, String libNum) throws Exception {
+        User matchedUser = findUserByUserNumber(libNum);
         Book book = this.findBookById(bookId);
-        if (book != null) {
-        		book.markAsCheckedOut();
+        if (book != null && matchedUser != null) {
+            book.markAsCheckedOut();
+            matchedUser.borrowBook(book);
         } else {
-        		throw new Exception("Unable to find book.");
+            throw new Exception("Unable to find book/user.");
         }
     }
 
-    // TODO: Change this to take in User arg
-    public void returnBook(int bookId) throws Exception {
-	    	Book book = this.findBookById(bookId);
-	    if (book != null) {
-	        	book.markAsNotCheckedOut();
+    public void returnBook(int bookId, String libNum) throws Exception {
+        User matchedUser = findUserByUserNumber(libNum);
+        Book book = this.findBookById(bookId);
+	    if (book != null && matchedUser != null) {
+            book.markAsNotCheckedOut();
+            matchedUser.returnBook(book);
 	    } else {
-	    		throw new Exception("Unable to find book.");
+            throw new Exception("Unable to find book/user.");
 	    }
     }
     
@@ -113,8 +121,17 @@ public class Store {
     // Users
 
     User findUserByCredentials(String libNum, String pw) {
-        for (User user: users) {
+        for (User user: this.users) {
             if (user.getLibraryNumber().equals(libNum) && user.getPassword().equals(pw)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    User findUserByUserNumber(String libNum) {
+        for (User user: this.users) {
+            if (user.getLibraryNumber().equals(libNum)) {
                 return user;
             }
         }

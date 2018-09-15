@@ -23,26 +23,26 @@ public class Seeder {
 
     public static ArrayList<Book> getBookSeedData() {
         ArrayList<Book> seed = new ArrayList<Book>();
-        seed.add(TEST_BOOK_1);
-        seed.add(TEST_BOOK_2);
-        seed.add(TEST_BOOK_3);
+        seed.add(new Book(TEST_BOOK_1));
+        seed.add(new Book(TEST_BOOK_2));
+        seed.add(new Book(TEST_BOOK_3));
         return seed;
     }
     
 
     public static ArrayList<Movie> getMovieSeedData() {
         ArrayList<Movie> seed = new ArrayList<Movie>();
-        seed.add(TEST_MOVIE_1);
-        seed.add(TEST_MOVIE_2);
-        seed.add(TEST_MOVIE_3);
+        seed.add(new Movie(TEST_MOVIE_1));
+        seed.add(new Movie(TEST_MOVIE_2));
+        seed.add(new Movie(TEST_MOVIE_3));
         return seed;
     }
 
     public static ArrayList<User> getUserSeedData() {
         ArrayList<User> seed = new ArrayList<User>();
-        seed.add(TEST_USER_1);
-        seed.add(TEST_USER_2);
-        seed.add(TEST_USER_3);
+        seed.add(new User(TEST_USER_1));
+        seed.add(new User(TEST_USER_2));
+        seed.add(new User(TEST_USER_3));
         return seed;
     }
 
