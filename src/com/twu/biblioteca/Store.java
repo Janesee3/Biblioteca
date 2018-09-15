@@ -28,12 +28,6 @@ public class Store {
     }
 
     public void seedUsersData(ArrayList<User> seed) { this.users = seed; }
-    
-    
-    // Users
-    public ArrayList<User> getAllUsers() {
-        return this.users;
-    }
 
     // Books
 
@@ -102,9 +96,11 @@ public class Store {
         return availableMovies;
     }
     
-    public ArrayList<Movie> getReturnableMovies() {
-        ArrayList<Movie> returnableMovies = new ArrayList<Movie>(this.movies.stream()
-                .filter(movie -> movie.getCheckoutStatus()).collect(Collectors.toList()));
+    public ArrayList<Movie> getReturnableMovies(String userNumber) {
+        User matchedUser = findUserByUserNumber(userNumber);
+        ArrayList<Movie> returnableMovies = new ArrayList<Movie>(matchedUser.getMoviesBorrowed().stream()
+                .filter(movie -> movie.getCheckoutStatus())
+                .collect(Collectors.toList()));
 
         return returnableMovies;
     }

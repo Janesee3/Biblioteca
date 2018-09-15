@@ -322,7 +322,7 @@ public class LogicTest implements UserDelegate {
         );
 
 		assertEquals(expectedRes, res);
-		assertEquals(1, store.getReturnableMovies().size());
+		assertEquals(1, store.getReturnableMovies("123").size());
 	}
 
 	@Test

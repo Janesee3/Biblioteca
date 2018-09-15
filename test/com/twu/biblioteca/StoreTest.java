@@ -36,9 +36,8 @@ public class StoreTest {
     public void getAvailableBooksShouldReturnListOfNotCheckedOutBooks() {
         Book toBeBorrowed = booksSeed.get(0);
         toBeBorrowed.markAsCheckedOut();
-        this.store.seedBooksData(booksSeed);
 
-        ArrayList<Book> books = this.store.getAvailableBooks();
+        ArrayList<Book> books = store.getAvailableBooks();
 
         assertEquals(booksSeed.size() - 1, books.size());
     }
@@ -46,8 +45,9 @@ public class StoreTest {
     @Test
     public void getReturnableBooksShouldReturnListOfCheckedOutBooks() throws Exception {
         String borrowerId = Seeder.TEST_USER_1.getLibraryNumber();
-        this.store.checkoutBook(Seeder.TEST_BOOK_1.getIndex(), borrowerId);
-        ArrayList<Book> books = this.store.getReturnableBooks(borrowerId);
+        store.checkoutBook(Seeder.TEST_BOOK_1.getIndex(), borrowerId);
+
+        ArrayList<Book> books = store.getReturnableBooks(borrowerId);
 
         assertEquals(1, books.size());
     }
@@ -57,9 +57,9 @@ public class StoreTest {
     public void shouldCorrectlyCheckoutBookWhenGivenValidId() throws Exception {
         int bookIndex = Seeder.TEST_BOOK_1.getIndex();
         String userNumber = Seeder.TEST_USER_1.getLibraryNumber();
-        this.store.checkoutBook(bookIndex, userNumber);
-        assertTrue(this.store.findBookById(bookIndex).getCheckoutStatus());
-        assertEquals(1, this.store.findUserByUserNumber(userNumber).getBooksBorrowed().size());
+        store.checkoutBook(bookIndex, userNumber);
+        assertTrue(store.findBookById(bookIndex).getCheckoutStatus());
+        assertEquals(1, store.findUserByUserNumber(userNumber).getBooksBorrowed().size());
     }
 
     @Test
@@ -67,12 +67,12 @@ public class StoreTest {
         int bookIndex = Seeder.TEST_BOOK_1.getIndex();
         String userNumber = Seeder.TEST_USER_1.getLibraryNumber();
 
-        this.store.checkoutBook(bookIndex, userNumber);
-        this.store.returnBook(bookIndex, userNumber);
+        store.checkoutBook(bookIndex, userNumber);
+        store.returnBook(bookIndex, userNumber);
 
-        User user = this.store.findUserByUserNumber(userNumber);
+        User user = store.findUserByUserNumber(userNumber);
         ArrayList<Book> borrowedBooks = user.getBooksBorrowed();
-        assertFalse(this.store.findBookById(bookIndex).getCheckoutStatus());
+        assertFalse(store.findBookById(bookIndex).getCheckoutStatus());
         assertEquals(0, borrowedBooks.size());
     }
 
@@ -81,7 +81,7 @@ public class StoreTest {
     		int bookIndex = 9901;
 
     		try {
-                this.store.checkoutBook(bookIndex, usersSeed.get(0).getLibraryNumber());
+                store.checkoutBook(bookIndex, usersSeed.get(0).getLibraryNumber());
                 fail("Exception should be thrown.");
             } catch (Exception e) {
                 assert (true);
@@ -92,7 +92,7 @@ public class StoreTest {
     public void shouldThrowExceptionWhenReturnInvalidBook() {
     		int bookIndex = -1;
         try {
-            this.store.returnBook(bookIndex, usersSeed.get(0).getLibraryNumber());
+            store.returnBook(bookIndex, usersSeed.get(0).getLibraryNumber());
             fail("Exception should be thrown.");
         } catch (Exception e) {
             assert (true);
@@ -101,30 +101,30 @@ public class StoreTest {
 
     @Test
     public void getAvailableMoviesShouldReturnListOfNotCheckedOutMovies() {
-        moviesSeed.get(0).markAsCheckedOut();
-        this.store.seedMoviesData(moviesSeed);
+        Movie toBeBorrowed = moviesSeed.get(0);
+        toBeBorrowed.markAsCheckedOut();
 
-        ArrayList<Movie> movies = this.store.getAvailableMovies();
+        ArrayList<Movie> movies = store.getAvailableMovies();
 
         assertEquals(moviesSeed.size() - 1, movies.size());
     }
 
     @Test
     public void getReturnableMoviesShouldReturnListOfCheckedOutMovies() {
-        moviesSeed.get(0).markAsCheckedOut();
-        this.store.seedMoviesData(moviesSeed);
+        String borrowerId = Seeder.TEST_USER_1.getLibraryNumber();
+//        store.checkoutMovie(Seeder.TEST_MOVIE_1.getIndex(), borrowerId);
 
-        ArrayList<Movie> movies = this.store.getReturnableMovies();
+        ArrayList<Book> books = store.getReturnableBooks(borrowerId);
 
-        assertEquals(1, movies.size());
+        assertEquals(1, books.size());
     }
 
 
     @Test
     public void shouldCorrectlyCheckoutMovieWhenGivenValidId() throws Exception {
     		int movieIndex = Seeder.TEST_MOVIE_1.getIndex();
-    		this.store.checkoutMovie(movieIndex);
-    		assertTrue(this.store.findMovieById(movieIndex).getCheckoutStatus());
+    		store.checkoutMovie(movieIndex);
+    		assertTrue(store.findMovieById(movieIndex).getCheckoutStatus());
     }
 
     @Test
@@ -132,7 +132,7 @@ public class StoreTest {
         String libNum = Seeder.TEST_USER_1.getLibraryNumber();
         String pw = Seeder.TEST_USER_1.getPassword();
         User expectedUser = new User(libNum, pw);
-        User user = this.store.findUserByCredentials(libNum, pw);
+        User user = store.findUserByCredentials(libNum, pw);
         assertEquals(expectedUser, user);
     }
 
@@ -141,7 +141,7 @@ public class StoreTest {
         String libNum = "123123";
         String pw = "zzzasdds";
         User expectedUser = null;
-        User user = this.store.findUserByCredentials(libNum, pw);
+        User user = store.findUserByCredentials(libNum, pw);
         assertEquals(expectedUser, user);
     }
 }
