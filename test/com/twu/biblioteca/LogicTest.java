@@ -65,6 +65,8 @@ public class LogicTest implements UserDelegate {
 		return this.logic.getListMoviesDisplayContent();
 	}
 
+	private String getReturnMoviesDisplayContent() { return this.logic.getReturnMoviesDisplayContent(); }
+
 
 	// Test for Navigation Actions
 
@@ -139,10 +141,36 @@ public class LogicTest implements UserDelegate {
 		
 		assertEquals(expectedRes, res);
 	}
+
+    @Test
+    public void testExecuteGoToReturnMoviesAction() {
+        Action action = new Action(ActionType.GOTO_RETURN_MOVIES);
+        Response expectedRes = new Response("", getReturnMoviesDisplayContent(), AppState.RETURN_MOVIES);
+
+        Response res = logic.execute(action);
+
+        assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void testExecuteGoToReturnMoviesWhenNotLoggedIn() {
+        this.currentUser = null;
+
+        Action action = new Action(ActionType.GOTO_RETURN_MOVIES);
+        Response expectedRes = new Response(
+                UserInterface.LOGIN_REQUIRED,
+                this.logic.getMainMenuDisplayContent(false),
+                AppState.MAIN_MENU
+        );
+
+        Response res = logic.execute(action);
+
+        assertEquals(expectedRes, res);
+    }
 	
 
 	@Test
-	public void testExecuteInvalideMenuAction() {
+	public void testExecuteInvalidMenuAction() {
 		Action action = new Action(ActionType.INVALID_MENU_CHOICE);
 		Response expectedRes = new Response(
 		        UserInterface.INVALID_MENU_CHOICE,
@@ -379,16 +407,15 @@ public class LogicTest implements UserDelegate {
     @Test
     public void testExecuteReturnMovieAction() throws Exception {
         Integer movieId = this.movieSeed.get(0).getIndex();
-        store.seedMoviesData(this.movieSeed);
         store.checkoutMovie(movieId, userDelegate.getCurrentUser().getLibraryNumber());
 
-        Action action = new Action(ActionType.RETURN_BOOK, movieId);
+        Action action = new Action(ActionType.RETURN_MOVIE, movieId);
 
         Response res = logic.execute(action);
         Response expectedRes = new Response(
-                UserInterface.RETURN_BOOKS_RETURN_SUCCESS,
+                UserInterface.RETURN_MOVIES_RETURN_SUCCESS,
                 logic.getReturnMoviesDisplayContent(),
-                AppState.RETURN_BOOKS
+                AppState.RETURN_MOVIES
         );
 
         assertEquals(expectedRes, res);

@@ -48,7 +48,9 @@ public class Parser {
 			case UserInterface.MENU_CHOICE_LIST_BOOKS:
 				return new Action(ActionType.GOTO_LIST_BOOKS);
 			case UserInterface.MENU_CHOICE_LIST_MOVIES:
-				return  new Action(ActionType.GOTO_LIST_MOVIES);
+				return new Action(ActionType.GOTO_LIST_MOVIES);
+            case UserInterface.MENU_CHOICE_RETURN_MOVIES:
+                return new Action(ActionType.GOTO_RETURN_MOVIES);
 			case UserInterface.MENU_CHOICE_QUIT:
 				return new Action(ActionType.QUIT);
 			case UserInterface.MENU_CHOICE_RETURN_BOOKS:

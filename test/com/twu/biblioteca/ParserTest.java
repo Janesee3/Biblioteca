@@ -35,6 +35,14 @@ public class ParserTest {
 		Action action = Parser.parse(AppState.MAIN_MENU, input);
 		assertEquals(expectedAction, action);
 	}
+
+    @Test
+    public void parseReturnMoviesSelectionReturnsCorrectAction() {
+        String input = UserInterface.MENU_CHOICE_RETURN_MOVIES;
+        Action expectedAction = new Action(ActionType.GOTO_RETURN_MOVIES);
+        Action action = Parser.parse(AppState.MAIN_MENU, input);
+        assertEquals(expectedAction, action);
+    }
 	
 	@Test
 	public void parseListMovieSelectionReturnsCorrectAction() {

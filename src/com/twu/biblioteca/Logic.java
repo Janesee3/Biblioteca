@@ -37,6 +37,8 @@ public class Logic {
 			return handleGoToReturnBooksAction();
 		case GOTO_LIST_MOVIES:
 			return new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES);
+        case GOTO_RETURN_MOVIES:
+            return handleGoToReturnMoviesAction();
 		case BACK_TO_MAIN_MENU:
 			return new Response("", getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
 		case QUIT:
@@ -53,6 +55,8 @@ public class Logic {
 			return handleReturnBookAction(action.args);
 		case CHECKOUT_MOVIE:
 			return handleCheckoutMovieAction(action.args);
+        case RETURN_MOVIE:
+            return handleReturnMovieAction(action.args);
 
 			// Invalid
 		case INVALID_LOGIN_INPUT:
@@ -67,8 +71,10 @@ public class Logic {
 			return new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID, getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
 		case INVALID_LIST_MOVIE_MENU_CHOICE:
 			return new Response(UserInterface.MOVIE_LIST_CHOICE_INVALID, getListMoviesDisplayContent(), AppState.LIST_MOVIES);
-		default:
-			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
+        case INVALID_RETURN_MOVIE_MENU_CHOICE:
+            return new Response(UserInterface.RETURN_MOVIES_CHOICE_INVALID, getReturnMoviesDisplayContent(), AppState.RETURN_MOVIES);
+        default:
+            return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
 		}
 	}
 
@@ -86,6 +92,13 @@ public class Logic {
 		}
 		return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
 	}
+
+	private Response handleGoToReturnMoviesAction() {
+	    if (!userDelegate.isLoggedIn()) {
+	        return getLoginRequiredResponse(AppState.MAIN_MENU);
+        }
+        return new Response("", getReturnMoviesDisplayContent(), AppState.RETURN_MOVIES);
+    }
 
 	private Response handleLogin(ArrayList<Object> args) {
 		String libNum = (String) args.get(0);
@@ -152,6 +165,16 @@ public class Logic {
 		}
 	}
 
+	private Response handleReturnMovieAction(ArrayList<Object> args) {
+        try {
+            Integer movieId = (Integer) args.get(0);
+            this.store.returnMovie(movieId, userDelegate.getCurrentUser().getLibraryNumber());
+            return getSuccessActionResponse(ActionType.RETURN_MOVIE, AppState.RETURN_MOVIES);
+        } catch (Exception e) {
+            return getInvalidActionResponse(ActionType.RETURN_MOVIE, AppState.RETURN_MOVIES);
+        }
+    }
+
 
 	// Methods to package response according to state or action
 	
@@ -173,6 +196,9 @@ public class Logic {
 			case RETURN_BOOK:
 				feedbackContent = UserInterface.RETURN_BOOKS_RETURN_INVALID;
 				break;
+            case RETURN_MOVIE:
+                feedbackContent = UserInterface.RETURN_MOVIES_RETURN_INVALID;
+				break;
 		}
 		
 		return new Response(feedbackContent, displayContent, stateToReturn);
@@ -191,6 +217,9 @@ public class Logic {
 				break;
 			case RETURN_BOOK:
 				feedbackContent = UserInterface.RETURN_BOOKS_RETURN_SUCCESS;
+                break;
+            case RETURN_MOVIE:
+                feedbackContent = UserInterface.RETURN_MOVIES_RETURN_SUCCESS;
 				break;
 		}
 		
@@ -209,6 +238,8 @@ public class Logic {
 			return getMainMenuDisplayContent(userDelegate.isLoggedIn());
 		case LIST_MOVIES:
 			return getListMoviesDisplayContent();
+        case RETURN_MOVIES:
+            return getReturnMoviesDisplayContent();
 		case QUIT:
 			return getQuitDisplayContent();
 		default:
