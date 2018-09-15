@@ -72,6 +72,21 @@ public class Logic {
 		}
 	}
 
+    private Response handleGoToAuth() {
+        if (!userDelegate.isLoggedIn()) {
+            return new Response("", getLoginDisplayContent(), AppState.LOGIN);
+        } else {
+            return new Response("", getLogoutDisplayContent(), AppState.LOGOUT);
+        }
+    }
+
+	private Response handleGoToReturnBooksAction() {
+		if (!userDelegate.isLoggedIn()) {
+			return getLoginRequiredResponse(AppState.MAIN_MENU);
+		}
+		return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
+	}
+
 	private Response handleLogin(ArrayList<Object> args) {
 		String libNum = (String) args.get(0);
 		String password = (String) args.get(1);
@@ -102,7 +117,7 @@ public class Logic {
 		if (!userDelegate.isLoggedIn()) {
 			return getLoginRequiredResponse(AppState.LIST_BOOKS);
 		}
-		
+
 		try {
 			Integer bookId = (Integer) args.get(0);
 			this.store.checkoutBook(bookId, userDelegate.getCurrentUser().getLibraryNumber());
@@ -111,12 +126,12 @@ public class Logic {
 			return getInvalidActionResponse(ActionType.CHECKOUT_BOOK, AppState.LIST_BOOKS);
 		}
 	}
-	
+
 	private Response handleCheckoutMovieAction(ArrayList<Object> args) {
 		if (!userDelegate.isLoggedIn()) {
 			return getLoginRequiredResponse(AppState.LIST_MOVIES);
 		}
-		
+
 		try {
 			Integer movieId = (Integer) args.get(0);
 			this.store.checkoutMovie(movieId, userDelegate.getCurrentUser().getLibraryNumber());
@@ -125,7 +140,8 @@ public class Logic {
 			return getInvalidActionResponse(ActionType.CHECKOUT_MOVIE, AppState.LIST_MOVIES);
 		}
 	}
-	
+
+
 	private Response handleReturnBookAction(ArrayList<Object> args) {
 		try {
 			Integer bookId = (Integer) args.get(0);
@@ -135,23 +151,8 @@ public class Logic {
 			return getInvalidActionResponse(ActionType.RETURN_BOOK, AppState.RETURN_BOOKS);
 		}
 	}
-	
-	private Response handleGoToReturnBooksAction() {
-		if (!userDelegate.isLoggedIn()) {
-			return getLoginRequiredResponse(AppState.MAIN_MENU);
-		}	
-		return new Response("", getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
-	}
 
-	private Response handleGoToAuth() {
-	    if (!userDelegate.isLoggedIn()) {
-            return new Response("", getLoginDisplayContent(), AppState.LOGIN);
-        } else {
-            return new Response("", getLogoutDisplayContent(), AppState.LOGOUT);
-        }
 
-	}
-	
 	// Methods to package response according to state or action
 	
 	private Response getLoginRequiredResponse(AppState stateToReturn) {
@@ -238,6 +239,14 @@ public class Logic {
 				UserInterface.MOVIE_LIST_MENU
 		);
 	}
+
+	String getReturnMoviesDisplayContent() {
+        return UserInterface.getMoviesListDisplayString(
+                UserInterface.RETURN_MOVIES_TITLE,
+                this.store.getReturnableMovies(userDelegate.getCurrentUser().getLibraryNumber()),
+                UserInterface.RETURN_MOVIES_MENU
+        );
+    }
 
 	String getQuitDisplayContent() {
 		return UserInterface.QUIT_MESSAGE;

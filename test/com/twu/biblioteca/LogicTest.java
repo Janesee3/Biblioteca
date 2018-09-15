@@ -321,8 +321,9 @@ public class LogicTest implements UserDelegate {
 				AppState.LIST_MOVIES
         );
 
+        ArrayList<Movie> returnableMovies = store.getReturnableMovies(userDelegate.getCurrentUser().getLibraryNumber());
 		assertEquals(expectedRes, res);
-		assertEquals(1, store.getReturnableMovies("123").size());
+		assertEquals(1, returnableMovies.size());
 	}
 
 	@Test
@@ -372,6 +373,61 @@ public class LogicTest implements UserDelegate {
 		Response res = logic.execute(action);
 		assertEquals(expectedRes, res);
 	}
+
+	// Tests for Return Movie action
+
+    @Test
+    public void testExecuteReturnMovieAction() throws Exception {
+        Integer movieId = this.movieSeed.get(0).getIndex();
+        store.seedMoviesData(this.movieSeed);
+        store.checkoutMovie(movieId, userDelegate.getCurrentUser().getLibraryNumber());
+
+        Action action = new Action(ActionType.RETURN_BOOK, movieId);
+
+        Response res = logic.execute(action);
+        Response expectedRes = new Response(
+                UserInterface.RETURN_BOOKS_RETURN_SUCCESS,
+                logic.getReturnMoviesDisplayContent(),
+                AppState.RETURN_BOOKS
+        );
+
+        assertEquals(expectedRes, res);
+        assertEquals(this.movieSeed.size(), store.getAvailableMovies().size());
+    }
+
+    @Test
+    public void testExecuteIllegalReturnMovieAction() {
+        store.seedMoviesData(this.movieSeed);
+
+        Action action = new Action(ActionType.RETURN_BOOK, 1231);
+        Response expectedRes = new Response(
+                UserInterface.RETURN_BOOKS_RETURN_INVALID,
+                logic.getReturnMoviesDisplayContent(),
+                AppState.RETURN_BOOKS
+        );
+        Response res = logic.execute(action);
+        assertEquals(expectedRes, res);
+
+        action = new Action(ActionType.RETURN_BOOK, "asdas");
+        res = logic.execute(action);
+        assertEquals(expectedRes, res);
+
+        action = new Action(ActionType.RETURN_BOOK);
+        res = logic.execute(action);
+        assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void testExecuteInvalidReturnMovieAction() {
+        Action action = new Action(ActionType.INVALID_RETURN_BOOK_MENU_CHOICE);
+        Response expectedRes = new Response(
+                UserInterface.RETURN_BOOKS_CHOICE_INVALID,
+                logic.getReturnMoviesDisplayContent(),
+                AppState.RETURN_BOOKS
+        );
+        Response res = logic.execute(action);
+        assertEquals(expectedRes, res);
+    }
 
 	//  Test for Auth related actions
 

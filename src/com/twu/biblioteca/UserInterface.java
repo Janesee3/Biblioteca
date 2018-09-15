@@ -31,13 +31,15 @@ public class UserInterface {
     public static final String MENU_CHOICE_LIST_BOOKS = "2";
     public static final String MENU_CHOICE_RETURN_BOOKS = "3";
     public static final String MENU_CHOICE_LIST_MOVIES = "4";
-    public static final String MENU_CHOICE_QUIT = "5";
+    public static final String MENU_CHOICE_RETURN_MOVIES = "5";
+    public static final String MENU_CHOICE_QUIT = "6";
     public static final String INVALID_MENU_CHOICE = "Invalid selection! Please try again.";
     public static final String MENU_LOGIN = "[%s] Login" + System.lineSeparator();
     public static final String MENU_LOGOUT = "[%s] Logout" + System.lineSeparator();
     public static final String MENU_LIST_BOOKS = "[%s] List Books" + System.lineSeparator();
     public static final String MENU_RETURN_BOOKS = "[%s] Return Books" + System.lineSeparator();
     public static final String MENU_LIST_MOVIES = "[%s] List Movies" + System.lineSeparator();
+    public static final String MENU_RETURN_MOVIES = "[%s] Return Movies" + System.lineSeparator();
     public static final String MENU_QUIT = "[%s] Quit" + System.lineSeparator();
 
     
@@ -84,8 +86,22 @@ public class UserInterface {
     );
     public static final String MOVIE_LIST_CHECKOUT_INVALID = "That movie is not available." + System.lineSeparator();
     public static final String MOVIE_LIST_CHECKOUT_SUCCESS = "Thank you! Enjoy the movie!" + System.lineSeparator();
-    
-    
+
+
+    // RETURN MOVIES
+    public static final String RETURN_MOVIES_CHOICE_BACK = "b";
+    public static final String RETURN_MOVIES_CHOICE_RETURN = "return";
+    public static final String RETURN_MOVIES_CHOICE_INVALID = "Invalid choice, please try again!";
+    public static final String RETURN_MOVIES_RETURN_INVALID = "That is not a valid movie to return." + System.lineSeparator();
+    public static final String RETURN_MOVIES_RETURN_SUCCESS = "Thank you for returning the movie." + System.lineSeparator();
+    public static final String RETURN_MOVIES_TITLE = "---- MOVIES TO BE RETURNED ----";
+    public static final String RETURN_MOVIES_MENU = String.format(
+            "[%s] Back To Menu     [%s <movie id>] Return movie",
+            RETURN_MOVIES_CHOICE_BACK,
+            RETURN_MOVIES_CHOICE_RETURN
+    );
+
+
     private Scanner scanner;
 
     public UserInterface() {}
@@ -116,12 +132,22 @@ public class UserInterface {
 
     public static String getMenuDisplayString(boolean isLoggedIn) {
         String authOption = isLoggedIn ? MENU_LOGOUT : MENU_LOGIN;
+        String menuFormat =
+                MENU_TITLE
+                + authOption
+                + MENU_LIST_BOOKS
+                + MENU_RETURN_BOOKS
+                + MENU_LIST_MOVIES
+                + MENU_RETURN_MOVIES
+                + MENU_QUIT + System.lineSeparator()
+                + MENU_PROMPT;
         return String.format(
-                MENU_TITLE + authOption + MENU_LIST_BOOKS + MENU_RETURN_BOOKS + MENU_LIST_MOVIES + MENU_QUIT + System.lineSeparator() + MENU_PROMPT,
+                menuFormat,
                 MENU_CHOICE_AUTH,
                 MENU_CHOICE_LIST_BOOKS,
                 MENU_CHOICE_RETURN_BOOKS,
                 MENU_CHOICE_LIST_MOVIES,
+                MENU_CHOICE_RETURN_MOVIES,
                 MENU_CHOICE_QUIT
         );
     }
