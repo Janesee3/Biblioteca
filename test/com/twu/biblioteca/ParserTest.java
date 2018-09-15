@@ -184,6 +184,47 @@ public class ParserTest {
 		assertEquals(expectedAction, action);
 	}
 
+    // Test for parsing return movie menu input
+
+    @Test
+    public void parseBackFromReturnMovieReturnsCorrectAction() {
+        String input = UserInterface.RETURN_MOVIES_CHOICE_BACK;
+        Action expectedAction = new Action(ActionType.BACK_TO_MAIN_MENU);
+        Action action = Parser.parse(AppState.RETURN_MOVIES, input);
+        assertEquals(expectedAction, action);
+    }
+
+    @Test
+    public void parseReturnMovieGivesCorrectActionWithArg() {
+        Integer movieId = 1;
+        String input = UserInterface.RETURN_MOVIES_CHOICE_RETURN + " " + movieId;
+        Action expectedAction = new Action(ActionType.RETURN_MOVIE);
+        expectedAction.addArg(movieId);
+
+        Action action = Parser.parse(AppState.RETURN_MOVIES, input);
+
+        assertEquals(expectedAction, action);
+    }
+
+    @Test
+    public void parseReturnInvalidMovieGivesCorrectActionWithArg() {
+        String input = UserInterface.RETURN_MOVIES_CHOICE_RETURN + " " + "absdad";
+        Action expectedAction = new Action(ActionType.RETURN_MOVIE);
+        expectedAction.addArg(Parser.PARSED_INVALID_ID);
+
+        Action action = Parser.parse(AppState.RETURN_MOVIES, input);
+
+        assertEquals(expectedAction, action);
+    }
+
+    @Test
+    public void parseReturnMovieInvalidSelectionGivesCorrectAction() {
+        String input = "asdsad";
+        Action expectedAction = new Action(ActionType.INVALID_RETURN_MOVIE_MENU_CHOICE);
+        Action action = Parser.parse(AppState.RETURN_MOVIES, input);
+        assertEquals(expectedAction, action);
+    }
+
 	// Test for auth
 
 	@Test

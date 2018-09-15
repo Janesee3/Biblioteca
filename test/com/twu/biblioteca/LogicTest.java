@@ -399,31 +399,31 @@ public class LogicTest implements UserDelegate {
     public void testExecuteIllegalReturnMovieAction() {
         store.seedMoviesData(this.movieSeed);
 
-        Action action = new Action(ActionType.RETURN_BOOK, 1231);
+        Action action = new Action(ActionType.RETURN_MOVIE, 1231);
         Response expectedRes = new Response(
-                UserInterface.RETURN_BOOKS_RETURN_INVALID,
+                UserInterface.RETURN_MOVIES_RETURN_INVALID,
                 logic.getReturnMoviesDisplayContent(),
-                AppState.RETURN_BOOKS
+                AppState.RETURN_MOVIES
         );
         Response res = logic.execute(action);
         assertEquals(expectedRes, res);
 
-        action = new Action(ActionType.RETURN_BOOK, "asdas");
+        action = new Action(ActionType.RETURN_MOVIE, "asdas");
         res = logic.execute(action);
         assertEquals(expectedRes, res);
 
-        action = new Action(ActionType.RETURN_BOOK);
+        action = new Action(ActionType.RETURN_MOVIE);
         res = logic.execute(action);
         assertEquals(expectedRes, res);
     }
 
     @Test
     public void testExecuteInvalidReturnMovieAction() {
-        Action action = new Action(ActionType.INVALID_RETURN_BOOK_MENU_CHOICE);
+        Action action = new Action(ActionType.INVALID_RETURN_MOVIE_MENU_CHOICE);
         Response expectedRes = new Response(
-                UserInterface.RETURN_BOOKS_CHOICE_INVALID,
+                UserInterface.RETURN_MOVIES_CHOICE_INVALID,
                 logic.getReturnMoviesDisplayContent(),
-                AppState.RETURN_BOOKS
+                AppState.RETURN_MOVIES
         );
         Response res = logic.execute(action);
         assertEquals(expectedRes, res);

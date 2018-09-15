@@ -17,6 +17,8 @@ public class Parser {
 				return Parser.parseListBookMenuSelection(input);
 			case LIST_MOVIES:
 				return Parser.parseListMovieMenuSelection(input);
+            case RETURN_MOVIES:
+                return Parser.parseReturnMovieMenuSelection(input);
 			case RETURN_BOOKS:
 				return Parser.parseReturnBookMenuSelection(input);
 			case LOGIN:
@@ -88,6 +90,17 @@ public class Parser {
 		}
 		return new Action(ActionType.INVALID_RETURN_BOOK_MENU_CHOICE);
 	}
+
+	private static Action parseReturnMovieMenuSelection(String input) {
+        if (input.equals(UserInterface.RETURN_MOVIES_CHOICE_BACK)) {
+            return new Action(ActionType.BACK_TO_MAIN_MENU);
+        }
+
+        if (input.contains(UserInterface.RETURN_MOVIES_CHOICE_RETURN)) {
+            return Parser.createActionFromCommandWithId(ActionType.RETURN_MOVIE, input);
+        }
+        return new Action(ActionType.INVALID_RETURN_MOVIE_MENU_CHOICE);
+    }
 	
 	private static Action createActionFromCommandWithId(ActionType type, String input) {
 		Integer id = Parser.getIdFromActionStatement(input);
