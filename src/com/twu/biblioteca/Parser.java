@@ -31,7 +31,7 @@ public class Parser {
 	}
 	
 	// Example of action statement: "<action> <id>"
-	public static int getIdFromActionStatement(String statement) {
+	static int getIdFromActionStatement(String statement) {
         String[] wordsArray = statement.split(" ");
         if (wordsArray.length <= 1) { return PARSED_INVALID_ID; }
         try {
@@ -55,6 +55,8 @@ public class Parser {
 				return new Action(ActionType.QUIT);
 			case UserInterface.MENU_CHOICE_RETURN_BOOKS:
 				return new Action(ActionType.GOTO_RETURN_BOOKS);
+            case UserInterface.MENU_CHOICE_VIEW_USER_INFO:
+                return new Action(ActionType.SHOW_USER_INFORMATION);
 			default:
 				return new Action(ActionType.INVALID_MENU_CHOICE);
 		}

@@ -51,6 +51,14 @@ public class ParserTest {
 		Action action = Parser.parse(AppState.MAIN_MENU, input);
 		assertEquals(expectedAction, action);
 	}
+
+    @Test
+    public void parseUserInformationSelectionReturnsCorrectAction() {
+        String input = UserInterface.MENU_CHOICE_VIEW_USER_INFO;
+        Action expectedAction = new Action(ActionType.SHOW_USER_INFORMATION);
+        Action action = Parser.parse(AppState.MAIN_MENU, input);
+        assertEquals(expectedAction, action);
+    }
 	
 	@Test
 	public void parseQuitSelectionReturnsCorrectAction() {

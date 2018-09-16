@@ -32,7 +32,8 @@ public class UserInterface {
     public static final String MENU_CHOICE_RETURN_BOOKS = "3";
     public static final String MENU_CHOICE_LIST_MOVIES = "4";
     public static final String MENU_CHOICE_RETURN_MOVIES = "5";
-    public static final String MENU_CHOICE_QUIT = "6";
+    public static final String MENU_CHOICE_VIEW_USER_INFO = "6";
+    public static final String MENU_CHOICE_QUIT = "q";
     public static final String INVALID_MENU_CHOICE = "Invalid selection! Please try again.";
     public static final String MENU_LOGIN = "[%s] Login" + System.lineSeparator();
     public static final String MENU_LOGOUT = "[%s] Logout" + System.lineSeparator();
@@ -40,9 +41,26 @@ public class UserInterface {
     public static final String MENU_RETURN_BOOKS = "[%s] Return Books" + System.lineSeparator();
     public static final String MENU_LIST_MOVIES = "[%s] List Movies" + System.lineSeparator();
     public static final String MENU_RETURN_MOVIES = "[%s] Return Movies" + System.lineSeparator();
+    public static final String MENU_VIEW_USER_INFO = "[%s] User Information" + System.lineSeparator();
     public static final String MENU_QUIT = "[%s] Quit" + System.lineSeparator();
+    public static final String MENU_FORMAT_LOGGED_IN = MENU_TITLE
+                                                    + MENU_LOGOUT
+                                                    + MENU_LIST_BOOKS
+                                                    + MENU_RETURN_BOOKS
+                                                    + MENU_LIST_MOVIES
+                                                    + MENU_RETURN_MOVIES
+                                                    + MENU_VIEW_USER_INFO
+                                                    + MENU_QUIT + System.lineSeparator()
+                                                    + MENU_PROMPT;
+   public static final String MENU_FORMAT_NOT_LOGGED_IN = MENU_TITLE
+                                                        + MENU_LOGIN
+                                                        + MENU_LIST_BOOKS
+                                                        + MENU_RETURN_BOOKS
+                                                        + MENU_LIST_MOVIES
+                                                        + MENU_RETURN_MOVIES
+                                                        + MENU_QUIT + System.lineSeparator()
+                                                        + MENU_PROMPT;
 
-    
     // BOOK LIST
     public static final String BOOK_LIST_CHOICE_BACK = "b";
     public static final String BOOK_LIST_CHOICE_CHECKOUT = "checkout";
@@ -131,25 +149,29 @@ public class UserInterface {
     }
 
     public static String getMenuDisplayString(boolean isLoggedIn) {
-        String authOption = isLoggedIn ? MENU_LOGOUT : MENU_LOGIN;
-        String menuFormat =
-                MENU_TITLE
-                + authOption
-                + MENU_LIST_BOOKS
-                + MENU_RETURN_BOOKS
-                + MENU_LIST_MOVIES
-                + MENU_RETURN_MOVIES
-                + MENU_QUIT + System.lineSeparator()
-                + MENU_PROMPT;
-        return String.format(
-                menuFormat,
-                MENU_CHOICE_AUTH,
-                MENU_CHOICE_LIST_BOOKS,
-                MENU_CHOICE_RETURN_BOOKS,
-                MENU_CHOICE_LIST_MOVIES,
-                MENU_CHOICE_RETURN_MOVIES,
-                MENU_CHOICE_QUIT
-        );
+        if (isLoggedIn) {
+            return String.format(
+                    MENU_FORMAT_LOGGED_IN,
+                    MENU_CHOICE_AUTH,
+                    MENU_CHOICE_LIST_BOOKS,
+                    MENU_CHOICE_RETURN_BOOKS,
+                    MENU_CHOICE_LIST_MOVIES,
+                    MENU_CHOICE_RETURN_MOVIES,
+                    MENU_CHOICE_VIEW_USER_INFO,
+                    MENU_CHOICE_QUIT
+            );
+        } else {
+            return String.format(
+                    MENU_FORMAT_NOT_LOGGED_IN,
+                    MENU_CHOICE_AUTH,
+                    MENU_CHOICE_LIST_BOOKS,
+                    MENU_CHOICE_RETURN_BOOKS,
+                    MENU_CHOICE_LIST_MOVIES,
+                    MENU_CHOICE_RETURN_MOVIES,
+                    MENU_CHOICE_QUIT
+            );
+
+        }
     }
 
     public static String getBooksListDisplayString(String listTitle, ArrayList<Book> list, String menu) {
