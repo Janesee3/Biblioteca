@@ -15,19 +15,25 @@ public class UserTest {
     public User user;
     public String libNum = "123-1234";
     public String pw = "123";
+    public String name = "testName";
+    public String email = "testemail";
+    public String num = "678123";
     public Book MOCK_BOOK = new Book(0, "test title", "test author", "1900");
     public Movie MOCK_MOVIE = new Movie(0, "test name", "test director", "2000", Rating.FIVE);
 
 
     @Before
     public void init() {
-        user = new User(libNum, pw);
+        user = new User(libNum, pw, name, email, num);
     }
 
     @Test
     public void shouldCreateUserWithCorrectAttributes() {
         assertEquals(libNum, user.getLibraryNumber());
         assertEquals(pw, user.getPassword());
+        assertEquals(name, user.getName());
+        assertEquals(email, user.getEmail());
+        assertEquals(num, user.getPhoneNum());
     }
 
     @Test
@@ -53,13 +59,16 @@ public class UserTest {
 
         assertEquals(user.getLibraryNumber(), clonedUser.getLibraryNumber());
         assertEquals(user.getPassword(), clonedUser.getPassword());
+        assertEquals(name, clonedUser.getName());
+        assertEquals(email, clonedUser.getEmail());
+        assertEquals(num, clonedUser.getPhoneNum());
         assertEquals(1, clonedUser.getBooksBorrowed().size());
         assertEquals(1, clonedUser.getMoviesBorrowed().size());
     }
 
     @Test
     public void testForEqualsMethod() {
-        User user2 = new User(libNum, pw);
+        User user2 = new User(libNum, pw, name, email, num);
         assertTrue(user.equals(user2));
     }
 

@@ -13,6 +13,7 @@ public class UserInterface {
     public static final String QUIT_MESSAGE = "Goodbye!";
     public static final String UNRECOGNISED_ACTION_MESSAGE = "This input cannot be parsed!" + System.lineSeparator();
     public static final String LOGIN_REQUIRED = "Please login from the main menu first!" + System.lineSeparator();
+    public static final String USER_INFO = "---- USER INFORMATION ---- \nName: %s\nEmaiL: %s\nPhone Number: %s\n";
 
     // LOGIN RELATED
     public static final String LOGOUT_YES = "Y";

@@ -10,9 +10,16 @@ public class User {
     private ArrayList<Book> booksBorrowed;
     private ArrayList<Movie> moviesBorrowed;
 
-    public User(String libraryNumber, String password) {
+    private String name;
+    private String email;
+    private String phoneNum;
+
+    public User(String libraryNumber, String password, String name, String email, String phoneNum) {
         this.password = password;
         this.libraryNumber = libraryNumber;
+        this.name = name;
+        this.email = email;
+        this.phoneNum = phoneNum;
         this.booksBorrowed = new ArrayList<Book>();
         this.moviesBorrowed = new ArrayList<Movie>();
     }
@@ -20,6 +27,9 @@ public class User {
     public User(User user) {
         this.password = user.password;
         this.libraryNumber = user.libraryNumber;
+        this.name = user.name;
+        this.email = user.email;
+        this.phoneNum = user.phoneNum;
 
         this.booksBorrowed = new ArrayList<Book>(user.getBooksBorrowed()
                 .stream()
@@ -36,10 +46,12 @@ public class User {
     public String getLibraryNumber() {
         return this.libraryNumber;
     }
-
     public String getPassword() {
         return this.password;
     }
+    public String getName() { return this.name; }
+    public String getEmail() { return this.email; }
+    public String getPhoneNum() { return this.phoneNum; }
 
     // Books related
     public ArrayList<Book> getBooksBorrowed() {

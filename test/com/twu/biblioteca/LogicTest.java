@@ -22,9 +22,10 @@ public class LogicTest implements UserDelegate {
 	private ArrayList<Book> bookSeed = Seeder.getBookSeedData();
 	private ArrayList<Movie> movieSeed = Seeder.getMovieSeedData();
 	private ArrayList<User> userSeed = Seeder.getUserSeedData();
-	
-	private final String USER_NUM = userSeed.get(0).getLibraryNumber();
-	private final String USER_PW = userSeed.get(0).getPassword();
+
+	private final User MOCK_USER = new User(userSeed.get(0));
+	private final String USER_NUM = MOCK_USER.getLibraryNumber();
+	private final String USER_PW = MOCK_USER.getPassword();
 
 	// Implementing mock userDelegate
     private UserDelegate userDelegate;
@@ -45,7 +46,7 @@ public class LogicTest implements UserDelegate {
 		userDelegate = this;
 		logic.setUserDelegate(userDelegate);
 
-		currentUser = new User(USER_NUM, USER_PW);
+		currentUser = new User(MOCK_USER);
 
 		store.seedBooksData(bookSeed);
 		store.seedMoviesData(movieSeed);

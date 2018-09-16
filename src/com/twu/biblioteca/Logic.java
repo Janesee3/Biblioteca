@@ -57,6 +57,8 @@ public class Logic {
 			return handleCheckoutMovieAction(action.args);
         case RETURN_MOVIE:
             return handleReturnMovieAction(action.args);
+        case SHOW_USER_INFORMATION:
+            return handleShowUserInfoAction();
 
 			// Invalid
 		case INVALID_LOGIN_INPUT:
@@ -173,6 +175,11 @@ public class Logic {
         } catch (Exception e) {
             return getInvalidActionResponse(ActionType.RETURN_MOVIE, AppState.RETURN_MOVIES);
         }
+    }
+
+    private Response handleShowUserInfoAction() {
+	    String feedbackToShow = userDelegate.isLoggedIn() ? getUserInformation() : UserInterface.INVALID_MENU_CHOICE;
+        return new Response(feedbackToShow, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
     }
 
 
@@ -293,6 +300,11 @@ public class Logic {
 
     String getLogoutDisplayContent() {
 	    return UserInterface.LOGOUT_PROMPT;
+    }
+
+    String getUserInformation() {
+	    User currUser = userDelegate.getCurrentUser();
+	    return String.format(UserInterface.USER_INFO, currUser.getName(), currUser.getEmail(), currUser.getPhoneNum());
     }
 	
 	

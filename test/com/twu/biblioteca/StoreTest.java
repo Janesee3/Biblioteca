@@ -182,7 +182,7 @@ public class StoreTest {
     public void shouldReturnUserWhenGivenValidCredentials() {
         String libNum = Seeder.TEST_USER_1.getLibraryNumber();
         String pw = Seeder.TEST_USER_1.getPassword();
-        User expectedUser = new User(libNum, pw);
+        User expectedUser = new User(Seeder.TEST_USER_1);
         User user = store.findUserByCredentials(libNum, pw);
         assertEquals(expectedUser, user);
     }

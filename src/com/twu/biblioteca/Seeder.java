@@ -17,9 +17,9 @@ public class Seeder {
     public static final Movie TEST_MOVIE_2 = new Movie(2, "Game Of Thrones", "G R R Martin", "2004", Rating.ONE);
     public static final Movie TEST_MOVIE_3 = new Movie(3, "Chi Sweet Home", "Mr MEow", "2010", Rating.UNRATED);
 
-    public static final User TEST_USER_1 = new User("123-1234", "asd");
-    public static final User TEST_USER_2 = new User("111-1111", "pwee");
-    public static final User TEST_USER_3 = new User("111-0000", "zzz");
+    public static final User TEST_USER_1 = new User("123-1234", "asd", "Cat Meow", "meow@cat.com", "99991");
+    public static final User TEST_USER_2 = new User("111-1111", "asd", "Mysterious Man", "aaa@ddd.com", "12345");
+    public static final User TEST_USER_3 = new User("111-0000", "asd", "Johnson", "john@gmail.com", "6123456");
 
     public static ArrayList<Book> getBookSeedData() {
         ArrayList<Book> seed = new ArrayList<Book>();
