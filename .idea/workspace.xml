@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99c67f9c-4ca7-4559-8391-8cd853d6d08a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Seeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Seeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/LogicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/StoreTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/UserTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="99c67f9c-4ca7-4559-8391-8cd853d6d08a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="181" column="42" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
+            <state relative-caret-position="3230">
+              <caret line="202" column="29" lean-forward="true" selection-start-line="202" selection-start-column="29" selection-end-line="202" selection-end-column="29" />
               <folding>
                 <element signature="e#10100#10101#0" expanded="true" />
                 <element signature="e#10140#10141#0" expanded="true" />
@@ -392,7 +384,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -400,13 +391,13 @@
       <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49911818" visible="true" weight="0.18319227" />
       <window_info id="Structure" order="4" sideWeight="0.50088185" side_tool="true" weight="0.18319227" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.4171705" side_tool="true" visible="true" weight="0.34179893" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.4171705" side_tool="true" visible="true" weight="0.34179893" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="2" sideWeight="0.48609433" weight="0.32804233" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.3292683" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.49758163" weight="0.26137567" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.5828295" visible="true" weight="0.34179893" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.5828295" visible="true" weight="0.34179893" />
       <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49093106" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -778,8 +769,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Logic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="181" column="42" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
+        <state relative-caret-position="3230">
+          <caret line="202" column="29" lean-forward="true" selection-start-line="202" selection-start-column="29" selection-end-line="202" selection-end-column="29" />
           <folding>
             <element signature="e#10100#10101#0" expanded="true" />
             <element signature="e#10140#10141#0" expanded="true" />
