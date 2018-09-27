@@ -71,6 +71,7 @@ public class LogicTest implements UserDelegate {
 
 	// Test for Navigation Actions
 
+//	TODO: could be improved - test names - you don't have to start them with 'test*' :-)
     @Test
     public void testExecuteGoToAuthActionWhenNotLoggedIn() {
 	    currentUser = null;

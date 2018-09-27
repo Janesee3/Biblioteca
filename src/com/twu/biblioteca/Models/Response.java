@@ -4,6 +4,7 @@ import com.twu.biblioteca.EnumTypes.AppState;
 
 public class Response {
 	private String feedbackString;
+//	TODO: question - what's the intent behind calling it `newState`
 	private AppState newState;
 	private String displayContent;
 	

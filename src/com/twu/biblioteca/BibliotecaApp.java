@@ -7,6 +7,8 @@ import com.twu.biblioteca.Models.Action;
 import com.twu.biblioteca.Models.Response;
 import com.twu.biblioteca.Models.User;
 
+// TODO: question - what is the value of having App implement UserDelegate interface? What behaviour are we trying to enforce?
+// TODO: question - what would be a better name for UserDelegate?
 public class BibliotecaApp implements UserDelegate {
 
     private UserInterface ui;
@@ -19,7 +21,8 @@ public class BibliotecaApp implements UserDelegate {
         this.logic = new Logic(new Store());
         this.logic.setUserDelegate(this);
     }
-    
+
+//    TODO: not so good - BibliotecaApp(Store store) is an unused constructor. should be removed
     public BibliotecaApp(Store store) {
         this.ui = new UserInterface();
         this.state = AppState.MAIN_MENU;
@@ -28,7 +31,6 @@ public class BibliotecaApp implements UserDelegate {
 
 	
     public void run() {
-    		
         this.ui.showStartupSequence();
 
         while (this.getState() != AppState.QUIT) {

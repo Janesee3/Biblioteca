@@ -4,6 +4,7 @@ import com.twu.biblioteca.EnumTypes.ActionType;
 import com.twu.biblioteca.EnumTypes.AppState;
 import com.twu.biblioteca.Models.Action;
 
+//TODO: discuss how to refactor Parser to use strategy pattern
 public class Parser {
 	
 	public static Integer PARSED_INVALID_ID = -1;

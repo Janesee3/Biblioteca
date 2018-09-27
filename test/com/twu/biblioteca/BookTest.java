@@ -8,7 +8,7 @@ import com.twu.biblioteca.Models.Book;
 import static junit.framework.TestCase.assertEquals;
 
 public class BookTest {
-	
+//    TODO: good - test names are descriptive and neatly organized
 	int index = 10;
     String title = "Test title";
     String author = "meow";
@@ -22,7 +22,7 @@ public class BookTest {
 
     @Test
     public void creatingBookShouldCorrectlyPassAttributes() {
-	    	assertEquals(this.index, this.book.getIndex());    
+	    	assertEquals(this.index, this.book.getIndex());
 	    	assertEquals(this.title, this.book.getTitle());
         assertEquals(this.author, this.book.getAuthor());
         assertEquals(this.year, this.book.getYear());

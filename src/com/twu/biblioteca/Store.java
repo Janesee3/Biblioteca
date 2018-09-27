@@ -31,6 +31,7 @@ public class Store {
 
     // Books
 
+//    TODO: good - nice use of java streams :-)
     public ArrayList<Book> getAvailableBooks() {
         ArrayList<Book> availableBooks = new ArrayList<Book>(this.books.stream()
                 .filter(book -> !book.getCheckoutStatus()).collect(Collectors.toList()));

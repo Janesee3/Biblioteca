@@ -28,7 +28,7 @@ public class Action {
 	
 	@Override
 	public boolean equals(Object o) {   
-		
+//		TODO: good - use of guard clauses
 		if (!(o instanceof Action)) { 
             return false; 
         } 

@@ -31,6 +31,9 @@ public class BibliotecaAppTest {
         System.setIn(originalIn);
     }
 
+//    TODO: could be improved - there are no tests in BibliotecaAppTest? is this intended to be a smoke test?
+
+//    TODO: could be improved - unused methods should be removed
     private void injectInput(String input) {
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);

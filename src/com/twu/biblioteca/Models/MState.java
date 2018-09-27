@@ -2,6 +2,7 @@ package com.twu.biblioteca.Models;
 
 import com.twu.biblioteca.EnumTypes.AppState;
 
+//TODO: nobody seems to be using MState?
 public class MState {
 	
 	private AppState appState;

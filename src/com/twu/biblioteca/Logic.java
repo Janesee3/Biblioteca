@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.twu.biblioteca.EnumTypes.ActionType;
 import com.twu.biblioteca.EnumTypes.AppState;
@@ -8,6 +9,10 @@ import com.twu.biblioteca.Models.Action;
 import com.twu.biblioteca.Models.Response;
 import com.twu.biblioteca.Models.User;
 
+import static com.twu.biblioteca.EnumTypes.ActionType.*;
+
+//TODO: explore how Logic can be split up into smaller classes
+//TODO: explore how
 public class Logic {
 	
 	private Store store;
@@ -26,58 +31,37 @@ public class Logic {
 	}
 	
 	public Response execute(Action action) {
-		switch (action.type) {
+		HashMap<Enum, Response> map = new HashMap<>();
+		// Navigation
+		map.put(GOTO_AUTH, handleGoToAuth());
+		map.put(GOTO_LIST_BOOKS, new Response("", getListBooksDisplayContent(), AppState.LIST_BOOKS));
+		map.put(GOTO_RETURN_BOOKS, handleGoToReturnBooksAction());
+		map.put(GOTO_LIST_MOVIES, new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES));
+		map.put(GOTO_RETURN_MOVIES, handleGoToReturnMoviesAction());
+		map.put(BACK_TO_MAIN_MENU, new Response("", getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU));
+		map.put(QUIT, new Response("", getQuitDisplayContent(), AppState.QUIT));
 
-			// Navigation
-		case GOTO_AUTH:
-			return handleGoToAuth();
-		case GOTO_LIST_BOOKS:
-			return new Response("", getListBooksDisplayContent(), AppState.LIST_BOOKS);
-		case GOTO_RETURN_BOOKS:
-			return handleGoToReturnBooksAction();
-		case GOTO_LIST_MOVIES:
-			return new Response("", getListMoviesDisplayContent(), AppState.LIST_MOVIES);
-        case GOTO_RETURN_MOVIES:
-            return handleGoToReturnMoviesAction();
-		case BACK_TO_MAIN_MENU:
-			return new Response("", getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
-		case QUIT:
-			return new Response("", getQuitDisplayContent(), AppState.QUIT);
+		// User Actions
+		map.put(LOGIN, handleLogin(action.args));
+		map.put(LOGOUT, handleLogout());
+		map.put(CHECKOUT_BOOK, handleCheckoutBookAction(action.args));
+		map.put(RETURN_BOOK, handleReturnBookAction(action.args));
+		map.put(CHECKOUT_MOVIE, handleCheckoutMovieAction(action.args));
+		map.put(RETURN_MOVIE, handleReturnMovieAction(action.args));
+		map.put(SHOW_USER_INFORMATION, handleShowUserInfoAction());
 
-			// User Actions
-		case LOGIN:
-			return handleLogin(action.args);
-        case LOGOUT:
-            return handleLogout();
-		case CHECKOUT_BOOK:
-			return handleCheckoutBookAction(action.args);
-		case RETURN_BOOK:
-			return handleReturnBookAction(action.args);
-		case CHECKOUT_MOVIE:
-			return handleCheckoutMovieAction(action.args);
-        case RETURN_MOVIE:
-            return handleReturnMovieAction(action.args);
-        case SHOW_USER_INFORMATION:
-            return handleShowUserInfoAction();
 
-			// Invalid
-		case INVALID_LOGIN_INPUT:
-			return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getLoginDisplayContent(), AppState.LOGIN);
-        case INVALID_LOGOUT_INPUT:
-            return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getLogoutDisplayContent(), AppState.LOGOUT);
-		case INVALID_MENU_CHOICE:
-			return new Response(UserInterface.INVALID_MENU_CHOICE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
-		case INVALID_LIST_BOOK_MENU_CHOICE:
-			return new Response(UserInterface.BOOK_LIST_CHOICE_INVALID, getListBooksDisplayContent(), AppState.LIST_BOOKS);
-		case INVALID_RETURN_BOOK_MENU_CHOICE:
-			return new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID, getReturnBooksDisplayContent(), AppState.RETURN_BOOKS);
-		case INVALID_LIST_MOVIE_MENU_CHOICE:
-			return new Response(UserInterface.MOVIE_LIST_CHOICE_INVALID, getListMoviesDisplayContent(), AppState.LIST_MOVIES);
-        case INVALID_RETURN_MOVIE_MENU_CHOICE:
-            return new Response(UserInterface.RETURN_MOVIES_CHOICE_INVALID, getReturnMoviesDisplayContent(), AppState.RETURN_MOVIES);
-        default:
-            return new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
-		}
+		// Invalid
+		map.put(INVALID_LOGIN_INPUT, new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getLoginDisplayContent(), AppState.LOGIN));
+		map.put(INVALID_LOGOUT_INPUT, new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getLogoutDisplayContent(), AppState.LOGOUT));
+		map.put(INVALID_MENU_CHOICE, new Response(UserInterface.INVALID_MENU_CHOICE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU));
+		map.put(INVALID_LIST_BOOK_MENU_CHOICE, new Response(UserInterface.BOOK_LIST_CHOICE_INVALID, getListBooksDisplayContent(), AppState.LIST_BOOKS));
+		map.put(INVALID_RETURN_BOOK_MENU_CHOICE, new Response(UserInterface.RETURN_BOOKS_CHOICE_INVALID, getReturnBooksDisplayContent(), AppState.RETURN_BOOKS));
+		map.put(INVALID_LIST_MOVIE_MENU_CHOICE, new Response(UserInterface.MOVIE_LIST_CHOICE_INVALID, getListMoviesDisplayContent(), AppState.LIST_MOVIES));
+		map.put(INVALID_RETURN_MOVIE_MENU_CHOICE, new Response(UserInterface.RETURN_MOVIES_CHOICE_INVALID, getReturnMoviesDisplayContent(), AppState.RETURN_MOVIES));
+
+        Response defaultResponse = new Response(UserInterface.UNRECOGNISED_ACTION_MESSAGE, getMainMenuDisplayContent(userDelegate.isLoggedIn()), AppState.MAIN_MENU);
+        return map.getOrDefault(action.type, defaultResponse);
 	}
 
     private Response handleGoToAuth() {
@@ -103,6 +87,7 @@ public class Logic {
     }
 
 	private Response handleLogin(ArrayList<Object> args) {
+//	    TODO: could be improved - it shouldn't be the responsibility of Logic to do parsing
 		String libNum = (String) args.get(0);
 		String password = (String) args.get(1);
 		User user = store.findUserByCredentials(libNum, password);
